@@ -1,8 +1,8 @@
-import React from "react";
+import css from './index.module.css'
 
 const Notfound = () => {
     return(
-        <div></div>
+        <div className={css.notFoundParentDiv}></div>
     );
 }
 

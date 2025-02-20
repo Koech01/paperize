@@ -1,6 +1,6 @@
 import './App.css';
-import React from 'react';
 import Home from './components/Home';
+import Login from './components/Login';
 import NotFound from './components/NotFound';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
@@ -12,7 +12,8 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route  path='/' element={<Home/>}/>
-          <Route  path='*' element={<NotFound/>}/>
+          <Route  path='*' element={<NotFound/>}/> 
+          <Route  path='/login/' element={<Login/>}/>
         </Routes>
       </BrowserRouter>
     </div>
