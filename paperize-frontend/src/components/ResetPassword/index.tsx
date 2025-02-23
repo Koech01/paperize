@@ -1,6 +1,8 @@
-import css from '../Login/index.module.css'
+import css from '../Login/index.module.css';
+
 
 const ResetPassword = () => {
+    
     return(
         <div className={css.authParentDiv}> 
             <form className={css.authForm}> 
