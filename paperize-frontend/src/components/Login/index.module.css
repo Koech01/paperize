@@ -97,19 +97,25 @@
 
 .authFormBtn:active { transform: scale(0.95); }
 
-.authFormLinkDiv {
+.authFormLinkDiv, .authFormErrorDiv {
     display: flex;
     margin: 0;
     padding: 0;
+    height: fit-content;
     align-items: center;
     justify-content: center; 
 }
 
-.authFormLink {
+.authFormErrorDiv { gap: 10px; }
+
+.authFormLink, .authFormErrorText {
     margin: 0px;
     padding: 0px;
-    font-size: 14px; 
-    color: #000000;  
+    font-size: 14px;  
     line-height: 14px;
     font-style: normal;
 }
+
+.authFormLink { color: #000000; }
+
+.authFormErrorDiv { color: #000000;  }

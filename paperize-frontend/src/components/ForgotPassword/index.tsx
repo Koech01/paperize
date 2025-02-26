@@ -12,6 +12,9 @@ const ForgotPassword = () => {
                 <input className={css.authFormInput} required autoComplete="off" placeholder="Email" type="email"/>
                 <button className={css.authFormBtn} type="submit">Submit</button>
                 <div className={css.authFormLinkDiv}><a className={css.authFormLink} onClick={redirectToLogin}>Log In</a></div>
+                <div className={css.authFormErrorDiv}>
+                    <p className={css.authFormErrorText}>Error</p>
+                </div>
             </form> 
         </div>
     );
