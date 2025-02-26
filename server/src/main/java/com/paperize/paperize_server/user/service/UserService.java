@@ -9,6 +9,8 @@ public interface UserService {
 
     UserEntity createUser(CreateUserRequest data);
 
+    UserEntity getUserByEmail(String email);
+
     List<UserEntity> getUsers();
 
 }
