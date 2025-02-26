@@ -32,7 +32,7 @@ public class ErrorController {
                 .message(e.getMessage())
                 .build();
 
-        return new ResponseEntity<>(error, HttpStatus.BAD_GATEWAY);
+        return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
 
 }
