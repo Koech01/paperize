@@ -1,0 +1,153 @@
+@font-face {
+    font-style: normal;
+    font-weight: normal;
+    font-family: 'Poppins';
+    src:url('../fonts/Poppins-Regular.woff2') format('woff');
+}
+
+
+@media screen and (max-width: 767px){
+
+}
+
+
+/* Smartphones and small tablets in landscape mode */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+
+}
+
+
+/* Tablets and larger screens */
+@media screen and (min-width: 1024px) { 
+
+}
+
+
+.dashboardParentDiv {
+    display: flex; 
+    margin: 0px; 
+    width: 100%;
+    height: 100%;  
+    padding: 10px;
+    align-items: center; 
+    font-family: 'Poppins'; 
+    flex-direction: column;
+    justify-content: center; 
+    background-color: #EEEEEE; 
+} 
+  
+.dashboardChildDiv {
+    display: flex; 
+    gap: 10px;
+    margin: 0px;
+    width: 100%;
+    padding: 0px; 
+    min-height: 96%;
+    max-height: 96%;
+    border-radius: 15px;
+    align-items: center; 
+    flex-direction: column;
+    justify-content: center;
+    background-color: #FAFAFA; 
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+} 
+  
+.dashboardNavDiv {
+    display: flex; 
+    width: 100%;
+    margin: 0px;  
+    padding: 0px;  
+    height: fit-content;  
+} 
+
+.componentContentDiv { 
+    display: flex; 
+    flex: 1;
+    width: 99%; 
+    padding: 0px; 
+    border-radius: 11px;
+    margin: 0px 0px 8px 0px;  
+    background-color: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+} 
+
+.dashboardNav {
+    position: relative;
+    display: flex;  
+    width: 100%;  
+    padding: 0px;  
+    align-items: center;
+    justify-content: center;  
+    margin: 10px 0px 0px 0px; 
+} 
+
+.homeUnorderList { 
+    display: flex; 
+    gap: 10px; 
+    margin: 0px;  
+    padding: 0px; 
+} 
+
+.dashboardNavUserDiv { 
+    position: absolute;
+    display: flex;
+    gap: 15px;
+    right: 0px;   
+    padding: 0px;  
+    margin: 0 3% 0 0;
+    object-fit: cover; 
+    align-items: center;
+    justify-content: center; 
+} 
+
+.dashboardNavUserIcon {  
+    right: 0px;  
+    width: 32px;
+    margin: 0px;  
+    padding: 0px; 
+    height: 32px; 
+    cursor: pointer;
+    object-fit: cover;
+    border-radius: 50%; 
+} 
+
+.dashboardNavUsername {  
+    margin: 0px; 
+    padding: 0px;
+    cursor: pointer;
+    font-size: 13px; 
+    color: #111111; 
+    line-height: 14px;
+    font-style: normal; 
+} 
+
+.dashboardNavItem {
+    all: unset;
+    display: flex;
+    gap: 8px; 
+    margin: 0px; 
+    cursor: pointer;
+    font-size: 13px; 
+    color: #111111; 
+    line-height: 14px;
+    font-style: normal;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px 5px 10px;
+    border: 1px solid transparent;
+}
+
+.dashboardNavIcon{
+    width: 15px;
+    margin: 0px;  
+    padding: 0px; 
+    height: auto; 
+    cursor: pointer;
+    object-fit: cover; 
+}
+
+.dashboardNavItem.active {
+    border: 1px solid #EEEEEE;
+    background-color: #FFFFFF;
+}
