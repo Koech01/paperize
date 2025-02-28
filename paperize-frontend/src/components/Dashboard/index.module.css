@@ -33,7 +33,7 @@
     font-family: 'Poppins'; 
     flex-direction: column;
     justify-content: center; 
-    background-color: #EEEEEE; 
+    background-color: #F5F5F5; 
 } 
   
 .dashboardChildDiv {
@@ -47,10 +47,18 @@
     border-radius: 15px;
     align-items: center; 
     flex-direction: column;
-    justify-content: center;
-    background-color: #FAFAFA; 
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    justify-content: center;  
 } 
+
+.lightTheme .dashboardChildDiv { 
+    background-color: #FCFCFC;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; 
+}
+
+.darkTheme .dashboardChildDiv { 
+    background-color: #FCFCFC;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; 
+}
   
 .dashboardNavDiv {
     display: flex; 
@@ -67,9 +75,17 @@
     padding: 0px; 
     border-radius: 11px;
     margin: 0px 0px 8px 0px;  
+} 
+
+.lightTheme .componentContentDiv {  
     background-color: #FFFFFF;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-} 
+}
+
+.darkTheme .componentContentDiv {  
+    background-color: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
 
 .dashboardNav {
     position: relative;
@@ -107,19 +123,25 @@
     padding: 0px; 
     height: 32px; 
     cursor: pointer;
+    transition: .3s;
     object-fit: cover;
     border-radius: 50%; 
 } 
+
+.dashboardNavUserIcon:active { transform: scale(0.92); }
 
 .dashboardNavUsername {  
     margin: 0px; 
     padding: 0px;
     cursor: pointer;
     font-size: 13px; 
-    color: #111111; 
     line-height: 14px;
     font-style: normal; 
 } 
+
+.lightTheme .dashboardNavUsername { color: #111111; }
+
+.darkTheme .dashboardNavUsername { color: #111111; }
 
 .dashboardNavItem {
     all: unset;
@@ -128,26 +150,38 @@
     margin: 0px; 
     cursor: pointer;
     font-size: 13px; 
-    color: #111111; 
+    transition: .3s;  
     line-height: 14px;
     font-style: normal;
     border-radius: 20px;
     align-items: center;
     justify-content: center;
-    padding: 5px 10px 5px 10px;
+    padding: 7px 10px 7px 10px;
     border: 1px solid transparent;
+ 
 }
 
-.dashboardNavIcon{
+.lightTheme .dashboardNavItem { color: #111111; }
+
+.darkTheme .dashboardNavItem { color: #111111; }
+
+.dashboardNavIcon {
     width: 15px;
     margin: 0px;  
     padding: 0px; 
     height: auto; 
-    cursor: pointer;
+    cursor: pointer; 
     object-fit: cover; 
+} 
+
+.lightTheme .dashboardNavItem.active {
+    border: 1px solid #EEEEEE;
+    background-color: #FFFFFF;  
 }
 
-.dashboardNavItem.active {
+.darkTheme .dashboardNavItem.active {
     border: 1px solid #EEEEEE;
-    background-color: #FFFFFF;
+    background-color: #FFFFFF;  
 }
+
+.dashboardNavItem:active { transform: scale(0.9); }

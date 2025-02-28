@@ -1,3 +1,6 @@
+import Home from '../Home';
+import Create from '../Create';
+import Setting from '../Setting';
 import css from './index.module.css'; 
 import { useEffect, useState } from 'react';
 import userIcon from '../assets/usericon.jpg';
@@ -69,7 +72,9 @@ const Dashboard = () => {
                     </div>
 
                     <div className={css.componentContentDiv}>
-
+                        {activeComponent === 'Home' && <Home/>}
+                        {activeComponent === 'Create' && <Create/>}
+                        {activeComponent === 'Settings' && <Setting/>}
                     </div>
                 </div> 
             </div>  
