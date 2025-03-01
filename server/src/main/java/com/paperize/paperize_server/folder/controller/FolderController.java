@@ -1,9 +1,9 @@
 package com.paperize.paperize_server.folder.controller;
 
+import com.paperize.paperize_server.file.FileEntity;
 import com.paperize.paperize_server.folder.FolderEntity;
 import com.paperize.paperize_server.folder.data.CreateFolderRequest;
 import com.paperize.paperize_server.folder.service.FolderService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Optional;
 import java.util.UUID;
 import java.util.List;
 
@@ -35,6 +36,12 @@ public class FolderController {
                 .build();
         FolderEntity folder = folderService.createFolder(folderRequest);
         return new ResponseEntity<>(folder, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{folderId}/files")
+    public ResponseEntity<Optional<List<FileEntity>>> getFolderFiles(@PathVariable String folderId) {
+        Optional<List<FileEntity>> folderFiles = folderService.getFolderFiles(UUID.fromString(folderId));
+        return new ResponseEntity<>(folderFiles, HttpStatus.CREATED);
     }
 
 }

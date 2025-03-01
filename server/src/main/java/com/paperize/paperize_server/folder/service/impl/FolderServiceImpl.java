@@ -15,6 +15,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -65,5 +67,15 @@ public class FolderServiceImpl implements FolderService {
         }
 
         return savedFolder;
+    }
+
+    @Override
+    @Transactional
+    public Optional<List<FileEntity>> getFolderFiles(UUID folderId) {
+        Optional<List<FileEntity>> folderFiles = folderRepository.findById(folderId)
+                .map(folder -> fileRepository.findFolderFiles(folderId))
+                .orElseThrow(() -> new BadCredentialsException("Folder does not exist"));
+
+        return folderFiles;
     }
 }
