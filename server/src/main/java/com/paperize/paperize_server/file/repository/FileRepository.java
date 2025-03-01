@@ -13,6 +13,8 @@ import java.util.UUID;
 @Repository
 public interface FileRepository extends JpaRepository<FileEntity, UUID> {
 
+    Optional<List<FileEntity>> findByFolderId(UUID id);
+
     @Query("SELECT f FROM FileEntity f WHERE f.folder.id = :id")
     Optional<List<FileEntity>> findFolderFiles(@PathVariable("id") UUID id);
 

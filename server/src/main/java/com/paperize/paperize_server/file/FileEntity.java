@@ -1,5 +1,6 @@
 package com.paperize.paperize_server.file;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.paperize.paperize_server.folder.FolderEntity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -44,6 +45,7 @@ public class FileEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "folder_id", nullable = false)
+    @JsonBackReference
     private FolderEntity folder;
 
     @CreationTimestamp

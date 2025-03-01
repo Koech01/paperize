@@ -1,5 +1,6 @@
 package com.paperize.paperize_server.file.controller;
 
+import com.paperize.paperize_server.file.FileEntity;
 import com.paperize.paperize_server.file.data.CreateFileRequest;
 import com.paperize.paperize_server.file.service.FileService;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -33,6 +35,11 @@ public class FileController {
 
         UUID requestFolderId = fileService.saveFiles(fileRequest);
         return new ResponseEntity<>(requestFolderId, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{folderId}")
+    public ResponseEntity<Optional<List<FileEntity>>> getFolderFiles(@PathVariable String folderId) {
+        return new ResponseEntity<>(fileService.getFolderFiles(UUID.fromString(folderId)), HttpStatus.OK);
     }
 
 }

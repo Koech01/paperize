@@ -2,9 +2,12 @@ package com.paperize.paperize_server.folder;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.paperize.paperize_server.file.FileEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -35,10 +38,12 @@ public class FolderEntity {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "parent_id")
+    @JsonBackReference
     private FolderEntity parent;
 
     @OneToMany(mappedBy = "parent", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     @Builder.Default
+    @JsonManagedReference
     private Set<FolderEntity> children = new HashSet<>();
 
     @Builder.Default
@@ -53,14 +58,8 @@ public class FolderEntity {
     @Column(name = "updated_at")
     private LocalDateTime updatedAt;
 
-//    @PrePersist
-//    protected void onCreate() {
-//        createdAt = LocalDateTime.now();
-//        updatedAt = LocalDateTime.now();
-//    }
-//
-//    @PreUpdate
-//    protected void onUpdate() {
-//        updatedAt = LocalDateTime.now();
-//    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, userId);
+    }
 }

@@ -10,8 +10,14 @@ import java.util.UUID;
 
 public interface FolderService {
 
+    List<FolderEntity> getAllFolders();
+
+    List<FolderEntity> getRootFolders(UUID userId);
+
     FolderEntity createFolder(CreateFolderRequest folder);
 
     Optional<List<FileEntity>> getFolderFiles(UUID folderId);
+
+    FolderEntity getFolderById(UUID folderId);
 
 }

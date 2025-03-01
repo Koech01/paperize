@@ -29,6 +29,18 @@ public class FolderServiceImpl implements FolderService {
     private final FileRepository fileRepository;
 
     @Override
+    public List<FolderEntity> getAllFolders() {
+        return folderRepository.findAll();
+    }
+
+    @Override
+    public List<FolderEntity> getRootFolders(UUID userId) {
+        List<FolderEntity> rootFolders = folderRepository.findRootFolders(userId);
+        log.info("Root folders - {}", rootFolders);
+        return rootFolders;
+    }
+
+    @Override
     @Transactional
     public FolderEntity createFolder(CreateFolderRequest folder) {
         log.info(String.valueOf(folder));
@@ -77,5 +89,11 @@ public class FolderServiceImpl implements FolderService {
                 .orElseThrow(() -> new BadCredentialsException("Folder does not exist"));
 
         return folderFiles;
+    }
+
+    @Override
+    public FolderEntity getFolderById(UUID folderId) {
+        return folderRepository.findById(folderId)
+                .orElseThrow(() -> new IllegalArgumentException("Folder does not exist"));
     }
 }

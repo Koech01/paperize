@@ -12,6 +12,8 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -21,6 +23,11 @@ public class FileServiceImpl implements FileService {
     private final FolderRepository folderRepository;
     private final FileRepository fileRepository;
     private final S3Service s3Service;
+
+    @Override
+    public Optional<List<FileEntity>> getFolderFiles(UUID folderId) {
+        return fileRepository.findByFolderId(folderId);
+    }
 
     @Override
     @Transactional

@@ -4,10 +4,12 @@ import com.paperize.paperize_server.file.FileEntity;
 import com.paperize.paperize_server.folder.FolderEntity;
 import com.paperize.paperize_server.folder.data.CreateFolderRequest;
 import com.paperize.paperize_server.folder.service.FolderService;
+import com.paperize.paperize_server.user.UserEntity;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,6 +24,21 @@ import java.util.List;
 public class FolderController {
 
     private final FolderService folderService;
+
+    // TODO: Get all folders (Testing purposes)
+    @GetMapping("/all")
+    public ResponseEntity<?> getAllFolders() {
+        List<FolderEntity> allFolders = folderService.getAllFolders();
+        log.info("All folders - {}", allFolders);
+        return new ResponseEntity<>(allFolders, HttpStatus.OK);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<FolderEntity>> getRootFolders(Authentication authentication) {
+        log.info("Auth object - {}", authentication);
+        UserEntity principal = (UserEntity) authentication.getPrincipal();
+        return new ResponseEntity<>(folderService.getRootFolders(principal.getId()), HttpStatus.OK);
+    }
 
     @PostMapping
     public ResponseEntity<FolderEntity> createFolder(
@@ -42,6 +59,13 @@ public class FolderController {
     public ResponseEntity<Optional<List<FileEntity>>> getFolderFiles(@PathVariable String folderId) {
         Optional<List<FileEntity>> folderFiles = folderService.getFolderFiles(UUID.fromString(folderId));
         return new ResponseEntity<>(folderFiles, HttpStatus.CREATED);
+    }
+
+    @GetMapping("/{folderId}")
+    public ResponseEntity<FolderEntity> getFolderById(
+            @PathVariable String folderId
+    ) {
+        return new ResponseEntity<>(folderService.getFolderById(UUID.fromString(folderId)), HttpStatus.OK);
     }
 
 }
