@@ -33,7 +33,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     show-sql: true
 
 logging:
@@ -46,3 +46,10 @@ logging:
       springframework:
         web: DEBUG
         security: DEBUG
+
+
+aws:
+  region: ${AWS_BUCKET_REGION}
+  client-id: ${AWS_S3_CLIENT_ID}
+  secret-key: ${AWS_S3_SECRET_KEY}
+  bucket-name: ${BUCKET_NAME}

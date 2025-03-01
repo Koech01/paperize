@@ -42,6 +42,7 @@ public class SecurityConfig {
                 .authorizeHttpRequests(customizer -> {
                     customizer
                             .requestMatchers(antMatcher("/api/auth/**")).permitAll()
+                            .requestMatchers(antMatcher(HttpMethod.POST, "/api/v1/get-user")).permitAll()
                             .requestMatchers(antMatcher("/error")).permitAll()
                             .requestMatchers(antMatcher("/favicon.ico")).permitAll()
                             .anyRequest().authenticated();

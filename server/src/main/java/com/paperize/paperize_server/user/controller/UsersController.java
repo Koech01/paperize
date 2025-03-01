@@ -22,4 +22,10 @@ public class UsersController {
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
+    @PostMapping("/get-user")
+    public ResponseEntity<UserEntity> createUser(@RequestBody String email) {
+        UserEntity user = userService.getUserByEmail(email);
+        return new ResponseEntity<>(user, HttpStatus.CREATED);
+    }
+
 }

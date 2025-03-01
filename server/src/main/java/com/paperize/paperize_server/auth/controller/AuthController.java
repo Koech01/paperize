@@ -60,10 +60,4 @@ public class AuthController {
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/cookie-settings")
-    public String getCookieSettings() {
-        return "SameSite=" + serverProperties.getServlet().getSession().getCookie().getSameSite() +
-                ", Secure=" + serverProperties.getServlet().getSession().getCookie().getSecure();
-    }
-
 }
