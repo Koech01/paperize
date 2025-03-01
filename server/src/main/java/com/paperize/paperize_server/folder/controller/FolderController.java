@@ -1,5 +1,6 @@
 package com.paperize.paperize_server.folder.controller;
 
+import com.paperize.paperize_server.folder.FolderEntity;
 import com.paperize.paperize_server.folder.data.CreateFolderRequest;
 import com.paperize.paperize_server.folder.service.FolderService;
 import jakarta.validation.Valid;
@@ -22,7 +23,7 @@ public class FolderController {
     private final FolderService folderService;
 
     @PostMapping
-    public ResponseEntity<UUID> createFolder(
+    public ResponseEntity<FolderEntity> createFolder(
             @RequestPart("name") String name,
             @RequestPart(value = "parent", required = false) String parentId,
             @RequestParam(value = "files", required = false) List<MultipartFile> files
@@ -32,8 +33,8 @@ public class FolderController {
                 .name(name)
                 .parentId(parentId)
                 .build();
-        UUID folderId = folderService.createFolder(folderRequest);
-        return new ResponseEntity<>(folderId, HttpStatus.CREATED);
+        FolderEntity folder = folderService.createFolder(folderRequest);
+        return new ResponseEntity<>(folder, HttpStatus.CREATED);
     }
 
 }

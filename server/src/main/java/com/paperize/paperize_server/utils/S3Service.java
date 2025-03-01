@@ -24,7 +24,7 @@ public class S3Service {
 
     public String uploadFile (MultipartFile file, UUID folderId) {
         try {
-            String fileKey = String.valueOf(folderId) + "-" + generateUniqueKey(Objects.requireNonNull(file.getOriginalFilename()));
+            String fileKey = String.valueOf(folderId) + "/" + generateUniqueKey(Objects.requireNonNull(file.getOriginalFilename()));
             PutObjectRequest request = PutObjectRequest.builder()
                     .bucket(bucketName)
                     .contentType(file.getContentType())

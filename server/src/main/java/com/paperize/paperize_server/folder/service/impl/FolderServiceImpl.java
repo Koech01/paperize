@@ -28,7 +28,7 @@ public class FolderServiceImpl implements FolderService {
 
     @Override
     @Transactional
-    public UUID createFolder(CreateFolderRequest folder) {
+    public FolderEntity createFolder(CreateFolderRequest folder) {
         log.info(String.valueOf(folder));
         FolderEntity buildFolder = FolderEntity.builder()
                 .name(folder.getName())
@@ -64,6 +64,6 @@ public class FolderServiceImpl implements FolderService {
             });
         }
 
-        return savedFolder.getId();
+        return savedFolder;
     }
 }
