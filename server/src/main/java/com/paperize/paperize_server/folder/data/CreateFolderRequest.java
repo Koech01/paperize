@@ -16,7 +16,6 @@ public class CreateFolderRequest {
     @NotBlank(message = "Name is required")
     private String name;
     private String parentId;
-    private String userId;
     private List<MultipartFile> files;
 
 }
