@@ -1,12 +1,14 @@
 import Home from '../Home';
 import Create from '../Create';
 import Setting from '../Setting';
+import Profile from '../Profile';
 import css from './index.module.css'; 
 import { useEffect, useState } from 'react';
 import userIcon from '../assets/usericon.jpg';
 import homeLightIcon from '../assets/homeLightIcon.svg';
 import createLightIcon from '../assets/createLightIcon.svg';
 import settingLightIcon from '../assets/settingLightIcon.svg';
+
 
 
 const Dashboard = () => {
@@ -75,6 +77,7 @@ const Dashboard = () => {
                         {activeComponent === 'Home' && <Home/>}
                         {activeComponent === 'Create' && <Create/>}
                         {activeComponent === 'Settings' && <Setting/>}
+                        {activeComponent === 'Profile' && <Profile/>}
                     </div>
                 </div> 
             </div>  
