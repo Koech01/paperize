@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
@@ -26,6 +27,7 @@ public class FolderServiceImpl implements FolderService {
     private final FileRepository fileRepository;
 
     @Override
+    @Transactional
     public UUID createFolder(CreateFolderRequest folder) {
         log.info(String.valueOf(folder));
         FolderEntity buildFolder = FolderEntity.builder()
