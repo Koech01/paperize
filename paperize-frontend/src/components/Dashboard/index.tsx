@@ -1,9 +1,14 @@
+import Home from '../Home';
+import Upload from '../Upload';
+import Setting from '../Setting';
+import Profile from '../Profile';
 import css from './index.module.css'; 
 import { useEffect, useState } from 'react';
 import userIcon from '../assets/usericon.jpg';
 import homeLightIcon from '../assets/homeLightIcon.svg';
-import createLightIcon from '../assets/createLightIcon.svg';
+import uploadLightIcon from '../assets/uploadLightIcon.svg';
 import settingLightIcon from '../assets/settingLightIcon.svg';
+
 
 
 const Dashboard = () => {
@@ -19,7 +24,7 @@ const Dashboard = () => {
 
 
     const handleHomeClick     = () => { setActiveComponent('Home') };
-    const handleCreateClick   = () => { setActiveComponent('Create') };
+    const handleUploadClick   = () => { setActiveComponent('Upload') };
     const handleProfileClick  = () => { setActiveComponent('Profile') };
     const handleSettingsClick = () => { setActiveComponent('Settings') };
 
@@ -40,11 +45,11 @@ const Dashboard = () => {
                                 </li>
 
                                 <li 
-                                  className = {`${css.dashboardNavItem} ${activeComponent === 'Create' ? css.active : ''}`}
-                                  onClick   = {handleCreateClick}
+                                  className = {`${css.dashboardNavItem} ${activeComponent === 'Upload' ? css.active : ''}`}
+                                  onClick   = {handleUploadClick}
                                 >
-                                    <img className={css.dashboardNavIcon} src={createLightIcon} alt="create-light-icon"/>
-                                    Create 
+                                    <img className={css.dashboardNavIcon} src={uploadLightIcon} alt="upload-light-icon"/>
+                                    Upload 
                                 </li>
 
                                 <li 
@@ -69,7 +74,10 @@ const Dashboard = () => {
                     </div>
 
                     <div className={css.componentContentDiv}>
-
+                        {activeComponent === 'Home' && <Home/>}
+                        {activeComponent === 'Upload' && <Upload/>}
+                        {activeComponent === 'Settings' && <Setting/>}
+                        {activeComponent === 'Profile' && <Profile/>}
                     </div>
                 </div> 
             </div>  
