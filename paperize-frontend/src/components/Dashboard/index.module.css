@@ -28,7 +28,7 @@
     margin: 0px; 
     width: 100%;
     height: 100%;  
-    padding: 10px;
+    padding: 0px;
     align-items: center; 
     font-family: 'Poppins'; 
     flex-direction: column;
@@ -42,23 +42,15 @@
     margin: 0px;
     width: 100%;
     padding: 0px; 
-    min-height: 96%;
-    max-height: 96%;
-    border-radius: 15px;
+    height: 100%;
     align-items: center; 
     flex-direction: column;
     justify-content: center;  
 } 
 
-.lightTheme .dashboardChildDiv { 
-    background-color: #FCFCFC;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; 
-}
+.lightTheme .dashboardChildDiv { background-color: #FCFCFC; }
 
-.darkTheme .dashboardChildDiv { 
-    background-color: #FCFCFC;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px; 
-}
+.darkTheme .dashboardChildDiv { background-color: #FCFCFC; }
   
 .dashboardNavDiv {
     display: flex; 
@@ -70,22 +62,15 @@
 
 .componentContentDiv { 
     display: flex; 
-    flex: 1;
-    width: 99%; 
-    padding: 0px; 
-    border-radius: 11px;
-    margin: 0px 0px 8px 0px;  
+    flex: 1; 
+    margin: 0px;  
+    width: 100%; 
+    padding: 0px;   
 } 
 
-.lightTheme .componentContentDiv {  
-    background-color: #FFFFFF;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-}
+.lightTheme .componentContentDiv { background-color: #FFFFFF; }
 
-.darkTheme .componentContentDiv {  
-    background-color: #FFFFFF;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-}
+.darkTheme .componentContentDiv { background-color: #FFFFFF; }
 
 .dashboardNav {
     position: relative;

@@ -2,23 +2,48 @@ import css from './index.module.css';
 import docIcon from '../assets/docIcon.svg';
 import closeLightIcon from '../assets/closeLight.svg'; 
 import folderLightIcon from '../assets/folderLightIcon.png';
+import { useEffect, useState } from 'react';
 
 
 const Upload = () => {
 
+    const [theme, setTheme]               = useState('light');
+    // const [selectedFile, setSelectedFile] = useState< File | null>(null);
+
+
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('themePreference');
+        if (savedTheme) { setTheme(savedTheme); }
+    }, [])
+
+
+    const handleFileSelection = () => {
+        const fileInput = document.querySelector('input[type="file"]') as HTMLInputElement;
+        if (fileInput) { fileInput.click(); }
+    }
+
     return(
-        <div className={css.uploadParentDiv}> 
+        <div className={`${css.uploadParentDiv} ${theme === 'light' ? css.lightTheme : css.darkTheme}`}> 
 
             <div className={css.uploadChildDiv}>
                 <div className={css.uploadInputDiv}>
                     <img className={css.uploaFolderIcon} src={folderLightIcon} alt='create-doc-icon'/>
-                    <p className={css.uploadFileName}>Choose a file to upload</p>
-                    <input className={css.uploadInput} type="file"/>
+                    <div className={css.uploadFileTextDiv}>
+                        <b className={css.uploadFileHeader}>Choose File to Upload</b>
+                        <p className={css.uploadFileDescription}>DOCX, XLSX, PDF, TXT and JPG formats, up to 50MB.</p>
+                    </div>
+                    <button className={css.uploaFolderBtn} onClick={handleFileSelection}>Browse</button>
+                    <input 
+                        type      = "file"
+                        className = {css.uploadInput} 
+                        style     = {{ display : 'none' }}
+                        accept    = "image/jpeg, image/png, image/gif" 
+                    />
                 </div>
 
                 <div className={css.uploadFileItemListDiv}>
 
-                    <div className={css.uploadFileItemDiv}>  
+                    <div className={`${css.uploadFileItemDiv} ${css.uploadFileProgress}`}>  
                         <div className={css.uploadFileItemChildDiv}>
                             <img className={css.uploadFileIcon} src={docIcon} alt='create-doc-icon'/>
 
@@ -37,14 +62,16 @@ const Upload = () => {
                             </button>
                         </div>
 
-                        <div className={css.uploadFileLoadingDiv}>
-                            {/* Loading  */}
+                        <div className={css.uploadFileLoadingDiv}> 
+                            <div className={css.uploadFileProgressDiv}>
+                                <div className={css.uploadFileProgressBar} style={{ width: `${45}%` }}></div>
+                            </div>
                         </div>
                     </div>
 
-                    <div className={css.uploadFileItemDiv}>  
+                    <div className={`${css.uploadFileItemDiv} ${css.uploadFileComplete}`}>  
                         <div className={css.uploadFileItemChildDiv}>
-                            <img className={css.uploadFileIcon} src={docIcon} alt='create-doc-icon' />
+                            <img className={css.uploadFileIcon} src={docIcon} alt='create-doc-icon'/>
 
                             <div className={css.uploadFileItemTextDiv}> 
                                 <p className={css.uploadFileName}>Using Relative Positioning</p>
@@ -59,11 +86,7 @@ const Upload = () => {
                             <button className={css.uploadFileCancelBtn}>
                                 <img className={css.uploadFileCancelIcon} src={closeLightIcon} alt='upload-cancel-btn-icon'/>
                             </button>
-                        </div>
-
-                        <div className={css.uploadFileLoadingDiv}>
-                            {/* Loading  */}
-                        </div>
+                        </div> 
                     </div>
 
                 </div>
