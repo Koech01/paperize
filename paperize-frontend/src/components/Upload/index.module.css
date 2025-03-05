@@ -119,14 +119,17 @@
 
 .uploadFileItemListDiv {
     display: flex; 
-    flex: 1;
     gap: 10px;
     width: 100%;  
-    margin: 0px;
-    padding: 0px; 
+    margin: 0px; 
+    height: 60vh; 
+    overflow-y: auto;
     align-items: center;
     flex-direction: column;  
+    padding: 0px 1px 10px 1px; 
 }
+
+.uploadFileItemListDiv::-webkit-scrollbar { display: none; }
 
 .uploadFileItemDiv {
     display: flex;  
