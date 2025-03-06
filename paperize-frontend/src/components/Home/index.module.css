@@ -23,11 +23,70 @@
 }
 
 .homeParentDiv {
+    display: flex;    
+    width: 100%;
+    margin: 0px;
+    height: 100%; 
+    padding: 0px;
+    align-items: center;
+    justify-content: center; 
+    border: 1px solid mediumseagreen;
+}
+
+.homeChildDiv {
     display: flex;
     flex: 1;
-    width: 100%;
+    width: 98%;
     margin: 0px;
     padding: 0px;
     align-items: center;
     justify-content: center; 
+    border: 1px solid green;
 }
+
+.homeDocumentsList {
+    display: flex; 
+    gap: 5px;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    height: 80vh; 
+    align-items: center;
+    flex-direction: column;
+    justify-content: center; 
+}
+
+.homeDocumentsItem {
+    display: flex;
+    gap: 5%; 
+    width: 90%;
+    margin: 0px; 
+    border-radius: 10px;
+    align-items: center;
+    padding: 4px 7px 4px 7px; 
+    justify-content: flex-start; 
+}
+ 
+.lightTheme .homeDocumentsItem {  
+    border: 1px solid #E0E0E0; 
+} 
+
+.homeDocumentTypeIcon {
+    margin: 0px; 
+    width: 30px;  
+    padding: 0px;
+    height: 35px;
+}
+
+.homeDocumentName, .homeDocumentCreated, .homeDocumentSize { 
+    margin: 0px; 
+    padding: 0px; 
+    font-size: 14px;  
+    line-height: 14px;    
+}
+
+.homeDocumentName { width: 20%; }
+
+.homeDocumentCreated { width: 20%; }
+
+.homeDocumentSize { width: 10%; }
