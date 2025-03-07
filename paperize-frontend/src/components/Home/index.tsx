@@ -63,9 +63,26 @@ const Home = () => {
 
     return(
         <div className={`${css.homeParentDiv} ${theme === 'light' ? css.lightTheme : css.darkTheme}`}> 
-           <div className={css.homeChildDiv}>
+
+            <div className={css.homeRecentList}>
+                <div className={css.homeDocumentsItem}> 
+                    <img className={css.homeDocumentTypeIcon} src={aviIcon} alt='document-icon'/>
+                    <p className={css.homeDocumentName}>Sales Report</p> 
+                    <p className={css.homeDocumentSize}>350 kb</p> 
+                </div> 
+
+                <div className={css.homeDocumentsItem}> 
+                    <img className={css.homeDocumentTypeIcon} src={aviIcon} alt='document-icon'/>
+                    <p className={css.homeDocumentName}>Sales Report</p> 
+                    <p className={css.homeDocumentSize}>350 kb</p> 
+                </div> 
+            </div>
+ 
+
+            <div className={css.homeChildDiv}>
                 <div className={css.homeDocumentsList}>
                     <div className={css.homeDocumentsItem}>  
+                        <p className={css.homeDocumentName}>View all</p> 
                         <p className={css.homeDocumentName}>File</p> 
                         <p className={css.homeDocumentSize}>Size</p>
                         <p className={css.homeDocumentCreated}>Date</p>
