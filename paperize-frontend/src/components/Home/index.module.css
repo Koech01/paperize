@@ -29,8 +29,7 @@
     height: 100%; 
     padding: 0px;
     align-items: center;
-    justify-content: center; 
-    border: 1px solid mediumseagreen;
+    justify-content: center;  
 }
 
 .homeChildDiv {
@@ -40,36 +39,94 @@
     margin: 0px;
     padding: 0px;
     align-items: center;
+    flex-direction: column; 
     justify-content: center; 
-    border: 1px solid green;
 }
 
 .homeDocumentsList {
     display: flex; 
-    gap: 5px;
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
-    height: 80vh; 
+    gap: 8px;
+    width: 90%;
+    margin: 0px; 
+    height: 40vh; 
+    overflow-y: auto;
     align-items: center;
     flex-direction: column;
-    justify-content: center; 
+    padding: 0px 10px 10px 10px;
+    justify-content: flex-start;   
+    border: 1px solid #e0e0e0;   
+}
+
+.homeDocumentsList::-webkit-scrollbar { display: none; }
+
+.homeDocumentsUtilityBar {
+    display: flex; 
+    gap: 15px;
+    width: 90%;  
+    align-items: center;
+    margin: 0px 0px 10px 0px;
+    padding: 8px 10px 8px 10px; 
+    justify-content: flex-start;   
+}
+
+.homeDocumentsUtilityFlexDiv {
+    display: flex;
+    flex: 1;
+    gap: 15px;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+    justify-content: flex-end; 
+}
+ 
+.homeDocumentBreadcrumbs {
+    display: flex;
+    margin: 0px;
+    padding: 0px;
+    list-style: none; 
+}
+   
+ul.homeDocumentBreadcrumbs li {
+    display: inline;
+    font-size: 14px;  
+    line-height: 14px;    
+}
+ 
+ul.homeDocumentBreadcrumbs li+li:before {
+    margin: 0px;
+    padding: 0px;
+    color: #BDBDBD;
+    content: "\00a0\00a0/\00a0\00a0";
+}
+ 
+ul.homeDocumentBreadcrumbs li a {
+    color: #212121;
+    text-decoration: none;
+}
+ 
+ul.homeDocumentBreadcrumbs li a:hover {
+    color: #212121;
+    text-decoration: underline;
+}
+ 
+.homeDocumentsItemLabel {
+    display: flex; 
+    width: 90%;  
+    align-items: center;
+    margin: 0px 0px 10px 0px;
+    padding: 8px 10px 8px 10px; 
+    justify-content: flex-start;  
 }
 
 .homeDocumentsItem {
     display: flex;
     gap: 5%; 
-    width: 90%;
-    margin: 0px; 
+    width: 100%; 
     border-radius: 10px;
     align-items: center;
     padding: 4px 7px 4px 7px; 
-    justify-content: flex-start; 
+    justify-content: flex-start;  
 }
- 
-.lightTheme .homeDocumentsItem {  
-    border: 1px solid #E0E0E0; 
-} 
 
 .homeDocumentTypeIcon {
     margin: 0px; 
@@ -78,12 +135,36 @@
     height: 35px;
 }
 
-.homeDocumentName, .homeDocumentCreated, .homeDocumentSize { 
+.homeDocumentLabelName, 
+.homeDocumentLabelSize, 
+.homeDocumentLabelDate,  
+.homeDocumentName, 
+.homeDocumentCreated, 
+.homeDocumentSize { 
     margin: 0px; 
     padding: 0px; 
     font-size: 14px;  
     line-height: 14px;    
 }
+
+.lightTheme .homeDocumentName { color: #212121; } 
+ 
+.lightTheme .homeDocumentCreated,
+.lightTheme .homeDocumentSize {  
+    color: #616161;
+} 
+
+.lightTheme .homeDocumentLabelName,
+.lightTheme .homeDocumentLabelSize,
+.lightTheme .homeDocumentLabelDate {  
+    color: #757575;
+} 
+ 
+.homeDocumentLabelName { width: 32.5%; }
+
+.homeDocumentLabelSize { width: 15%; }
+
+.homeDocumentLabelDate { width: 30%; }
 
 .homeDocumentName { width: 20%; }
 
