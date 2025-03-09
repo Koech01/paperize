@@ -34,13 +34,46 @@
 
 .homeChildDiv {
     display: flex;
-    flex: 1;
+    gap: 6%;
     width: 98%;
     margin: 0px;
     padding: 0px;
+    height: 100%; 
     align-items: center;
     flex-direction: column; 
-    justify-content: center; 
+    justify-content: center;  
+}
+
+.homeDocumentsRecentDiv {
+    display: flex;  
+    gap: 3%;
+    width: 90%;
+    margin: 0px;
+    padding: 0px;  
+    align-items: center;  
+    justify-content: flex-start;   
+}
+
+.homeDocumentsRecentItem {
+    display: flex;  
+    gap: 15px; 
+    margin: 0px;
+    padding: 10px 15px;  
+    border-radius: 8px;
+    width: fit-content;
+    align-items: center;  
+    justify-content: flex-start;   
+}
+
+.lightTheme .homeDocumentsRecentItem { border: 1px solid #F5F5F5; } 
+
+.homeDocumentsRecentTextDiv {
+    display: flex;  
+    flex: 1;
+    gap: 5px; 
+    margin: 0px;
+    padding: 0px;  
+    flex-direction: column;  
 }
 
 .homeDocumentsComponentDiv {
@@ -205,6 +238,8 @@ ul.homeDocumentBreadcrumbs li a:hover {
     height: 35px;
 }
 
+.homeRecentDocumentSize, 
+.homeRecentDocumentDash, 
 .homeDocumentLabelName, 
 .homeDocumentLabelSize, 
 .homeDocumentLabelDate,  
@@ -215,6 +250,7 @@ ul.homeDocumentBreadcrumbs li a:hover {
     padding: 0px; 
     font-size: 14px;  
     line-height: 14px;    
+    white-space: nowrap;
 }
 
 .lightTheme .homeDocumentName { color: #212121; } 
@@ -223,6 +259,10 @@ ul.homeDocumentBreadcrumbs li a:hover {
 .lightTheme .homeDocumentSize {  
     color: #616161;
 } 
+
+.lightTheme .homeRecentDocumentSize { color: #9E9E9E; } 
+
+.lightTheme .homeRecentDocumentDash { color: #E0E0E0; } 
 
 .lightTheme .homeDocumentLabelName,
 .lightTheme .homeDocumentLabelSize,

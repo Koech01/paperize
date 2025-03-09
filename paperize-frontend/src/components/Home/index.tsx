@@ -25,6 +25,30 @@ const Home = () => {
         <div className={`${css.homeParentDiv} ${theme === 'light' ? css.lightTheme : css.darkTheme}`}> 
             <div className={css.homeChildDiv}>
  
+                <div className={css.homeDocumentsRecentDiv}>
+                    <div className={css.homeDocumentsRecentItem}> 
+                        <img className={css.homeDocumentTypeIcon} src={sevenzIcon} alt='document-icon'/>
+                        <div className={css.homeDocumentsRecentTextDiv}> 
+                            <p className={css.homeDocumentName}>Subspace Transmission Error Report</p> 
+                            <p className={css.homeRecentDocumentSize}>
+                                350 KB&nbsp;&nbsp;&nbsp;<span className={css.homeRecentDocumentDash}>|</span>&nbsp;&nbsp;&nbsp;docx
+                            </p> 
+                        </div> 
+                    </div> 
+
+                    <div className={css.homeDocumentsRecentItem}> 
+                        <img className={css.homeDocumentTypeIcon} src={sevenzIcon} alt='document-icon'/>
+                        <div className={css.homeDocumentsRecentTextDiv}> 
+                            <p className={css.homeDocumentName}>Blueprint for the Unknown Future</p> 
+                            <p className={css.homeRecentDocumentSize}>
+                                350 KB&nbsp;&nbsp;&nbsp;<span className={css.homeRecentDocumentDash}>|</span>&nbsp;&nbsp;&nbsp;pdf
+                            </p> 
+                        </div> 
+                    </div> 
+
+                </div>
+
+ 
                 <div className={css.homeDocumentsComponentDiv}>  
                     <div className={css.homeDocumentsUtilityBar}>  
                         <ul className={css.homeDocumentBreadcrumbs}>
@@ -59,56 +83,56 @@ const Home = () => {
                     <div className={css.homeDocumentsList}> 
                         <div className={css.homeDocumentsItem}> 
                             <img className={css.homeDocumentTypeIcon} src={sevenzIcon} alt='document-icon'/>
-                            <p className={css.homeDocumentName}>Sales Report</p> 
+                            <p className={css.homeDocumentName}>Quantum Echo</p> 
                             <p className={css.homeDocumentSize}>350 KB</p>
                             <p className={css.homeDocumentCreated}>30 Min Ago</p>
                         </div> 
 
                         <div className={css.homeDocumentsItem}> 
                             <img className={css.homeDocumentTypeIcon} src={aacIcon} alt='document-icon'/>
-                            <p className={css.homeDocumentName}>Sales Report</p> 
+                            <p className={css.homeDocumentName}>Synthetic Mind Integration Notes</p> 
                             <p className={css.homeDocumentSize}>350 KB</p>
                             <p className={css.homeDocumentCreated}>30 Min Ago</p>
                         </div> 
 
                         <div className={css.homeDocumentsItem}> 
                             <img className={css.homeDocumentTypeIcon} src={aviIcon} alt='document-icon'/>
-                            <p className={css.homeDocumentName}>Sales Report</p> 
+                            <p className={css.homeDocumentName}>Encrypted Shadows</p> 
                             <p className={css.homeDocumentSize}>350 KB</p>
                             <p className={css.homeDocumentCreated}>30 Min Ago</p>
                         </div> 
 
                         <div className={css.homeDocumentsItem}> 
                             <img className={css.homeDocumentTypeIcon} src={bmpIcon} alt='document-icon'/>
-                            <p className={css.homeDocumentName}>Sales Report</p> 
+                            <p className={css.homeDocumentName}>Silent Signal Transmission</p> 
                             <p className={css.homeDocumentSize}>350 KB</p>
                             <p className={css.homeDocumentCreated}>30 Min Ago</p>
                         </div> 
 
                         <div className={css.homeDocumentsItem}> 
                             <img className={css.homeDocumentTypeIcon} src={sevenzIcon} alt='document-icon'/>
-                            <p className={css.homeDocumentName}>Sales Report</p> 
+                            <p className={css.homeDocumentName}>Chrono Flux Report</p> 
                             <p className={css.homeDocumentSize}>350 KB</p>
                             <p className={css.homeDocumentCreated}>30 Min Ago</p>
                         </div> 
 
                         <div className={css.homeDocumentsItem}> 
                             <img className={css.homeDocumentTypeIcon} src={cssIcon} alt='document-icon'/>
-                            <p className={css.homeDocumentName}>Sales Report</p> 
+                            <p className={css.homeDocumentName}>Nebula Drift Logs</p> 
                             <p className={css.homeDocumentSize}>350 KB</p>
                             <p className={css.homeDocumentCreated}>30 Min Ago</p>
                         </div> 
 
                         <div className={css.homeDocumentsItem}> 
                             <img className={css.homeDocumentTypeIcon} src={datIcon} alt='document-icon'/>
-                            <p className={css.homeDocumentName}>Sales Report</p> 
+                            <p className={css.homeDocumentName}>Encrypted Neural Pathway Logs</p> 
                             <p className={css.homeDocumentSize}>350 KB</p>
                             <p className={css.homeDocumentCreated}>30 Min Ago</p>
                         </div> 
 
                         <div className={css.homeDocumentsItem}> 
                             <img className={css.homeDocumentTypeIcon} src={docxIcon} alt='document-icon'/>
-                            <p className={css.homeDocumentName}>Sales Report</p> 
+                            <p className={css.homeDocumentName}>Void Circuit Breakdown</p> 
                             <p className={css.homeDocumentSize}>350 KB</p>
                             <p className={css.homeDocumentCreated}>30 Min Ago</p>
                         </div> 
