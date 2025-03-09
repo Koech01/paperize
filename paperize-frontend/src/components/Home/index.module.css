@@ -23,11 +23,267 @@
 }
 
 .homeParentDiv {
-    display: flex;
-    flex: 1;
+    display: flex;    
     width: 100%;
     margin: 0px;
+    height: 100%; 
     padding: 0px;
     align-items: center;
-    justify-content: center; 
+    justify-content: center;  
 }
+
+.homeChildDiv {
+    display: flex;
+    gap: 6%;
+    width: 98%;
+    margin: 0px;
+    padding: 0px;
+    height: 100%; 
+    align-items: center;
+    flex-direction: column; 
+    justify-content: center;  
+}
+
+.homeDocumentsRecentDiv {
+    display: flex;  
+    gap: 3%;
+    width: 90%;
+    margin: 0px;
+    padding: 0px;  
+    align-items: center;  
+    justify-content: flex-start;   
+}
+
+.homeDocumentsRecentItem {
+    display: flex;  
+    gap: 15px; 
+    margin: 0px;
+    padding: 10px 15px;  
+    border-radius: 8px;
+    width: fit-content;
+    align-items: center;  
+    justify-content: flex-start;   
+}
+
+.lightTheme .homeDocumentsRecentItem { border: 1px solid #F5F5F5; } 
+
+.homeDocumentsRecentTextDiv {
+    display: flex;  
+    flex: 1;
+    gap: 5px; 
+    margin: 0px;
+    padding: 0px;  
+    flex-direction: column;  
+}
+
+.homeDocumentsComponentDiv {
+    display: flex;  
+    width: 90%;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 15px;
+    align-items: center;
+    flex-direction: column; 
+    justify-content: center;  
+}
+
+.lightTheme .homeDocumentsComponentDiv { border: 1px solid #EEEEEE; } 
+ 
+.homeDocumentsList {
+    display: flex; 
+    gap: 8px;
+    width: 100%; 
+    height: 45vh; 
+    overflow-y: auto;
+    align-items: center;
+    flex-direction: column;
+    margin: 0px 0px 3px 0px;
+    padding: 0px 0px 5px 0px;
+    justify-content: flex-start;   
+}
+
+.homeDocumentsList::-webkit-scrollbar { display: none; }
+
+.homeDocumentsUtilityBar {
+    display: flex; 
+    gap: 15px;
+    width: 100%;  
+    margin: 0px;
+    align-items: center; 
+    padding: 8px 0px 8px 0px;  
+    justify-content: flex-start;   
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.lightTheme .homeDocumentsUtilityBar { 
+    background-color: #FCFCFC;
+    border-bottom: 1px solid #EEEEEE; 
+} 
+
+.homeDocumentsUtilityFlexDiv {
+    display: flex;
+    flex: 1;
+    gap: 15px; 
+    padding: 0px;
+    align-items: center;
+    margin: 5px 15px 5px 0px;
+    justify-content: flex-end;  
+}
+ 
+.homeDocumentBreadcrumbs {
+    display: flex; 
+    padding: 0px;
+    list-style: none; 
+    margin: 5px 0px 5px 15px;
+}
+   
+ul.homeDocumentBreadcrumbs li {
+    display: inline;
+    font-size: 14px;  
+    line-height: 14px;    
+}
+ 
+ul.homeDocumentBreadcrumbs li+li:before {
+    margin: 0px;
+    padding: 0px;
+    color: #BDBDBD;
+    content: "\00a0\00a0/\00a0\00a0";
+}
+ 
+ul.homeDocumentBreadcrumbs li a {
+    color: #455A64;
+    text-decoration: none;
+}
+ 
+ul.homeDocumentBreadcrumbs li a:hover {
+    color: #455A64;
+    text-decoration: underline;
+}
+ 
+.homeDocumentSearchInput {
+    width: 20%;  
+    border: none;  
+    outline: none;
+    border-radius: 6px;
+    padding: 6px 10px 6px 10px;
+}
+
+.lightTheme .homeDocumentSearchInput { 
+    background-color: #FFFFFF;
+    outline: 1px solid #EEEEEE; 
+} 
+
+.lightTheme .homeDocumentSearchInput::placeholder { color: #546E7A; } 
+ 
+.lightTheme .homeDocumentSearchInput:hover { outline: 1px solid #E0E0E0; }
+ 
+.homeDocumentFilterBtn {
+    display: flex;
+    gap: 6px;
+    outline: 0;
+    border: none; 
+    cursor: pointer;  
+    transition: .3s;  
+    font-size: 13px;  
+    font-weight: 500; 
+    border-radius: 6px;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px 6px 10px; 
+}
+
+.lightTheme .homeDocumentFilterBtn {  
+    color: #546E7A;
+    background-color: #FFFFFF; 
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+} 
+
+.homeDocumentFilterBtn:active { transform: scale(0.95); } 
+ 
+.homeDocumentFilterBtnIcon {
+    display: flex;
+    margin: 0px;
+    padding: 0px; 
+}
+
+.homeDocumentsItemLabel {
+    display: flex; 
+    width: 100%;  
+    margin: 0px;
+    align-items: center; 
+    padding: 10px 0px 10px 0px; 
+    justify-content: flex-start;   
+}
+  
+.lightTheme .homeDocumentsItemLabel { 
+    background-color: #FCFCFC;
+    border-bottom: 1px solid #EEEEEE; 
+} 
+
+.homeDocumentsItem {
+    display: flex;
+    gap: 5%; 
+    width: 100%;  
+    align-items: center;
+    margin: 0px 0px 0px 15px;
+    padding: 4px 7px 4px 7px; 
+    justify-content: flex-start;   
+}
+
+.homeDocumentTypeIcon {
+    margin: 0px; 
+    width: 30px;  
+    padding: 0px;
+    height: 35px;
+}
+
+.homeRecentDocumentSize, 
+.homeRecentDocumentDash, 
+.homeDocumentLabelName, 
+.homeDocumentLabelSize, 
+.homeDocumentLabelDate,  
+.homeDocumentName, 
+.homeDocumentCreated, 
+.homeDocumentSize { 
+    margin: 0px; 
+    padding: 0px; 
+    font-size: 14px;  
+    line-height: 14px;    
+    white-space: nowrap;
+}
+
+.lightTheme .homeDocumentName { color: #212121; } 
+ 
+.lightTheme .homeDocumentCreated,
+.lightTheme .homeDocumentSize {  
+    color: #616161;
+} 
+
+.lightTheme .homeRecentDocumentSize { color: #9E9E9E; } 
+
+.lightTheme .homeRecentDocumentDash { color: #E0E0E0; } 
+
+.lightTheme .homeDocumentLabelName,
+.lightTheme .homeDocumentLabelSize,
+.lightTheme .homeDocumentLabelDate {  
+    color: #757575; 
+} 
+ 
+.homeDocumentLabelName {  
+    width: 32%; 
+    margin: 0px 0px 0px 15px; 
+}
+
+.homeDocumentLabelSize { width: 15%; }
+
+.homeDocumentLabelDate { 
+    width: 30%;
+    margin: 0px 15px 0px 0px; 
+}
+
+.homeDocumentName { width: 20%; }
+
+.homeDocumentCreated { width: 20%; }
+
+.homeDocumentSize { width: 10%; }
