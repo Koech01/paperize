@@ -8,6 +8,7 @@ import datIcon from '../assets/dat.png';
 import docxIcon from '../assets/docx.png';
 import { useEffect, useState } from 'react';
 import homeFilterLightIcon from '../assets/homeFilterLightIcon.svg';
+import homeFolderIcon from '../assets/homeFolderIcon.png';
 
 
 const Home = () => {
@@ -81,6 +82,13 @@ const Home = () => {
                     </div> 
 
                     <div className={css.homeDocumentsList}> 
+                        <div className={css.homeDocumentsItem}> 
+                            <img className={css.homeFolderIcon} src={homeFolderIcon} alt='folder-icon'/>
+                            <p className={css.homeDocumentName}>Folders</p> 
+                            <p className={css.homeDocumentSize}>350 KB</p>
+                            <p className={css.homeDocumentCreated}>30 Min Ago</p>
+                        </div> 
+
                         <div className={css.homeDocumentsItem}> 
                             <img className={css.homeDocumentTypeIcon} src={sevenzIcon} alt='document-icon'/>
                             <p className={css.homeDocumentName}>Quantum Echo</p> 

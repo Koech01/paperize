@@ -1,4 +1,5 @@
 import css from './index.module.css';
+import userIcon from '../assets/usericon.jpg';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -17,8 +18,20 @@ const Login = () => {
 
                 <div className={css.authFormErrorDiv}>
                     <p className={css.authFormErrorText}>Error</p>
-                </div>
+                </div> 
             </form> 
+
+            <div className={css.authFooterDiv}>
+                <div className={css.authFooterChildDiv}>
+                    <p className={css.authFooterText}>koech</p>
+                    <img className={css.authFooterUserIcon} src={userIcon} alt='auth-user-icon'/> 
+                </div>
+
+                <div className={css.authFooterChildDiv}>
+                    <p className={css.authFooterText}>Robbie</p>
+                    <img className={css.authFooterUserIcon} src={userIcon} alt='auth-user-icon'/> 
+                </div> 
+            </div>
         </div>
     );
 };
