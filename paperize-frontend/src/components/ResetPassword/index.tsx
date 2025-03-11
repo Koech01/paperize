@@ -1,8 +1,18 @@
 import css from '../Login/index.module.css';
+import { useEffect, useState } from 'react'; 
 
 
 const ResetPassword = () => {
-    
+
+    const [theme, setTheme] = useState('light'); 
+
+
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('themePreference');
+        if (savedTheme) { setTheme(theme); }
+    }, [])
+
+
     return(
         <div className={css.authParentDiv}> 
             <form className={css.authForm}> 

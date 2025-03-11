@@ -123,37 +123,52 @@
 .authFooterDiv { 
     position: absolute;
     display: flex;
-    width: 90%;
-    gap: 20px;
+    width: 96%;
+    gap: 8px;
     bottom: 5%; 
     margin: 0px;
     padding: 0px; 
+    align-items: center;
+    justify-content: flex-end;
 }
 
 .authFooterChildDiv { 
+    display: flex; 
+    margin: 0px;  
+    padding: 0px;
+    width: fit-content; 
+    align-items: center;
+    justify-content: center; 
+}
+
+.authFooterTextDiv { 
     display: flex;
-    gap: 15px;
+    gap: 10px;
     margin: 0px; 
+    width: fit-content;
     border-radius: 15px; 
     align-items: center;
-    padding: 4px 4px 4px 10px;
+    padding: 2px 2px 2px 10px;
     justify-content: flex-start; 
     background-color: #F5F5F5;
 }
 
 .authFooterUserIcon { 
-    width: 25px;
+    width: 23px;
     margin: 0px;
     padding: 0px;
-    height: 25px; 
+    height: 23px; 
     border-radius: 50%;
 }
 
 .authFooterText {
     margin: 0px;
     padding: 0px;
-    font-size: 14px;   
-    color: #212121;
+    font-size: 14px;  
     line-height: 14px;
     font-style: normal;
 }
+
+.authFooterName { color: #212121; }
+
+.authFooterFaintText { color: #616161; }

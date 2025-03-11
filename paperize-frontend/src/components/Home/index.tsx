@@ -7,8 +7,8 @@ import cssIcon from '../assets/css.png';
 import datIcon from '../assets/dat.png';
 import docxIcon from '../assets/docx.png';
 import { useEffect, useState } from 'react';
-import homeFilterLightIcon from '../assets/homeFilterLightIcon.svg';
 import homeFolderIcon from '../assets/homeFolderIcon.png';
+import homeFilterLightIcon from '../assets/homeFilterLightIcon.svg';
 
 
 const Home = () => {
