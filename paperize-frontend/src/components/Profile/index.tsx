@@ -1,7 +1,17 @@
 import css from './index.module.css';
+import { useEffect, useState } from 'react'; 
 
 
 const Profile = () => {
+
+    const [theme, setTheme] = useState('light'); 
+
+
+    useEffect(() => {
+        const savedTheme = localStorage.getItem('themePreference');
+        if (savedTheme) { setTheme(theme); }
+    }, [])
+
 
     return(
         <div className={css.profileParentDiv}>

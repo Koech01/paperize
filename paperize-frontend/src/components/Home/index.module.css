@@ -231,6 +231,13 @@ ul.homeDocumentBreadcrumbs li a:hover {
     justify-content: flex-start;   
 }
 
+.homeFolderIcon {
+    margin: 0px; 
+    width: auto;  
+    padding: 0px;
+    height: 30px;
+}
+
 .homeDocumentTypeIcon {
     margin: 0px; 
     width: 30px;  

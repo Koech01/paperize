@@ -2,7 +2,7 @@ import css from './index.module.css';
 import { useEffect, useState } from 'react';
 import docIcon from '../assets/docIcon.svg';
 import closeLightIcon from '../assets/closeLight.svg'; 
-import folderLightIcon from '../assets/folderLightIcon.png';
+import cloudIcon from '../assets/cloud.png';
 
 import sevenzIcon from '../assets/7z.png';
 import aacIcon from '../assets/aac.png';
@@ -76,7 +76,7 @@ const Upload = () => {
 
             <div className={css.uploadChildDiv}>
                 <div className={css.uploadInputDiv}>
-                    <img className={css.uploaFolderIcon} src={folderLightIcon} alt='create-doc-icon'/>
+                    <img className={css.uploaFolderIcon} src={cloudIcon} alt='create-doc-icon'/>
                     <div className={css.uploadFileTextDiv}>
                         <b className={css.uploadFileHeader}>Choose File to Upload</b>
                         <p className={css.uploadFileDescription}>DOCX, XLSX, PDF, TXT and JPG formats, up to 50MB.</p>
