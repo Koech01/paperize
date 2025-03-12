@@ -14,7 +14,7 @@ const ResetPassword = () => {
 
 
     return(
-        <div className={css.authParentDiv}> 
+        <div className={`${css.authParentDiv} ${theme === 'light' ? css.lightTheme : css.darkTheme}`}> 
             <form className={css.authForm}> 
                 <input className={css.authFormInput} required autoComplete="off" placeholder="Enter Password" type="password"/>
                 <input className={css.authFormInput} required autoComplete="off" placeholder="Confirm Password" type="password"/>

@@ -1,7 +1,7 @@
 import css from './index.module.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react'; 
 import { useNavigate } from 'react-router-dom';
-import githubUserIcon from '../assets/githubLightIcon.svg';
+import githubLightIcon from '../assets/githubLightIcon.svg';
 
 
 const Login = () => {
@@ -29,21 +29,26 @@ const Login = () => {
                 </div> 
             </form> 
 
-            <div className={css.authFooterDiv}> 
+            <div className={css.authFooterDiv}>  
+                <div className={css.authFooterChildDiv}> 
 
-                <div className={css.authFooterChildDiv}>
-                    <p className={`${css.authFooterText} ${css.authFooterFaintText}`}>By</p> 
+                    <div className={css.authFooterFlexDiv}>
+                        <img className={css.authFooterUserIcon} src={githubLightIcon} alt='auth-github-icon'/> 
+                        <p className={`${css.authFooterText} ${css.authFooterTitle}`}>Contributors.</p> 
+                    </div>
+
+                    <p className={`${css.authFooterText} ${css.authFooterFaintText}`}>
+                        Built by us, for you – &nbsp;
+                        <a className={css.authFooterLink} href='https://github.com/Koech01' target="_blank" rel="noopener noreferrer">
+                        <strong>Koech</strong>
+                        </a>  
+                        &nbsp;&&nbsp; 
+                        <a className={css.authFooterLink} href='https://github.com/whoisrobb' target="_blank" rel="noopener noreferrer">
+                            <strong>Robbie</strong>
+                        </a>
+                        .  
+                    </p>  
                 </div>
-
-                <div className={css.authFooterTextDiv}>
-                    <p className={`${css.authFooterText} ${css.authFooterName}`}>Robbie</p>
-                    <img className={css.authFooterUserIcon} src={githubUserIcon} alt='auth-user-icon'/> 
-                </div> 
-
-                <div className={css.authFooterTextDiv}>
-                    <p className={`${css.authFooterText} ${css.authFooterName}`}>koech</p>
-                    <img className={css.authFooterUserIcon} src={githubUserIcon} alt='auth-user-icon'/> 
-                </div> 
             </div>
         </div>
     );
