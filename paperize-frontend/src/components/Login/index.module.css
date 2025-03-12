@@ -64,10 +64,13 @@
     border-radius: 4px;  
     font-style: normal; 
     font-family: 'Poppins'; 
-    border: 1px solid #EEEEEE; 
-    background-color: #FFFFFF;
     padding: 10px 15px 10px 15px;
 }
+
+.lightTheme .authFormInput {  
+    border: 1px solid #EEEEEE; 
+    background-color: #FFFFFF;
+} 
 
 .authFormBtn {
     display: flex;
@@ -79,21 +82,24 @@
     padding: 0 11px;  
     transition: .3s; 
     font-weight: 500;
-    color: #FFFFFF;
     border-radius: 8px;
     text-align: center;
     align-items: center;
-    background: #000000; 
     font-family: 'Poppins';  
     justify-content: center; 
-    border: 1px solid #000000; 
 }
- 
-.authFormBtn :hover{
+
+.lightTheme .authFormBtn {  
+    color: #FFFFFF;
+    background: #000000; 
+    border: 1px solid #000000; 
+} 
+
+.lightTheme .authFormBtn :hover {  
     background: #000000;
     border-color: #000000;
     box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
-}
+} 
 
 .authFormBtn:active { transform: scale(0.95); }
 
@@ -116,41 +122,41 @@
     font-style: normal;
 }
 
-.authFormLink { color: #000000; }
+.lightTheme .authFormLink { color: #000000; } 
 
-.authFormErrorDiv { color: #000000; }
+.lightTheme .authFormErrorDiv { color: #000000; } 
 
 .authFooterDiv { 
     position: absolute;
     display: flex;
-    width: 96%;
     gap: 8px;
-    bottom: 5%; 
+    width: 96%; 
+    bottom: 4%; 
     margin: 0px;
     padding: 0px; 
     align-items: center;
-    justify-content: flex-end;
+    justify-content: flex-start; 
 }
 
 .authFooterChildDiv { 
     display: flex; 
+    gap: 10px;
+    margin: 0px;  
+    padding: 0px;
+    width: fit-content;  
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;  
+}
+
+.authFooterFlexDiv { 
+    display: flex; 
+    gap: 10px;
     margin: 0px;  
     padding: 0px;
     width: fit-content; 
     align-items: center;
-    justify-content: center; 
-}
-
-.authFooterTextDiv { 
-    display: flex;
-    gap: 10px;
-    margin: 0px; 
-    width: fit-content;
-    border-radius: 15px; 
-    align-items: center;
-    padding: 2px 2px 2px 10px;
-    justify-content: flex-start; 
-    background-color: #F5F5F5;
+    justify-content: flex-start;   
 }
 
 .authFooterUserIcon { 
@@ -169,6 +175,8 @@
     font-style: normal;
 }
 
-.authFooterName { color: #212121; }
+.lightTheme .authFooterTitle { color: #212121; } 
 
-.authFooterFaintText { color: #616161; }
+.lightTheme .authFooterFaintText { color: #616161; } 
+
+.authFooterLink { all: unset; } 

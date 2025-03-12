@@ -14,7 +14,7 @@ const Setting = () => {
 
 
     return(
-        <div className={css.settingParentDiv}>
+        <div className={`${css.settingParentDiv} ${theme === 'light' ? css.lightTheme : css.darkTheme}`}>
             <h1>Setting</h1>
         </div>
     );

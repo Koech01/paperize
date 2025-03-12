@@ -14,7 +14,7 @@ const Profile = () => {
 
 
     return(
-        <div className={css.profileParentDiv}>
+        <div className={`${css.profileParentDiv} ${theme === 'light' ? css.lightTheme : css.darkTheme}`}>
             <h1>Profile</h1>
         </div>
     );
