@@ -84,11 +84,16 @@ public class FolderServiceImpl implements FolderService {
     @Override
     @Transactional
     public Optional<List<FileEntity>> getFolderFiles(UUID folderId) {
-        Optional<List<FileEntity>> folderFiles = folderRepository.findById(folderId)
+        return folderRepository.findById(folderId)
                 .map(folder -> fileRepository.findFolderFiles(folderId))
                 .orElseThrow(() -> new BadCredentialsException("Folder does not exist"));
+    }
 
-        return folderFiles;
+    @Override
+    public Optional<List<FileEntity>> getFolderFilesByType(UUID folderId, String type) {
+        return folderRepository.findById(folderId)
+                .map(folder -> fileRepository.findFolderFilesByType(folderId, type))
+                .orElseThrow(() -> new BadCredentialsException("Folder does not exist"));
     }
 
     @Override

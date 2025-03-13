@@ -18,4 +18,7 @@ public interface FileRepository extends JpaRepository<FileEntity, UUID> {
     @Query("SELECT f FROM FileEntity f WHERE f.folder.id = :id")
     Optional<List<FileEntity>> findFolderFiles(@PathVariable("id") UUID id);
 
+    @Query("SELECT f FROM FileEntity f WHERE f.folder.id = :id AND f.type LIKE %:type%")
+    Optional<List<FileEntity>> findFolderFilesByType(UUID id, String type);
+
 }
