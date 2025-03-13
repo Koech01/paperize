@@ -62,10 +62,15 @@ public class FolderController {
     }
 
     @GetMapping("/{folderId}")
-    public ResponseEntity<FolderEntity> getFolderById(
-            @PathVariable String folderId
+    public ResponseEntity<Optional<List<FileEntity>>> getFolderFiles(
+            @PathVariable String folderId,
+            @RequestParam(required = false) String type
     ) {
-        return new ResponseEntity<>(folderService.getFolderById(UUID.fromString(folderId)), HttpStatus.OK);
+        if (type != null) {
+            return new ResponseEntity<>(folderService.getFolderFilesByType(UUID.fromString(folderId), type), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(folderService.getFolderFiles(UUID.fromString(folderId)), HttpStatus.OK);
+        }
     }
 
 }

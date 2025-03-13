@@ -18,6 +18,8 @@ public interface FolderService {
 
     Optional<List<FileEntity>> getFolderFiles(UUID folderId);
 
+    Optional<List<FileEntity>> getFolderFilesByType(UUID folderId, String type);
+
     FolderEntity getFolderById(UUID folderId);
 
 }
