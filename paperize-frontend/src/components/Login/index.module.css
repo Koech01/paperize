@@ -42,7 +42,7 @@
     margin: 0px;
     padding: 0px;
     flex-direction: column; 
-    background: transparent; 
+    background: transparent;  
 }
  
 .authFormHeader {
@@ -103,18 +103,53 @@
 
 .authFormBtn:active { transform: scale(0.95); }
 
-.authFormLinkDiv, .authFormErrorDiv {
+.authFormMessageParentDiv {
     display: flex;
-    margin: 0;
-    padding: 0;
+    margin: 0; 
+    padding: 0; 
+    align-items: center; 
+    flex-direction: column; 
+}
+
+.authFormLinkDiv, .authFormMessageDiv {
+    display: flex;
+    margin: 0; 
     height: fit-content;
-    align-items: center;
+    align-items: center; 
+}
+
+.authFormLinkDiv { 
+    padding: 0;  
     justify-content: center; 
 }
 
-.authFormErrorDiv { gap: 10px; }
+.authFormMessageDiv { 
+    gap: 10px;    
+    max-width: 100%;
+    width: fit-content;
+    border-radius: 8px;
+    padding: 5px 10px 5px 10px; 
+    justify-content: flex-start;
+}
 
-.authFormLink, .authFormErrorText {
+.authFormSuccessIcon {  
+    margin: 0;
+    padding: 0;
+    width: 21px;
+    height: auto;
+}
+
+.lightTheme .authSuccess {  
+    background-color: #E8F5E9;
+    border: 2px solid #4CAF50;
+} 
+
+.lightTheme .authError {  
+    background-color: #FFEBEE;
+    border: 2px solid #F44336;
+} 
+
+.authFormLink, .authFormMessageText {
     margin: 0px;
     padding: 0px;
     font-size: 14px;  
@@ -122,9 +157,13 @@
     font-style: normal;
 }
 
+.authFormMessageText {
+    max-width: 90%;
+}
+
 .lightTheme .authFormLink { color: #000000; } 
 
-.lightTheme .authFormErrorDiv { color: #000000; } 
+.lightTheme .authFormMessageText { color: #000000; } 
 
 .authFooterDiv { 
     position: absolute;
@@ -180,3 +219,5 @@
 .lightTheme .authFooterFaintText { color: #616161; } 
 
 .authFooterLink { all: unset; } 
+
+.authFooterGitUsername { cursor: pointer; } 
