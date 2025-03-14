@@ -178,35 +178,6 @@ ul.homeDocumentBreadcrumbs li a:hover {
  
 .lightTheme .homeDocumentSearchInput:hover { outline: 1px solid #E0E0E0; }
  
-.homeDocumentFilterBtn {
-    display: flex;
-    gap: 6px;
-    outline: 0;
-    border: none; 
-    cursor: pointer;  
-    transition: .3s;  
-    font-size: 13px;  
-    font-weight: 500; 
-    border-radius: 6px;
-    align-items: center;
-    justify-content: center;
-    padding: 6px 10px 6px 10px; 
-}
-
-.lightTheme .homeDocumentFilterBtn {  
-    color: #546E7A;
-    background-color: #FFFFFF; 
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-} 
-
-.homeDocumentFilterBtn:active { transform: scale(0.95); } 
- 
-.homeDocumentFilterBtnIcon {
-    display: flex;
-    margin: 0px;
-    padding: 0px; 
-}
-
 .homeDocumentsItemLabel {
     display: flex; 
     width: 100%;  
@@ -248,10 +219,12 @@ ul.homeDocumentBreadcrumbs li a:hover {
 .homeRecentDocumentSize, 
 .homeRecentDocumentDash, 
 .homeDocumentLabelName, 
+.homeDocumentLabelFormat, 
 .homeDocumentLabelSize, 
 .homeDocumentLabelDate,  
 .homeDocumentName, 
 .homeDocumentCreated, 
+.homeDocumentFormat,
 .homeDocumentSize { 
     margin: 0px; 
     padding: 0px; 
@@ -263,6 +236,7 @@ ul.homeDocumentBreadcrumbs li a:hover {
 .lightTheme .homeDocumentName { color: #212121; } 
  
 .lightTheme .homeDocumentCreated,
+.lightTheme .homeDocumentFormat,
 .lightTheme .homeDocumentSize {  
     color: #616161;
 } 
@@ -272,6 +246,7 @@ ul.homeDocumentBreadcrumbs li a:hover {
 .lightTheme .homeRecentDocumentDash { color: #E0E0E0; } 
 
 .lightTheme .homeDocumentLabelName,
+.lightTheme .homeDocumentLabelFormat,
 .lightTheme .homeDocumentLabelSize,
 .lightTheme .homeDocumentLabelDate {  
     color: #757575; 
@@ -282,7 +257,7 @@ ul.homeDocumentBreadcrumbs li a:hover {
     margin: 0px 0px 0px 15px; 
 }
 
-.homeDocumentLabelSize { width: 15%; }
+.homeDocumentLabelSize, .homeDocumentLabelFormat { width: 15%; }
 
 .homeDocumentLabelDate { 
     width: 30%;
@@ -292,5 +267,7 @@ ul.homeDocumentBreadcrumbs li a:hover {
 .homeDocumentName { width: 20%; }
 
 .homeDocumentCreated { width: 20%; }
+
+.homeDocumentFormat { width: 10%; }
 
 .homeDocumentSize { width: 10%; }
