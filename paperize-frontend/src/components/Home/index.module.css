@@ -147,19 +147,20 @@ ul.homeDocumentBreadcrumbs li {
 ul.homeDocumentBreadcrumbs li+li:before {
     margin: 0px;
     padding: 0px;
-    color: #BDBDBD;
     content: "\00a0\00a0/\00a0\00a0";
 }
+
+.lightTheme ul.homeDocumentBreadcrumbs li+li:before  { color: #BDBDBD; } 
  
-ul.homeDocumentBreadcrumbs li a {
-    color: #455A64;
-    text-decoration: none;
-}
+.darkTheme ul.homeDocumentBreadcrumbs li+li:before  { color: #BDBDBD; } 
+
+ul.homeDocumentBreadcrumbs li a { text-decoration: none; }
+
+.lightTheme ul.homeDocumentBreadcrumbs li a  { color: #455A64; } 
  
-ul.homeDocumentBreadcrumbs li a:hover {
-    color: #455A64;
-    text-decoration: underline;
-}
+ul.homeDocumentBreadcrumbs li a:hover {  text-decoration: underline; }
+
+.lightTheme ul.homeDocumentBreadcrumbs li a:hover  { color: #455A64; } 
  
 .homeDocumentSearchInput {
     width: 20%;  

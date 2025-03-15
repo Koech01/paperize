@@ -32,9 +32,10 @@
     align-items: center; 
     font-family: 'Poppins'; 
     flex-direction: column;
-    justify-content: center; 
-    background-color: #F5F5F5; 
+    justify-content: center;  
 } 
+
+.lightTheme .dashboardParentDiv { background-color: #F5F5F5; }
   
 .dashboardChildDiv {
     display: flex; 
