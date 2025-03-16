@@ -32,3 +32,114 @@
     font-family: 'Poppins'; 
     justify-content: center; 
 }
+
+.profileChildDiv {
+    display: flex; 
+    gap: 10px;
+    width: 50%;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start; 
+}
+
+.profileUserFlexDiv {
+    display: flex; 
+    gap: 5%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+    justify-content: flex-start; 
+}
+
+.profileUserIcon {
+    width: 80px; 
+    margin: 0px;
+    height: 80px;
+    padding: 0px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profileEntityTag {
+    margin: 0px;
+    border-radius: 5px;
+    padding: 5px 10px 5px 10px; 
+}
+
+.lightTheme .profileEntityTag { border: 1px solid #E0E0E0; } 
+
+.profileEntityName {
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;  
+    line-height: 14px;
+    font-style: normal;
+}
+
+.profileDocumentHeader {
+    margin: 0px;
+    padding: 0px;
+    font-style: normal;
+}
+
+.profileDocumentLabel { 
+    padding: 0px;
+    font-size: 14px;  
+    line-height: 14px;
+    font-style: normal;
+    margin: 0px 0px 0px 15px;
+}
+
+.profileDocumentFigure { 
+    padding: 0px;
+    font-size: 14px;  
+    line-height: 14px;
+    font-style: normal;
+    margin: 0px 15px 0px 0px;
+}
+
+.lightTheme .profileDocumentFigure { color: #757575; } 
+
+.profileDocumentStatsDiv {
+    display: flex;  
+    gap: 15px;
+    width: 100%;
+    margin: 0px;  
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 5px 10px 5px 10px;
+    justify-content: flex-start; 
+}
+
+.profileDocumentTable {
+    display: flex;  
+    width: 90%;
+    margin: 0px;
+    padding: 0px;
+    border-radius: 15px;
+    align-items: center;
+    flex-direction: column; 
+    justify-content: center;  
+}
+
+.lightTheme .profileDocumentTable { border: 1px solid #EEEEEE; } 
+
+.profileDocumentRow, .profileDocumentFirstRow, .profileDocumentLastRow {
+    display: flex; 
+    width: 100%;  
+    margin: 0px;
+    align-items: center; 
+    padding: 10px 0px 10px 0px; 
+    justify-content: space-between;   
+}
+  
+.lightTheme .profileDocumentRow, .lightTheme .profileDocumentFirstRow { border-bottom: 1px solid #EEEEEE; } 
+
+.profileDocumentFirstRow { border-radius: 15px 15px 0px 0px; }
+
+.profileDocumentLastRow { border-radius: 0px 0px 15px 15px; }
+
+.lightTheme .profileDocumentLastRow { border-bottom: 1px solid transparent; } 
