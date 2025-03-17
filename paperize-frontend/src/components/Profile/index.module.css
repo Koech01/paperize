@@ -35,13 +35,35 @@
 
 .profileChildDiv {
     display: flex; 
-    gap: 10px;
+    gap: 5vh;
     width: 50%;
     margin: 0px;
     padding: 0px;
     align-items: center;
     flex-direction: column;
     justify-content: flex-start; 
+}
+
+.profileIconNameDiv {
+    display: flex; 
+    gap: 20px;
+    width: 100%;
+    margin: 0px;
+    border-radius: 10px;
+    flex-direction: column;
+    padding: 10px 0px 10px 0px; 
+}
+
+.lightTheme .profileIconNameDiv { border: 1px solid #F3F3F3; } 
+
+.profileUserFlexDiv {
+    display: flex; 
+    gap: 5%;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+    justify-content: flex-start;  
 }
 
 .profileUserFlexDiv {
@@ -55,17 +77,32 @@
 }
 
 .profileUserIcon {
-    width: 80px; 
-    margin: 0px;
+    width: 80px;  
     height: 80px;
     padding: 0px;
     object-fit: cover;
     border-radius: 50%;
+    margin: 0px 0px 0px 15px; 
+}
+ 
+.profileUserName {
+    margin: 0px;
+    padding: 0px; 
+    white-space: nowrap;
 }
 
-.profileEntityTag {
-    margin: 0px;
+.profileEditBtnDiv {
+    display: flex;
+    flex: 1; 
+    padding: 0px; 
+    align-items: center;
+    margin: 0px 10px 0px 0px;
+    justify-content: flex-end; 
+}
+
+.profileEntityTag { 
     border-radius: 5px;
+    margin: 0px 0px 0px 15px; 
     padding: 5px 10px 5px 10px; 
 }
 
@@ -85,38 +122,101 @@
     font-style: normal;
 }
 
-.profileDocumentLabel { 
+.profileDocumentStatsBar {
+    display: flex;  
+    width: 100%; 
     padding: 0px;
-    font-size: 14px;  
-    line-height: 14px;
-    font-style: normal;
-    margin: 0px 0px 0px 15px;
+    height: 20px;
+    border-radius: 4px; 
+    margin: 2vh 0 5vh 0;
+    align-items: center;
+    justify-content: flex-start;
 }
 
-.profileDocumentFigure { 
+.lightTheme .profileDocumentStatsBar { background-color: #FAFAFA; } 
+
+.profileEditBtnIcon {
+    width: 15px;
+    margin: 0px;  
+    padding: 0px; 
+    height: auto; 
+    cursor: pointer; 
+    object-fit: cover; 
+} 
+
+.profileEditBtn {
+    display: flex;
+    gap: 5px;
+    outline: 0;  
+    cursor: pointer; 
+    font-size: 13px;  
+    transition: .3s; 
+    font-weight: 500;
+    padding: 5px 15px;  
+    width: fit-content;
+    border-radius: 6px;
+    text-align: center;
+    align-items: center;
+    font-family: 'Poppins';  
+    justify-content: center; 
+}
+
+.lightTheme .profileEditBtn {  
+    color: #000000;
+    background: #FFFFFF; 
+    border: 1px solid #EEEEEE; 
+} 
+
+.lightTheme .profileEditBtn :hover {  
+    background: #000000;
+    border-color: #000000;
+    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+} 
+
+.profileEditBtn:active { transform: scale(0.95); }
+
+.profileDocumentStatItem, .profileDocumentStatItem1 {
+    display: flex;  
+    margin: 0px;
+    width: 100px; 
+    padding: 0px;
+    height: 100%;
+    cursor: pointer;
+}
+
+.profileDocumentStatItem {
+    border-radius: 4px; 
+    background-color: aqua;
+}
+
+.lightTheme .profileDocumentStatItem1 {  background-color: mediumpurple; }
+
+.profileDocumentLabel, .profileDocumentFigure { 
     padding: 0px;
     font-size: 14px;  
     line-height: 14px;
-    font-style: normal;
-    margin: 0px 15px 0px 0px;
+    font-style: normal; 
 }
+
+.profileDocumentLabel { margin: 0px 0px 0px 15px; }
+
+.profileDocumentFigure { margin: 0px 15px 0px 0px; }
 
 .lightTheme .profileDocumentFigure { color: #757575; } 
 
 .profileDocumentStatsDiv {
-    display: flex;  
-    gap: 15px;
+    display: flex; 
     width: 100%;
-    margin: 0px;  
-    align-items: flex-start;
+    margin: 0px;   
+    padding: 0px;
     flex-direction: column;
-    padding: 5px 10px 5px 10px;
-    justify-content: flex-start; 
+    align-items: flex-start; 
+    justify-content: flex-start;  
 }
 
 .profileDocumentTable {
     display: flex;  
-    width: 90%;
+    width: 100%;
     margin: 0px;
     padding: 0px;
     border-radius: 15px;
