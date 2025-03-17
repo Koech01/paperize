@@ -17,6 +17,13 @@ user_bucket_policy = aws.iam.Policy(
                 {
                     "Effect": "Allow",
                     "Action": [
+                        "s3:ListBucket"
+                    ],
+                    "Resource": arn
+                },
+                {
+                    "Effect": "Allow",
+                    "Action": [
                         "s3:PutObject",
                         "s3:GetObject"
                     ],
