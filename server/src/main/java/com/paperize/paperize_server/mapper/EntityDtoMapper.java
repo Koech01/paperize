@@ -10,7 +10,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
-public class FileMapper {
+public class EntityDtoMapper {
 
     private final S3Service s3Service;
 

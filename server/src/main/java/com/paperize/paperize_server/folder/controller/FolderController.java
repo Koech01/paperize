@@ -4,8 +4,9 @@ import com.paperize.paperize_server.file.FileEntity;
 import com.paperize.paperize_server.file.data.FileDto;
 import com.paperize.paperize_server.folder.FolderEntity;
 import com.paperize.paperize_server.folder.data.CreateFolderRequest;
+import com.paperize.paperize_server.folder.data.FolderDto;
 import com.paperize.paperize_server.folder.service.FolderService;
-import com.paperize.paperize_server.mapper.FileMapper;
+import com.paperize.paperize_server.mapper.EntityDtoMapper;
 import com.paperize.paperize_server.user.UserEntity;
 import com.paperize.paperize_server.utils.S3Service;
 import lombok.RequiredArgsConstructor;
@@ -40,14 +41,21 @@ public class FolderController {
     }
 
     @GetMapping
-    public ResponseEntity<List<FolderEntity>> getRootFolders(Authentication authentication) {
+    public ResponseEntity<List<FolderDto>> getRootFolders(Authentication authentication) {
         log.info("Auth object - {}", authentication);
         UserEntity principal = (UserEntity) authentication.getPrincipal();
-        return new ResponseEntity<>(folderService.getRootFolders(principal.getId()), HttpStatus.OK);
+
+
+        List<FolderEntity> rootFolders = folderService.getRootFolders(principal.getId());
+        EntityDtoMapper folderMapper = new EntityDtoMapper(s3Service);
+        return new ResponseEntity<>(rootFolders.stream()
+                .map(folderMapper::toFolderDto)
+                .collect(Collectors.toList()),
+                HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity<FolderEntity> createFolder(
+    public ResponseEntity<FolderDto> createFolder(
             @RequestPart("name") String name,
             @RequestPart(value = "parent", required = false) String parentId,
             @RequestParam(value = "files", required = false) List<MultipartFile> files
@@ -57,8 +65,10 @@ public class FolderController {
                 .name(name)
                 .parentId(parentId)
                 .build();
+
         FolderEntity folder = folderService.createFolder(folderRequest);
-        return new ResponseEntity<>(folder, HttpStatus.CREATED);
+        FolderDto folderDto = new EntityDtoMapper(s3Service).toFolderDto(folder);
+        return new ResponseEntity<>(folderDto, HttpStatus.CREATED);
     }
 
     @GetMapping("/{folderId}/files")
@@ -66,7 +76,7 @@ public class FolderController {
             @PathVariable String folderId,
             @RequestParam(required = false) String type
     ) {
-        FileMapper fileMapper = new FileMapper(s3Service);
+        EntityDtoMapper fileMapper = new EntityDtoMapper(s3Service);
         Optional<List<FileEntity>> folderFiles;
 
         if (type != null) {
@@ -85,7 +95,9 @@ public class FolderController {
     }
 
     @GetMapping("/{folderId}")
-    public ResponseEntity<FolderEntity> getFolder(@PathVariable String folderId) {
-        return new ResponseEntity<>(folderService.getFolderById(UUID.fromString(folderId)), HttpStatus.OK);
+    public ResponseEntity<FolderDto> getFolder(@PathVariable String folderId) {
+        FolderEntity folderById = folderService.getFolderById(UUID.fromString(folderId));
+        FolderDto folderDto = new EntityDtoMapper(s3Service).toFolderDto(folderById);
+        return new ResponseEntity<>(folderDto, HttpStatus.OK);
     }
 }

@@ -1,17 +1,15 @@
 package com.paperize.paperize_server.file.controller;
 
 import com.paperize.paperize_server.file.FileEntity;
-import com.paperize.paperize_server.file.data.CreateFileRequest;
 import com.paperize.paperize_server.file.data.FileDto;
 import com.paperize.paperize_server.file.service.FileService;
-import com.paperize.paperize_server.mapper.FileMapper;
+import com.paperize.paperize_server.mapper.EntityDtoMapper;
 import com.paperize.paperize_server.utils.S3Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,26 +25,11 @@ public class FileController {
     private final FileService fileService;
     private final S3Service s3Service;
 
-    @PostMapping("/{folderId}")
-    public ResponseEntity<UUID> saveFiles(
-            @PathVariable String folderId,
-            @RequestParam(value = "files") List<MultipartFile> files
-    ) {
-        CreateFileRequest fileRequest = CreateFileRequest.builder()
-                .files(files)
-                .folderId(folderId)
-                .build();
-        log.info("Files received - {}", fileRequest);
-
-        UUID requestFolderId = fileService.saveFiles(fileRequest);
-        return new ResponseEntity<>(requestFolderId, HttpStatus.CREATED);
-    }
-
     @GetMapping("/{folderId}")
     public ResponseEntity<Optional<List<FileDto>>> getFolderFiles(@PathVariable String folderId) {
         Optional<List<FileEntity>> folderFiles = fileService.getFolderFiles(UUID.fromString(folderId));
 
-        FileMapper fileMapper = new FileMapper(s3Service);
+        EntityDtoMapper fileMapper = new EntityDtoMapper(s3Service);
         List<FileDto> fileDtos = folderFiles
                 .map(files -> files.stream()
                         .map(fileMapper::toFileDto)
