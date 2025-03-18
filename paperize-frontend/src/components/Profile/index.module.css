@@ -128,7 +128,7 @@
     padding: 0px;
     height: 20px;
     border-radius: 4px; 
-    margin: 2vh 0 5vh 0;
+    margin: 2vh 0 8vh 0;
     align-items: center;
     justify-content: flex-start;
 }
@@ -176,6 +176,7 @@
 .profileEditBtn:active { transform: scale(0.95); }
 
 .profileDocumentStatItem, .profileDocumentStatItem1 {
+    position: relative; 
     display: flex;  
     margin: 0px;
     width: 100px; 
@@ -191,18 +192,51 @@
 
 .lightTheme .profileDocumentStatItem1 {  background-color: mediumpurple; }
 
-.profileDocumentLabel, .profileDocumentFigure { 
+
+.profileDocumentStatTooltop {
+    position: absolute;
+    display: flex;  
+    gap: 10px;
+    top: 35px; 
+    margin: 0px;
+    width: 15vw; 
+    padding: 0px;
+    height: 100%;
+    padding: 0px;
+    font-size: 14px;  
+    cursor: pointer;  
+    transition: .3s;
+    line-height: 14px;
+    font-style: normal;  
+    align-items: center;
+    justify-content: flex-start; 
+}
+
+.profileTooltopIndicator { 
+    width: 5px;
+    margin: 0px; 
+    height: 5px; 
+    padding: 0px;
+    border-radius: 50%;
+}
+
+.lightTheme .profileTooltopIndicator { background-color: aqua; } 
+
+.profileDocumentLabel, .profileDocumentFigure, .profileTooltopFileType, .profileTooltopFilePcnt { 
     padding: 0px;
     font-size: 14px;  
     line-height: 14px;
     font-style: normal; 
+    white-space: nowrap;
 }
 
 .profileDocumentLabel { margin: 0px 0px 0px 15px; }
 
 .profileDocumentFigure { margin: 0px 15px 0px 0px; }
 
-.lightTheme .profileDocumentFigure { color: #757575; } 
+.lightTheme .profileDocumentFigure,
+.lightTheme .profileTooltopFileType,
+.lightTheme .profileTooltopFilePcnt { color: #757575; } 
 
 .profileDocumentStatsDiv {
     display: flex; 
@@ -243,3 +277,13 @@
 .profileDocumentLastRow { border-radius: 0px 0px 15px 15px; }
 
 .lightTheme .profileDocumentLastRow { border-bottom: 1px solid transparent; } 
+
+@keyframes fadeIn {
+    from {  opacity: 0; }
+    to   { opacity: 1; }
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+    animation-duration: 0.3s;
+}

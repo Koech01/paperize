@@ -6,7 +6,8 @@ import settingLightIcon from '../assets/settingLightIcon.svg';
 
 const Profile = () => {
 
-    const [theme, setTheme] = useState('light'); 
+    const [theme, setTheme]                   = useState('light'); 
+    const [toolTipHovered, setToolTipHovered] = useState(false); 
 
 
     useEffect(() => {
@@ -42,7 +43,20 @@ const Profile = () => {
                     <h4 className={css.profileDocumentHeader}>Files Statistics</h4>
 
                     <div className={css.profileDocumentStatsBar}> 
-                        <div className={css.profileDocumentStatItem}></div>
+                        <div 
+                            className    = {css.profileDocumentStatItem}
+                            onMouseEnter = {() => setToolTipHovered(true)}
+                            onMouseLeave = {() => setToolTipHovered(false)}
+                        >
+                            {toolTipHovered && (
+                                <div className={`${css.profileDocumentStatTooltop} ${css.fadeIn}`}>
+                                    <div className={css.profileTooltopIndicator}></div>
+                                    <p className={css.profileTooltopFileType}>PDFs</p>
+                                    <p className={css.profileTooltopFileSize}>12.8 GB</p>
+                                    <p className={css.profileTooltopFilePcnt}>9.8%</p>
+                                </div>
+                            )}
+                        </div>
                         <div className={css.profileDocumentStatItem1}></div>
                     </div>
 
