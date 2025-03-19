@@ -91,7 +91,7 @@
     white-space: nowrap;
 }
 
-.profileEditBtnDiv {
+.profileBtnDiv {
     display: flex;
     flex: 1; 
     padding: 0px; 
@@ -135,30 +135,34 @@
 
 .lightTheme .profileDocumentStatsBar { background-color: #FAFAFA; } 
 
-.profileEditBtnIcon {
+.profileEditBtnIcon, .profileLogoutIcon {
     width: 15px;
-    margin: 0px;  
-    padding: 0px; 
-    height: auto; 
+    height: 15px;  
+    padding: 0px;  
     cursor: pointer; 
     object-fit: cover; 
+    margin: 2px 0px 0px 0px;  
 } 
 
-.profileEditBtn {
+.profileEditBtnIcon { width: auto; } 
+ 
+.profileLogoutIcon { width: 15px; } 
+
+.profileEditBtn, .profileLogoutBtn {
     display: flex;
     gap: 5px;
     outline: 0;  
+    margin: 0px;
+    height: 30px;  
     cursor: pointer; 
     font-size: 13px;  
     transition: .3s; 
-    font-weight: 500;
-    padding: 5px 15px;  
-    width: fit-content;
-    border-radius: 6px;
+    font-weight: 500; 
+    width: fit-content; 
+    border-radius: 6px;  
+    font-family: 'Poppins';   
+    padding: 5px 15px 5px 15px; 
     text-align: center;
-    align-items: center;
-    font-family: 'Poppins';  
-    justify-content: center; 
 }
 
 .lightTheme .profileEditBtn {  
@@ -167,13 +171,13 @@
     border: 1px solid #EEEEEE; 
 } 
 
-.lightTheme .profileEditBtn :hover {  
-    background: #000000;
-    border-color: #000000;
-    box-shadow: 0 2px 5px 0 rgb(213 217 217 / 50%);
+.lightTheme .profileLogoutBtn {  
+    color: #FAFAFA;
+    background: #212121; 
+    border: 1px solid #212121; 
 } 
 
-.profileEditBtn:active { transform: scale(0.95); }
+.profileEditBtn:active, .profileLogoutBtn:active { transform: scale(0.97); }
 
 .profileDocumentStatItem, .profileDocumentStatItem1 {
     position: relative; 
@@ -190,7 +194,7 @@
     background-color: aqua;
 }
 
-.lightTheme .profileDocumentStatItem1 {  background-color: mediumpurple; }
+.lightTheme .profileDocumentStatItem1 { background-color: mediumpurple; }
 
 
 .profileDocumentStatTooltop {
