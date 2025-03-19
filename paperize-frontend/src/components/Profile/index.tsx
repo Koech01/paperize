@@ -1,6 +1,7 @@
 import css from './index.module.css';
 import { useEffect, useState } from 'react'; 
 import userIcon from '../assets/usericon.jpg';
+import logoutLightIcon from '../assets/logoutLightIcon.svg';
 import settingLightIcon from '../assets/settingLightIcon.svg';
 
 
@@ -24,7 +25,7 @@ const Profile = () => {
                     <div className={css.profileUserFlexDiv}>
                         <img className={css.profileUserIcon} src={userIcon} alt='profile-user-icon'/>
                         <h2 className={css.profileUserName}>Kevin Durant</h2>
-                        <div className={css.profileEditBtnDiv}>
+                        <div className={css.profileBtnDiv}>
                             <button className={css.profileEditBtn}>
                                 <img className={css.profileEditBtnIcon} src={settingLightIcon} alt="profile-edit-light-icon"/>
                                 Edit Profile
@@ -35,6 +36,13 @@ const Profile = () => {
                     <div className={css.profileUserFlexDiv}>
                         <div className={css.profileEntityTag}> 
                             <p className={css.profileEntityName}>Nvidia</p>
+                        </div> 
+
+                        <div className={css.profileBtnDiv}> 
+                            <button className={css.profileLogoutBtn}>
+                                <img className={css.profileLogoutIcon} src={logoutLightIcon} alt="profile-logout-light-icon"/>
+                                Sign Out
+                            </button>
                         </div> 
                     </div>
                 </div>
