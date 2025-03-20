@@ -44,6 +44,136 @@
     justify-content: flex-start; 
 }
 
+.profileEditParentDiv {
+    display: flex; 
+    gap: 25px;
+    width: 70%;
+    margin: 0px; 
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 0px 10px 0px;  
+}
+
+.profileEditUserIconDiv {
+    display: flex;  
+    gap: 20px;
+    width: 90%;
+    margin: 0px; 
+    padding: 0px;   
+    align-items: center; 
+}
+
+.profileEditUserIcon { 
+    margin: 0px; 
+    width: 70px;  
+    height: 70px;
+    padding: 0px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profileEditUserChangeBtn {
+    display: flex;  
+    margin: 0px; 
+    font-size: 14px;  
+    transition: .3s;  
+    line-height: 14px;
+    font-style: normal;  
+    width: fit-content; 
+    border-radius: 6px;   
+    text-align: center;
+    font-family: 'Poppins';  
+    padding: 5px 15px 5px 15px;   
+}
+
+.lightTheme .profileEditUserChangeBtn {  
+    color: #616161;
+    background: #FFFFFF; 
+    border: 1px solid #EEEEEE; 
+} 
+
+.profileEditInputDiv {
+    display: flex;  
+    gap: 10px;
+    width: 90%;
+    margin: 0px; 
+    padding: 0px;  
+    flex-direction: column; 
+}
+
+.profileEditBtnDiv {
+    display: flex;  
+    gap: 10px;
+    width: 95%;
+    margin: 0px; 
+    padding: 0px;  
+    align-items: flex-end;
+    flex-direction: column;  
+}
+
+.profileEditInputIconDiv {
+    display: flex;  
+    gap: 10px; 
+    margin: 0px; 
+    padding: 0px;   
+    align-items: center; 
+}
+
+.profileEditInputIcon {
+    width: 17px;
+    height: 17px;
+    object-fit: cover;
+}
+
+.profileEditInputText {
+    margin: 0px;
+    padding: 0px;
+    font-size: 13px;  
+    line-height: 13px;
+    font-style: normal;
+}
+
+.lightTheme .profileEditInputText { color: #455A64; } 
+
+.profileEditInput {
+    width: 95%;  
+    border: none;  
+    outline: none;
+    border-radius: 6px;
+    padding: 8px 15px 8px 15px;
+}
+
+.lightTheme .profileEditInput { 
+    background-color: #FFFFFF;
+    outline: 1px solid #EEEEEE; 
+} 
+
+.lightTheme .profileEditInput::placeholder { color: #9E9E9E; } 
+ 
+.lightTheme .profileEditInput:hover { outline: 1px solid #E0E0E0; }
+  
+.profileEditUpdateBtn {
+    display: flex; 
+    outline: 0;  
+    margin: 0px;
+    height: 30px;  
+    cursor: pointer; 
+    font-size: 13px;  
+    transition: .3s; 
+    font-weight: 500; 
+    width: fit-content; 
+    border-radius: 6px;   
+    text-align: center;
+    font-family: 'Poppins';  
+    padding: 5px 15px 5px 15px; 
+}
+
+.lightTheme .profileEditUpdateBtn {  
+    color: #FAFAFA;
+    background: #000000; 
+    border: 1px solid #000000; 
+} 
+
 .profileIconNameDiv {
     display: flex; 
     gap: 20px;
@@ -159,10 +289,10 @@
     transition: .3s; 
     font-weight: 500; 
     width: fit-content; 
-    border-radius: 6px;  
-    font-family: 'Poppins';   
-    padding: 5px 15px 5px 15px; 
+    border-radius: 6px;   
     text-align: center;
+    font-family: 'Poppins';  
+    padding: 5px 15px 5px 15px; 
 }
 
 .lightTheme .profileEditBtn {  
@@ -177,7 +307,10 @@
     border: 1px solid #212121; 
 } 
 
-.profileEditBtn:active, .profileLogoutBtn:active { transform: scale(0.97); }
+.profileEditBtn:active, 
+.profileEditUserChangeBtn:active, 
+.profileLogoutBtn:active,
+.profileEditUpdateBtn:active { transform: scale(0.97); }
 
 .profileDocumentStatItem, .profileDocumentStatItem1 {
     position: relative; 
