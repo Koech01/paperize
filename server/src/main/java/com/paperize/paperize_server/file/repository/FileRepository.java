@@ -21,4 +21,64 @@ public interface FileRepository extends JpaRepository<FileEntity, UUID> {
     @Query("SELECT f FROM FileEntity f WHERE f.folder.id = :id AND f.type LIKE %:type%")
     Optional<List<FileEntity>> findFolderFilesByType(UUID id, String type);
 
+    /**
+     * Retrieves all files in a folder with READ permission check.
+     * User must either own the folder or have READ permission on the folder.
+     */
+    @Query(
+        "SELECT f FROM FileEntity f " +
+        "WHERE f.folder.id = :folderId " +
+        "AND (f.folder.userId = :userId " +
+        "OR EXISTS (SELECT p FROM PermissionsEntity p " +
+        "WHERE p.resourceId = f.folder.id " +
+        "AND p.resourceType = 'FOLDER' " +
+        "AND p.permissionType = 'READ'))"
+    )
+    Optional<List<FileEntity>> findFolderFilesWithPermission(UUID folderId, UUID userId);
+
+    /**
+     * Retrieves files of a specific type in a folder with READ permission check.
+     * User must either own the folder or have READ permission on the folder.
+     */
+    @Query(
+        "SELECT f FROM FileEntity f " +
+        "WHERE f.folder.id = :folderId " +
+        "AND f.type LIKE %:type% " +
+        "AND (f.folder.userId = :userId " +
+        "OR EXISTS (SELECT p FROM PermissionsEntity p " +
+        "WHERE p.resourceId = f.folder.id " +
+        "AND p.resourceType = 'FOLDER' " +
+        "AND p.permissionType = 'READ'))"
+    )
+    Optional<List<FileEntity>> findFolderFilesByTypeWithPermission(UUID folderId, String type, UUID userId);
+
+    /**
+     * Retrieves a specific file with READ permission check.
+     * User must either own the file's folder or have READ permission on the folder.
+     */
+    @Query(
+        "SELECT f FROM FileEntity f " +
+        "WHERE f.id = :fileId " +
+        "AND (f.folder.userId = :userId " +
+        "OR EXISTS (SELECT p FROM PermissionsEntity p " +
+        "WHERE p.resourceId = f.folder.id " +
+        "AND p.resourceType = 'FOLDER' " +
+        "AND p.permissionType = 'READ'))"
+    )
+    Optional<FileEntity> findFileByIdWithPermission(UUID fileId, UUID userId);
+
+    /**
+     * Retrieves a specific file with WRITE permission check.
+     * User must either own the file's folder or have WRITE permission on the folder.
+     */
+    @Query(
+        "SELECT f FROM FileEntity f " +
+        "WHERE f.id = :fileId " +
+        "AND (f.folder.userId = :userId " +
+        "OR EXISTS (SELECT p FROM PermissionsEntity p " +
+        "WHERE p.resourceId = f.folder.id " +
+        "AND p.resourceType = 'FOLDER' " +
+        "AND p.permissionType = 'WRITE'))"
+    )
+    Optional<FileEntity> findFileByIdWithWritePermission(UUID fileId, UUID userId);
 }
