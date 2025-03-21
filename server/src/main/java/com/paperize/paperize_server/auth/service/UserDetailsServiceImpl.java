@@ -1,6 +1,5 @@
 package com.paperize.paperize_server.auth.service;
 
-import com.paperize.paperize_server.user.UserEntity;
 import com.paperize.paperize_server.user.repository.UserRepository;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UserDetails;
