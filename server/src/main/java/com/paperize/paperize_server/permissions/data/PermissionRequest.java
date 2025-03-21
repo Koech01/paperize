@@ -10,5 +10,5 @@ public class PermissionRequest {
     private UUID resourceId;
     private PermissionsEntity.ResourceType resourceType;
     private PermissionsEntity.PermissionType permissionType;
-    private UUID userId;
+    private String userEmail;
 }
