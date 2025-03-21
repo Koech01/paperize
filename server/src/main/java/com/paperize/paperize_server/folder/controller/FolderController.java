@@ -122,7 +122,7 @@ public class FolderController {
                 request.getResourceId(),
                 request.getResourceType(),
                 request.getPermissionType(),
-                request.getUserId()
+                request.getUserEmail()
         );
         return ResponseEntity.ok(PermissionResponse.fromEntity(permission));
     }
@@ -142,7 +142,7 @@ public class FolderController {
                 request.getResourceId(),
                 request.getResourceType(),
                 request.getPermissionType(),
-                request.getUserId()
+                request.getUserEmail()
         );
         return ResponseEntity.ok().build();
     }

@@ -29,7 +29,7 @@ public class PermissionController {
                 request.getResourceId(),
                 request.getResourceType(),
                 request.getPermissionType(),
-                request.getUserId()
+                request.getUserEmail()
         );
         return ResponseEntity.ok(PermissionResponse.fromEntity(permission));
     }
@@ -43,7 +43,7 @@ public class PermissionController {
                 request.getResourceId(),
                 request.getResourceType(),
                 request.getPermissionType(),
-                request.getUserId()
+                request.getUserEmail()
         );
         return ResponseEntity.ok().build();
     }
@@ -63,11 +63,11 @@ public class PermissionController {
     }
 
     /**
-     * Gets all permissions for the current user.
+     * Gets all permissions for a specific user.
      */
-    @GetMapping("/user/{userId}")
-    public ResponseEntity<List<PermissionResponse>> getUserPermissions(@PathVariable UUID userId) {
-        List<PermissionResponse> permissions = permissionService.getUserPermissions(userId)
+    @GetMapping("/user/{userEmail}")
+    public ResponseEntity<List<PermissionResponse>> getUserPermissions(@PathVariable String userEmail) {
+        List<PermissionResponse> permissions = permissionService.getUserPermissions(userEmail)
                 .stream()
                 .map(PermissionResponse::fromEntity)
                 .collect(Collectors.toList());
@@ -82,12 +82,12 @@ public class PermissionController {
             @RequestParam UUID resourceId,
             @RequestParam PermissionsEntity.ResourceType resourceType,
             @RequestParam PermissionsEntity.PermissionType permissionType,
-            @RequestParam UUID userId) {
+            @RequestParam String userEmail) {
         boolean hasPermission = permissionService.hasPermission(
                 resourceId,
                 resourceType,
                 permissionType,
-                userId
+                userEmail
         );
         return ResponseEntity.ok(hasPermission);
     }
