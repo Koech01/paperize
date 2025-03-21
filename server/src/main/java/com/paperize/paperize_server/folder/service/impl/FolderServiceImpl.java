@@ -32,6 +32,10 @@ public class FolderServiceImpl implements FolderService {
             return folderRepository.findAll();
         }
 
+        /**
+         * Retrieves all root folders (folders without a parent) for a specific user.
+         * Only returns folders that the user owns or has READ permission for.
+         */
         @Override
         public List<FolderEntity> getRootFolders(UUID userId) {
             List<FolderEntity> rootFolders = folderRepository.findRootFolders(userId);
@@ -39,6 +43,17 @@ public class FolderServiceImpl implements FolderService {
             return rootFolders;
         }
 
+        /**
+         * Creates a new folder with optional parent folder and files.
+         * 
+         * Permission checks:
+         * - If parent folder is specified, user must have WRITE permission on the parent
+         * - If no parent folder, creates a root folder (user must own it)
+         * 
+         * File handling:
+         * - If files are provided, they are uploaded to S3 and their metadata is saved
+         * - Files are associated with the newly created folder
+         */
         @Override
         @Transactional
         public FolderEntity createFolder(CreateFolderRequest folder) {
@@ -46,21 +61,29 @@ public class FolderServiceImpl implements FolderService {
             FolderEntity buildFolder = FolderEntity.builder()
                     .name(folder.getName())
                     .build();
-
-            // 1. Get userId from authentication
+    
+            // Get userId from authentication
             UUID userId = SecurityUtils.getCurrentUserId();
             buildFolder.setUserId(userId);
-
-            // 2. If folderId, get folder object
-            FolderEntity parentFolder = folderRepository.findFolderByIdWithPermission(UUID.fromString(folder.getParentId()), userId)
-                    .orElseThrow(() -> new IllegalArgumentException("Parent folder does not exist or you do not have access"));
-            buildFolder.setParent(parentFolder);
-
-            // 3. Save folder
+    
+            // If parentId is provided, get the parent folder object and check permissions
+            if (folder.getParentId() != null) {
+                FolderEntity parentFolder = folderRepository.findFolderByIdWithWritePermission(UUID.fromString(folder.getParentId()), userId)
+                        .orElseThrow(() -> {
+                            // Check if folder exists at all
+                            if (!folderRepository.existsById(UUID.fromString(folder.getParentId()))) {
+                                return new IllegalArgumentException("Parent folder does not exist");
+                            }
+                            return new BadCredentialsException("You do not have access to the parent folder");
+                        });
+                buildFolder.setParent(parentFolder);
+            }
+    
+            // Save the new folder entity to the repository
             FolderEntity savedFolder = folderRepository.save(buildFolder);
             log.info("Saved folder - {}", savedFolder);
-
-            // 4. If there are files, persist to s3 and get back the keys
+    
+            // If there are files in the request, upload them to S3 and save their metadata to the repository
             if (folder.getFiles() != null && !folder.getFiles().isEmpty()) {
                 folder.getFiles().forEach(file -> {
                     String fileKey = s3service.uploadFile(file, savedFolder.getId());
@@ -79,27 +102,63 @@ public class FolderServiceImpl implements FolderService {
             return savedFolder;
         }
 
+        /**
+         * Retrieves all files in a specific folder.
+         * 
+         * Permission checks:
+         * - User must have READ permission on the folder
+         * - Returns appropriate error if folder doesn't exist or user lacks permission
+         */
         @Override
         @Transactional
         public Optional<List<FileEntity>> getFolderFiles(UUID folderId) {
             UUID userId = SecurityUtils.getCurrentUserId();
             return folderRepository.findFolderByIdWithPermission(folderId, userId)
                     .map(folder -> fileRepository.findFolderFiles(folderId))
-                    .orElseThrow(() -> new BadCredentialsException("Folder does not exist"));
+                    .orElseThrow(() -> {
+                        if (!folderRepository.existsById(folderId)) {
+                            return new IllegalArgumentException("Folder does not exist");
+                        }
+                        return new BadCredentialsException("You do not have access to the folder");
+                    });
         }
 
+        /**
+         * Retrieves files of a specific type in a folder.
+         * 
+         * Permission checks:
+         * - User must have READ permission on the folder
+         * - Returns appropriate error if folder doesn't exist or user lacks permission
+         */
         @Override
         public Optional<List<FileEntity>> getFolderFilesByType(UUID folderId, String type) {
             UUID userId = SecurityUtils.getCurrentUserId();
             return folderRepository.findFolderByIdWithPermission(folderId, userId)
                     .map(folder -> fileRepository.findFolderFilesByType(folderId, type))
-                    .orElseThrow(() -> new BadCredentialsException("Folder does not exist"));
+                    .orElseThrow(() -> {
+                        if (!folderRepository.existsById(folderId)) {
+                            return new IllegalArgumentException("Folder does not exist");
+                        }
+                        return new BadCredentialsException("You do not have access to the folder");
+                    });
         }
 
+        /**
+         * Retrieves a folder by its ID.
+         * 
+         * Permission checks:
+         * - User must have READ permission on the folder
+         * - Returns appropriate error if folder doesn't exist or user lacks permission
+         */
         @Override
         public FolderEntity getFolderById(UUID folderId) {
             UUID userId = SecurityUtils.getCurrentUserId();
             return folderRepository.findFolderByIdWithPermission(folderId, userId)
-                    .orElseThrow(() -> new IllegalArgumentException("Folder does not exist"));
+                    .orElseThrow(() -> {
+                        if (!folderRepository.existsById(folderId)) {
+                            return new IllegalArgumentException("Folder does not exist");
+                        }
+                        return new BadCredentialsException("You do not have access to the folder");
+                    });
         }
     }

@@ -33,4 +33,16 @@ public interface FolderRepository extends JpaRepository<FolderEntity, UUID> {
     )
     Optional<FolderEntity> findFolderByIdWithPermission(UUID folderId, UUID userId);
 
+    @Query(
+        "SELECT f FROM FolderEntity f " +
+        "WHERE f.id = :folderId " +
+        "AND EXISTS (SELECT 1 FROM FolderEntity f2 WHERE f2.id = :folderId) " +
+        "AND (f.userId = :userId " +
+        "OR EXISTS (SELECT p FROM PermissionsEntity p " +
+        "WHERE p.resourceId = f.id " +
+        "AND p.resourceType = 'FOLDER' " +
+        "AND p.permissionType = 'WRITE'))"
+    )
+    Optional<FolderEntity> findFolderByIdWithWritePermission(UUID folderId, UUID userId);
+
 }
