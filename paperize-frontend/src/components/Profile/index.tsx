@@ -11,10 +11,10 @@ import profileEditMailLightIcon from '../assets/profileEditMailLightIcon.svg';
 const Profile = () => {
 
     const [theme, setTheme]                   = useState('light'); 
-    const [editMode, setEditMode]             = useState(true);
+    const [editMode, setEditMode]             = useState(false);
     const [toolTipHovered, setToolTipHovered] = useState(false); 
+    const [logoutModal, setLogoutModal]       = useState(false);
     const [selectUserIcon, setSelectUserIcon] = useState<File | null>(null);
-
 
 
     useEffect(() => {
@@ -32,7 +32,13 @@ const Profile = () => {
     }
 
 
-    const handleProfileUpdate = () => { setEditMode(false); }
+    const handleProfileUpdate        = () => { setEditMode(false); }
+
+    const handleProfileUpdateDiscard = () => { setEditMode(false); }
+
+    const displayLogoutModal         = () => { setLogoutModal(!logoutModal); }
+
+    const handleCloseLogoutModal     = () => { setLogoutModal(false); }
 
 
     return(
@@ -116,6 +122,7 @@ const Profile = () => {
                         </div>
 
                         <div className={css.profileEditBtnDiv}> 
+                            <button className={css.profileEditDiscardBtn} onClick={handleProfileUpdateDiscard}>Cancel</button>
                             <button className={css.profileEditUpdateBtn} type='submit' onClick={handleProfileUpdate}>Update</button>
                         </div>
                     </div>
@@ -139,7 +146,7 @@ const Profile = () => {
                                 </div> 
 
                                 <div className={css.profileBtnDiv}> 
-                                    <button className={css.profileLogoutBtn}>
+                                    <button className={css.profileLogoutBtn} onClick={displayLogoutModal}>
                                         <img className={css.profileLogoutIcon} src={logoutLightIcon} alt="profile-logout-light-icon"/>
                                         Sign Out
                                     </button>
@@ -194,7 +201,24 @@ const Profile = () => {
                 )}
 
             </div>
-            
+
+
+            {logoutModal && ( 
+                <div className={`${css.profileLogoutModalParentDiv} ${css.fadeIn} ${theme === 'light' ? css.lightTheme : css.darkTheme}`}>
+                    <div className={css.profileLogoutModalDiv}>
+                        <div className={css.profileLogoutUserIconDiv}>
+                            <img className={css.profileLogoutUserIcon} src={userIcon} alt='profile-logout-user-icon'/>
+                            <h4 className={css.profileLogoutHeader}>Before You Go</h4>
+                        </div> 
+                        <p className={css.profileLogoutText}>Are you sure you want to log out? You will need to sign in again to continue.</p>
+
+                        <div className={css.profileLogoutBtnDiv}>
+                            <button className={css.profileLogoutCancelBtn} onClick={handleCloseLogoutModal}>Back</button>
+                            <button className={css.profileLogoutProceedBtn}>Proceed</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

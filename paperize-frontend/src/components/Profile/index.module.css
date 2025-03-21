@@ -107,8 +107,8 @@
     width: 95%;
     margin: 0px; 
     padding: 0px;  
-    align-items: flex-end;
-    flex-direction: column;  
+    align-items: center; 
+    justify-content: flex-end; 
 }
 
 .profileEditInputIconDiv {
@@ -152,7 +152,7 @@
  
 .lightTheme .profileEditInput:hover { outline: 1px solid #E0E0E0; }
   
-.profileEditUpdateBtn {
+.profileEditUpdateBtn, .profileEditDiscardBtn {
     display: flex; 
     outline: 0;  
     margin: 0px;
@@ -172,6 +172,12 @@
     color: #FAFAFA;
     background: #000000; 
     border: 1px solid #000000; 
+} 
+
+.lightTheme .profileEditDiscardBtn {  
+    color: #616161;
+    background: #FFFFFF; 
+    border: 1px solid #E0E0E0; 
 } 
 
 .profileIconNameDiv {
@@ -263,7 +269,10 @@
     justify-content: flex-start;
 }
 
-.lightTheme .profileDocumentStatsBar { background-color: #FAFAFA; } 
+.lightTheme .profileDocumentStatsBar { 
+    background-color: #FAFAFA; 
+    border: 1px solid #F5F5F5;
+} 
 
 .profileEditBtnIcon, .profileLogoutIcon {
     width: 15px;
@@ -310,7 +319,8 @@
 .profileEditBtn:active, 
 .profileEditUserChangeBtn:active, 
 .profileLogoutBtn:active,
-.profileEditUpdateBtn:active { transform: scale(0.97); }
+.profileEditUpdateBtn:active,
+.profileEditDiscardBtn:active { transform: scale(0.97); }
 
 .profileDocumentStatItem, .profileDocumentStatItem1 {
     position: relative; 
@@ -415,6 +425,115 @@
 
 .lightTheme .profileDocumentLastRow { border-bottom: 1px solid transparent; } 
 
+
+.profileLogoutModalParentDiv { 
+    position: fixed; 
+    display: flex;
+    width: 100%; 
+    padding: 0px;
+    height: 110%;
+    border: none;  
+    transition: .3s; 
+    overflow: hidden;
+    align-items: center; 
+    justify-content: center;
+}
+
+.lightTheme .profileLogoutModalParentDiv { background-color: rgba(0,0,0,0.2); }
+
+.darkTheme .profileLogoutModalParentDiv  { background-color: rgba(0,0,0,0.9); }
+
+.profileLogoutModalDiv {
+    position: absolute;
+    display: flex;  
+    top: 50%;
+    gap: 20px; 
+    left: 50%;
+    width: 25%;
+    margin: 0px;
+    border-radius: 8px;
+    padding: 10px 10px;
+    flex-direction: column;
+    transform: translate(-50%, -50%); 
+}
+
+.lightTheme .profileLogoutModalDiv { 
+    background: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+} 
+
+.profileLogoutUserIconDiv {
+    display: flex;  
+    gap: 13px;
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+}
+
+.profileLogoutUserIcon {
+    width: 30px;  
+    margin: 0px;  
+    height: 30px;
+    padding: 0px;
+    object-fit: cover;
+    border-radius: 50%; 
+}
+
+.profileLogoutHeader {
+    margin: 0px;  
+    padding: 0px; 
+    font-style: normal;  
+}
+
+.profileLogoutText {
+    margin: 0px;  
+    padding: 0px;
+    font-size: 14px;  
+    line-height: 20px;
+    font-style: normal;  
+}
+
+.profileLogoutBtnDiv {
+    display: flex;  
+    gap: 15px; 
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+    justify-content: flex-end; 
+}
+
+.profileLogoutProceedBtn, .profileLogoutCancelBtn {
+    display: flex;
+    gap: 5px;
+    outline: 0;  
+    margin: 0px;
+    height: 30px;  
+    cursor: pointer; 
+    font-size: 13px;  
+    transition: .3s; 
+    font-weight: 500; 
+    width: fit-content; 
+    border-radius: 6px;   
+    text-align: center;
+    font-family: 'Poppins';  
+    padding: 4px 12px 4px 12px; 
+}
+
+.lightTheme .profileLogoutProceedBtn {  
+    color: #FFFFFF;
+    background: #D50000; 
+    border: 1px solid #D50000; 
+} 
+
+.lightTheme .profileLogoutCancelBtn {  
+    color: #FAFAFA;
+    background: #212121; 
+    border: 1px solid #212121; 
+} 
+
+.profileLogoutProceedBtn:active, 
+.profileLogoutCancelBtn:active { transform: scale(0.97); }
+ 
 @keyframes fadeIn {
     from {  opacity: 0; }
     to   { opacity: 1; }
