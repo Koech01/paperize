@@ -38,13 +38,10 @@ public class FileServiceImpl implements FileService {
     @Transactional
     public Optional<List<FileEntity>> getFolderFiles(UUID folderId) {
         UUID userId = SecurityUtils.getCurrentUserId();
-        return fileRepository.findFolderFilesWithPermission(folderId, userId)
-                .orElseThrow(() -> {
-                    if (!folderRepository.existsById(folderId)) {
-                        return new IllegalArgumentException("Folder does not exist");
-                    }
-                    return new BadCredentialsException("You do not have access to the folder");
-                });
+        if (!folderRepository.existsById(folderId)) {
+            throw new IllegalArgumentException("Folder does not exist");
+        }
+        return fileRepository.findFolderFilesWithPermission(folderId, userId);
     }
 
     /**
