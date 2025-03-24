@@ -44,13 +44,11 @@ const SignUp = () => {
             }
         }
 
-        catch (error) {
-            setError('INvalid');
-        }
+        catch (error) { setError('An error occurred. Please try again.') }
     }
 
 
-    useEffect(() => { if (redirect) { navigate('/'); } });
+    useEffect(() => { if (redirect) { navigate('/'); } }, [redirect]);
 
 
     return(
