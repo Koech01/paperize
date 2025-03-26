@@ -29,7 +29,7 @@ const Login = () => {
         e.preventDefault()
 
         try {
-            const response = await fetch('', {
+            const response = await fetch('/api/auth/sign-in/', {
                 method      : 'POST',
                 headers     : { 'Content-Type': 'application/json' },
                 credentials : 'include',

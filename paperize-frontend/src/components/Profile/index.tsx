@@ -1,6 +1,7 @@
 import css from './index.module.css';
 import { useEffect, useState } from 'react'; 
 import userIcon from '../assets/usericon.jpg';
+import { useNavigate } from 'react-router-dom'; 
 import logoutLightIcon from '../assets/logoutLightIcon.svg';
 import settingLightIcon from '../assets/settingLightIcon.svg';
 import profileNameLightIcon from '../assets/profileNameLightIcon.svg';  
@@ -9,11 +10,13 @@ import profileEditMailLightIcon from '../assets/profileEditMailLightIcon.svg';
 
 
 const Profile = () => {
-
+ 
+    const navigate                            = useNavigate();
     const [theme, setTheme]                   = useState('light'); 
     const [editMode, setEditMode]             = useState(false);
     const [toolTipHovered, setToolTipHovered] = useState(false); 
     const [logoutModal, setLogoutModal]       = useState(false);
+    const [logoutRedirect, setLogoutRedirect] = useState(false);
     const [selectUserIcon, setSelectUserIcon] = useState<File | null>(null);
 
 
@@ -39,6 +42,11 @@ const Profile = () => {
     const displayLogoutModal         = () => { setLogoutModal(!logoutModal); }
 
     const handleCloseLogoutModal     = () => { setLogoutModal(false); }
+
+    const handleLogoutRedirect = () => { setLogoutRedirect(false); }
+
+
+    useEffect(() => { if (logoutRedirect) { navigate('/api/auth/sign-out/') } }, [logoutRedirect])
 
 
     return(
@@ -214,7 +222,7 @@ const Profile = () => {
 
                         <div className={css.profileLogoutBtnDiv}>
                             <button className={css.profileLogoutCancelBtn} onClick={handleCloseLogoutModal}>Back</button>
-                            <button className={css.profileLogoutProceedBtn}>Proceed</button>
+                            <button className={css.profileLogoutProceedBtn} onClick={handleLogoutRedirect}>Proceed</button>
                         </div>
                     </div>
                 </div>
