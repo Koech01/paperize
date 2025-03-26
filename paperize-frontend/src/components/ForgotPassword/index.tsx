@@ -23,13 +23,13 @@ const ForgotPassword = () => {
 
     const submit = async(e : SyntheticEvent) => {
         e.preventDefault()
-        
+
         try {
             const response = await fetch('', {
-                method : 'POST',
-                headers : {},
+                method      : 'POST',
+                headers     : {},
                 credentials : 'include',
-                body : JSON.stringify({ email })
+                body        : JSON.stringify({ email })
             })
 
             if (response.ok) {

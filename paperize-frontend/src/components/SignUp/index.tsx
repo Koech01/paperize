@@ -27,7 +27,7 @@ const SignUp = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('', {
+            const response = await fetch('/api/auth/sign-up/', {
                 method      : 'POST',
                 headers     : {},
                 credentials : 'include',
