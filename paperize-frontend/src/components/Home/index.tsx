@@ -7,17 +7,39 @@ import cssIcon from '../assets/css.png';
 import datIcon from '../assets/dat.png';
 import docxIcon from '../assets/docx.png';
 import { useEffect, useState } from 'react';
+import { DocumentProps, FolderProps } from '../types';
 import homeFolderIcon from '../assets/homeFolderIcon.png';
 
 
 const Home = () => {
 
-    const [theme, setTheme] = useState('light');
+    const [theme, setTheme]               = useState('light');
+    const [resourceItem, setResourceItem] = useState<(DocumentProps | FolderProps)[]>([]);
 
 
     useEffect(() => {
         const savedTheme = localStorage.getItem('themePreference');
         if (savedTheme) { setTheme(savedTheme); }
+    }, [])
+
+
+    useEffect(() => {
+        (async() => {
+            const token    = localStorage.getItem('token');
+            const response = await fetch('', {
+                method      : 'GET',
+                headers     : {},
+                credentials : 'include'
+            })
+
+            if (response.ok) {
+                const resourceData = await response.json();
+                setResourceItem(resourceData);
+            }
+            
+            else { console.error('Failed to fetch user documents and folders: ', response.status); }
+           
+        })();
     }, [])
 
 
