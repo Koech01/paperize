@@ -14,6 +14,7 @@ import homeFolderIcon from '../assets/homeFolderIcon.png';
 const Home = () => {
 
     const [theme, setTheme]               = useState('light');
+    const [searchQuery, setSearchQuery]   = useState('');
     const [resourceItem, setResourceItem] = useState<(DocumentProps | FolderProps)[]>([]);
 
 
@@ -28,8 +29,8 @@ const Home = () => {
             const token    = localStorage.getItem('token');
             const response = await fetch('', {
                 method      : 'GET',
-                headers     : {},
-                credentials : 'include'
+                headers     : { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                credentials : 'include',
             })
 
             if (response.ok) {
@@ -41,6 +42,34 @@ const Home = () => {
            
         })();
     }, [])
+
+
+    useEffect(() => {
+        const fetchSearchResults = async() => {
+            try { 
+                const token = localStorage.getItem('');
+                const response = await fetch('', {
+                    method      : 'GET',
+                    headers     : { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                    credentials : 'include',
+                })
+
+                if (response.ok) {
+                    const searchData = await response.json()
+                    setSearchQuery(searchData);
+                }
+
+                else {
+                    console.error('Failed to fetch search results : ', response.status)
+                }
+            } 
+            catch (error) {
+                console.error('Error fetching search results: ', error)
+            }
+        }
+
+        if (searchQuery) { fetchSearchResults() }
+    }, [searchQuery])
 
 
     return(
