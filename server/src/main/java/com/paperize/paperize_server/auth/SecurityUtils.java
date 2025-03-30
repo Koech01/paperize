@@ -11,4 +11,9 @@ public class SecurityUtils {
         UserEntity principal = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return principal.getId();
     }
+
+    public static String getCurrentUserEmail() {
+        UserEntity principal = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return principal.getEmail();
+    }
 }

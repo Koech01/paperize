@@ -13,4 +13,6 @@ public interface FileService {
 
     UUID saveFiles(CreateFileRequest body);
 
+    void deleteFile(UUID fileId);
+
 }

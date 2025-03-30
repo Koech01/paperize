@@ -1,7 +1,9 @@
 package com.paperize.paperize_server.folder.controller;
 
 import com.paperize.paperize_server.file.FileEntity;
+import com.paperize.paperize_server.file.data.CreateFileRequest;
 import com.paperize.paperize_server.file.data.FileDto;
+import com.paperize.paperize_server.file.service.FileService;
 import com.paperize.paperize_server.folder.FolderEntity;
 import com.paperize.paperize_server.folder.data.CreateFolderRequest;
 import com.paperize.paperize_server.folder.data.FolderDto;
@@ -35,6 +37,7 @@ import java.util.stream.Collectors;
 public class FolderController {
 
     private final FolderService folderService;
+    private final FileService fileService;
     private final S3Service s3Service;
     private final PermissionService permissionService;
 
@@ -75,6 +78,19 @@ public class FolderController {
         FolderEntity folder = folderService.createFolder(folderRequest);
         FolderDto folderDto = new EntityDtoMapper(s3Service).toFolderDto(folder);
         return new ResponseEntity<>(folderDto, HttpStatus.CREATED);
+    }
+
+    @PostMapping("/{folderId}/files")
+    public ResponseEntity<UUID> uploadFiles(
+            @PathVariable String folderId,
+            @RequestParam(value = "files", required = false) List<MultipartFile> files
+    ) {
+        CreateFileRequest fileRequest = CreateFileRequest.builder()
+                .folderId(folderId)
+                .files(files)
+                .build();
+
+        return new ResponseEntity<>(fileService.saveFiles(fileRequest), HttpStatus.OK);
     }
 
     @GetMapping("/{folderId}/files")

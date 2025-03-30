@@ -33,16 +33,20 @@ public class FileController {
     private final PermissionService permissionService;
 
     @GetMapping("/{folderId}")
-    public ResponseEntity<Optional<List<FileDto>>> getFolderFiles(@PathVariable String folderId) {
+    public ResponseEntity<List<FileDto>> getFolderFiles(@PathVariable String folderId) {
         Optional<List<FileEntity>> folderFiles = fileService.getFolderFiles(UUID.fromString(folderId));
 
         EntityDtoMapper fileMapper = new EntityDtoMapper(s3Service);
-        List<FileDto> fileDtos = folderFiles
-                .map(files -> files.stream()
-                        .map(fileMapper::toFileDto)
-                        .collect(Collectors.toList()))
-                .orElse(null);
-        return new ResponseEntity<>(Optional.ofNullable(fileDtos), HttpStatus.OK);
+        List<FileDto> fileDtos = folderFiles.orElse(List.of()).stream()
+                .map(fileMapper::toFileDto)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(fileDtos, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{fileId}")
+    public ResponseEntity<Void> deleteFile(@PathVariable String fileId) {
+        fileService.deleteFile(UUID.fromString(fileId));
+        return ResponseEntity.ok().build();
     }
 
     /**
