@@ -18,7 +18,7 @@ public class EntityDtoMapper {
         String presignedUrl = s3Service.createPresignedGetUrl(file.getKey());
 
         return com.paperize.paperize_server.file.data.FileDto.builder()
-                .id(file.getId())
+                .id(file.getId().toString())
                 .fileName(file.getFileName())
                 .type(file.getType())
                 .size(file.getSize())

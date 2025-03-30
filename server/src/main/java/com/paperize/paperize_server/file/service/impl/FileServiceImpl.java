@@ -7,6 +7,8 @@ import com.paperize.paperize_server.file.repository.FileRepository;
 import com.paperize.paperize_server.file.service.FileService;
 import com.paperize.paperize_server.folder.FolderEntity;
 import com.paperize.paperize_server.folder.repository.FolderRepository;
+import com.paperize.paperize_server.permissions.PermissionsEntity;
+import com.paperize.paperize_server.permissions.service.PermissionService;
 import com.paperize.paperize_server.utils.S3Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,6 +20,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
+import static com.paperize.paperize_server.permissions.PermissionsEntity.PermissionType.DELETE;
+
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -26,6 +30,7 @@ public class FileServiceImpl implements FileService {
     private final FolderRepository folderRepository;
     private final FileRepository fileRepository;
     private final S3Service s3Service;
+    private final PermissionService permissionService;
 
     /**
      * Retrieves all files in a specific folder.
@@ -89,5 +94,33 @@ public class FileServiceImpl implements FileService {
         });
 
         return folder.getId();
+    }
+
+    @Override
+    @Transactional
+    public void deleteFile(UUID fileId) {
+        UUID userId = SecurityUtils.getCurrentUserId();
+        String userEmail = SecurityUtils.getCurrentUserEmail();
+
+        FileEntity file = fileRepository.findById(fileId)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("Folder does not exist")
+                );
+
+
+        if (
+                userId != file.getFolder().getUserId() ||
+                        permissionService.hasPermission(
+                                file.getId(),
+                                PermissionsEntity.ResourceType.FILE,
+                                DELETE,
+                                userEmail
+                        )
+        ) {
+            throw new BadCredentialsException("You don't have access to this file");
+        }
+
+        s3Service.deleteFile(file.getKey());
+
     }
 }

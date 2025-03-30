@@ -12,5 +12,4 @@ public interface UserService {
     UserEntity getUserByEmail(String email);
 
     List<UserEntity> getUsers();
-
 }
