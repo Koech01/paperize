@@ -32,3 +32,147 @@
     font-family: 'Poppins'; 
     justify-content: center; 
 }
+
+.settingHeader { 
+    margin: 0px;
+    padding: 0px; 
+}
+
+.settingChildDiv {
+    display: flex; 
+    gap: 5%;
+    width: 60%; 
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    flex-direction: column;
+    justify-content: center;  
+    align-items: flex-start;    
+}
+
+.settingListDiv {
+    display: flex; 
+    width: 100%; 
+    margin: 0px;
+    padding: 0px;
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: flex-start;   
+    justify-content: center;   
+}
+
+.lightTheme .settingListDiv { border: 1px solid #EEEEEE; }
+
+.settingListItemDiv, .settingListLastItemDiv {
+    display: flex; 
+    gap: 5px;
+    width: 100%; 
+    margin: 0px; 
+    flex-direction: column; 
+    padding: 10px 0px 10px 0px;  
+}
+ 
+.lightTheme .settingListItemDiv { border-bottom: 1px solid #EEEEEE; }
+
+.settingListItemChildDiv {
+    display: flex;  
+    gap: 20px;
+    width: 100%; 
+    margin: 0px;  
+    padding: 0px; 
+    align-items: center;
+    justify-content: flex-start; 
+}
+
+.settingListItemBtnDiv {
+    display: flex;  
+    flex: 1; 
+    padding: 0px; 
+    align-items: center; 
+    margin: 0px 15px 0px 0px;  
+    justify-content: flex-end;
+}
+
+.settingLabel {  
+    font-size: 15px;  
+    line-height: 15px; 
+}
+
+.settingDescription {  
+    font-size: 14px;  
+    line-height: 14px; 
+}
+
+.settingLabel, .settingDescription { 
+    margin: 0px;
+    padding: 0px;
+    font-style: normal; 
+    white-space: nowrap; 
+    margin: 0px 25px 0px 25px; 
+}
+
+.lightTheme .settingDescription { color: #616161; }
+
+.settingRevokeBtn {
+    display: flex;
+    gap: 5px;
+    outline: 0;  
+    margin: 0px;
+    height: 30px;  
+    cursor: pointer; 
+    font-size: 13px;  
+    transition: .3s; 
+    font-weight: 500; 
+    width: fit-content; 
+    border-radius: 6px;   
+    text-align: center;
+    font-family: 'Poppins';  
+    padding: 4px 12px 4px 12px; 
+}
+
+.lightTheme .settingRevokeBtn {  
+    color: #FFFFFF;
+    background: #D50000; 
+    border: 1px solid #D50000; 
+} 
+
+.settingRevokeBtn:active { transform: scale(0.97); }
+
+.settingItemSlider {
+    position: relative;
+    display: inline-block;
+    width: 42px;
+    height: 24px; 
+    border-radius: 16px;  
+    transition: 0.3s all ease-in-out;
+}
+
+.lightTheme .settingItemSlider { background-color: #E0E0E0; } 
+
+.settingItemSlider::after { 
+    display: inline-block;
+    position: absolute;
+    content: "";
+    top: 3px;
+    width: 18px;
+    height: 18px; 
+    border-radius: 12px; 
+    transform: translateX(3px); 
+    transition: 0.3s all ease-in-out;
+    box-shadow: 10px 0 40px rgba(0, 0, 0, 0.1); 
+}
+
+.lightTheme .settingItemSlider::after { background-color: #FFFFFF; } 
+
+.settingItemSwitch input[type="checkbox"]:checked + .settingItemSlider { background-color: #212121; }
+
+.settingItemSwitch input[type="checkbox"]:checked + .settingItemSlider::after {
+    transform: translateX(21px);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
+}
+
+.settingItemSwitch input[type="checkbox"] { display: none; }
+
+.settingItemSwitch input[type="checkbox"]:active + .settingItemSlider::after { width: 48px; }
+
+.settingItemSwitch input[type="checkbox"]:checked:active + .settingItemSlider::after { transform: translateX(8px); }

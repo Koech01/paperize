@@ -13,8 +13,10 @@ import homeFolderIcon from '../assets/homeFolderIcon.png';
 
 const Home = () => {
 
-    const [theme, setTheme]               = useState('light');
-    const [resourceItem, setResourceItem] = useState<(DocumentProps | FolderProps)[]>([]);
+    const [theme, setTheme]                     = useState('light');
+    const [searchQuery, setSearchQuery]         = useState('');
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
+    const [resourceItem, setResourceItem]       = useState<(DocumentProps | FolderProps)[]>([]);
 
 
     useEffect(() => {
@@ -26,10 +28,10 @@ const Home = () => {
     useEffect(() => {
         (async() => {
             const token    = localStorage.getItem('token');
-            const response = await fetch('', {
+            const response = await fetch(``, {
                 method      : 'GET',
-                headers     : {},
-                credentials : 'include'
+                headers     : { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                credentials : 'include',
             })
 
             if (response.ok) {
@@ -41,6 +43,56 @@ const Home = () => {
            
         })();
     }, [])
+
+
+    useEffect(() => {
+        const fetchSearchResults = async() => {
+            try { 
+                const token = localStorage.getItem('');
+                const response = await fetch(`api/v1/documents/search/?search=${encodeURIComponent(searchQuery)}/`, {
+                    method      : 'GET',
+                    headers     : { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                    credentials : 'include',
+                })
+
+                if (response.ok) {
+                    const searchData = await response.json()
+                    setSearchQuery(searchData);
+                }
+
+                else { console.error('Failed to fetch search results : ', response.status) }
+            } 
+            catch (error) { console.error('Error fetching search results: ', error) }
+        }
+
+        if (searchQuery) { fetchSearchResults() }
+    }, [searchQuery])
+
+
+    const handleDeleteDocument = async(resourceId? : number) => { 
+        let resourceItem: string = '';
+
+        try {
+            const token = localStorage.getItem('token');
+            const response = await fetch(`api/v1/documents/${resourceId}/delete/`, {
+                method      : 'DELETE',
+                headers     : { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                credentials : 'include'
+            })
+
+            if (response.ok) {
+                setDeleteModalOpen(false);
+            }
+
+            else { 
+                const resourceType = await response.json();
+                resourceItem = resourceType
+                console.error(`Failed to delete ${resourceType}: `, response.status); 
+            }
+        }
+
+        catch (error) { console.error(`Error delete ${resourceItem}`, error) }
+    }
 
 
     return(
