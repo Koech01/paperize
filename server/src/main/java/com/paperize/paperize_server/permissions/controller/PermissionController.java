@@ -23,7 +23,7 @@ public class PermissionController {
     /**
      * Grants permission to a user for a specific resource.
      */
-    @PostMapping("/grant")
+    @PostMapping("/grant/")
     public ResponseEntity<PermissionResponse> grantPermission(@RequestBody GrantPermissionRequest request) {
         PermissionsEntity permission = permissionService.grantPermission(
                 request.getResourceId(),
@@ -37,7 +37,7 @@ public class PermissionController {
     /**
      * Revokes permission from a user for a specific resource.
      */
-    @DeleteMapping("/revoke")
+    @DeleteMapping("/revoke/")
     public ResponseEntity<Void> revokePermission(@RequestBody RevokePermissionRequest request) {
         permissionService.revokePermission(
                 request.getResourceId(),
@@ -51,7 +51,7 @@ public class PermissionController {
     /**
      * Gets all permissions for a specific resource.
      */
-    @GetMapping("/resource/{resourceId}")
+    @GetMapping("/resource/{resourceId}/")
     public ResponseEntity<List<PermissionResponse>> getResourcePermissions(
             @PathVariable UUID resourceId,
             @RequestParam PermissionsEntity.ResourceType resourceType) {
@@ -65,7 +65,7 @@ public class PermissionController {
     /**
      * Gets all permissions for a specific user.
      */
-    @GetMapping("/user/{userEmail}")
+    @GetMapping("/user/{userEmail}/")
     public ResponseEntity<List<PermissionResponse>> getUserPermissions(@PathVariable String userEmail) {
         List<PermissionResponse> permissions = permissionService.getUserPermissions(userEmail)
                 .stream()
@@ -77,7 +77,7 @@ public class PermissionController {
     /**
      * Checks if a user has a specific permission on a resource.
      */
-    @GetMapping("/check")
+    @GetMapping("/check/")
     public ResponseEntity<Boolean> hasPermission(
             @RequestParam UUID resourceId,
             @RequestParam PermissionsEntity.ResourceType resourceType,

@@ -5,6 +5,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import java.util.UUID;
 
@@ -20,6 +22,7 @@ public class PermissionsEntity {
     private UUID id;
 
     @Column(name = "resource_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.CASCADE)
     private UUID resourceId;
 
     @Column(name = "user_id", nullable = false)

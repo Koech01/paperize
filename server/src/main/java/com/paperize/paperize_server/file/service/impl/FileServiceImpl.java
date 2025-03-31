@@ -15,6 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import software.amazon.awssdk.services.s3.model.DeleteObjectResponse;
 
 import java.util.List;
 import java.util.Optional;
@@ -100,27 +101,17 @@ public class FileServiceImpl implements FileService {
     @Transactional
     public void deleteFile(UUID fileId) {
         UUID userId = SecurityUtils.getCurrentUserId();
-        String userEmail = SecurityUtils.getCurrentUserEmail();
 
-        FileEntity file = fileRepository.findById(fileId)
-                .orElseThrow(() ->
-                        new IllegalArgumentException("Folder does not exist")
-                );
+        // Single query to check file existence and permissions
+        FileEntity file = fileRepository.findFileWithDeletePermission(fileId, userId)
+            .orElseThrow(() -> new BadCredentialsException("File not found or insufficient permissions"));
 
+        // Delete from S3
+        DeleteObjectResponse response = s3Service.deleteFile(file.getKey());
 
-        if (
-                userId != file.getFolder().getUserId() ||
-                        permissionService.hasPermission(
-                                file.getId(),
-                                PermissionsEntity.ResourceType.FILE,
-                                DELETE,
-                                userEmail
-                        )
-        ) {
-            throw new BadCredentialsException("You don't have access to this file");
-        }
+        // Delete file and its permissions (use cascade)
+        fileRepository.delete(file);
 
-        s3Service.deleteFile(file.getKey());
-
+        log.info("Deleted file {} with key {}", fileId, file.getKey());
     }
 }

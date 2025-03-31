@@ -42,7 +42,7 @@ public class FolderController {
     private final PermissionService permissionService;
 
     // TODO: Get all folders (Testing purposes)
-    @GetMapping("/all")
+    @GetMapping("/all/")
     public ResponseEntity<?> getAllFolders() {
         List<FolderEntity> allFolders = folderService.getAllFolders();
         log.info("All folders - {}", allFolders);
@@ -80,7 +80,7 @@ public class FolderController {
         return new ResponseEntity<>(folderDto, HttpStatus.CREATED);
     }
 
-    @PostMapping("/{folderId}/files")
+    @PostMapping("/{folderId}/files/")
     public ResponseEntity<UUID> uploadFiles(
             @PathVariable String folderId,
             @RequestParam(value = "files", required = false) List<MultipartFile> files
@@ -93,7 +93,7 @@ public class FolderController {
         return new ResponseEntity<>(fileService.saveFiles(fileRequest), HttpStatus.OK);
     }
 
-    @GetMapping("/{folderId}/files")
+    @GetMapping("/{folderId}/files/")
     public ResponseEntity<List<FileDto>> getFolderFiles(
             @PathVariable String folderId,
             @RequestParam(required = false) String type
@@ -116,17 +116,23 @@ public class FolderController {
         return new ResponseEntity<>(fileDtos, HttpStatus.OK);
     }
 
-    @GetMapping("/{folderId}")
+    @GetMapping("/{folderId}/")
     public ResponseEntity<FolderDto> getFolder(@PathVariable String folderId) {
         FolderEntity folderById = folderService.getFolderById(UUID.fromString(folderId));
         FolderDto folderDto = new EntityDtoMapper(s3Service).toFolderDto(folderById);
         return new ResponseEntity<>(folderDto, HttpStatus.OK);
     }
 
+    @DeleteMapping("/{folderId}/")
+    public ResponseEntity<Void> deleteFolder(@PathVariable String folderId) {
+        folderService.deleteFolder(UUID.fromString(folderId));
+        return ResponseEntity.ok().build();
+    }
+
     /**
      * Grants permission to a user for a folder.
      */
-    @PostMapping("/{folderId}/permissions")
+    @PostMapping("/{folderId}/permissions/")
     public ResponseEntity<PermissionResponse> grantFolderPermission(
             @PathVariable UUID folderId,
             @RequestBody GrantPermissionRequest request) {
@@ -146,7 +152,7 @@ public class FolderController {
     /**
      * Revokes permission from a user for a folder.
      */
-    @DeleteMapping("/{folderId}/permissions")
+    @DeleteMapping("/{folderId}/permissions/")
     public ResponseEntity<Void> revokeFolderPermission(
             @PathVariable UUID folderId,
             @RequestBody RevokePermissionRequest request) {
@@ -166,7 +172,7 @@ public class FolderController {
     /**
      * Gets all permissions for a folder.
      */
-    @GetMapping("/{folderId}/permissions")
+    @GetMapping("/{folderId}/permissions/")
     public ResponseEntity<List<PermissionResponse>> getFolderPermissions(@PathVariable UUID folderId) {
         List<PermissionResponse> permissions = permissionService.getResourcePermissions(
                 folderId,

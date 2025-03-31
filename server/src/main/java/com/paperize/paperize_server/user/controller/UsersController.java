@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/users")
 @RequiredArgsConstructor
 public class UsersController {
 
     private final UserService userService;
 
-    @GetMapping("/users")
+    @GetMapping
     public ResponseEntity<List<UserEntity>> getUsers() {
         List<UserEntity> users = userService.getUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
     }
 
-    @PostMapping("/get-user")
+    @PostMapping("/get-user/")
     public ResponseEntity<UserEntity> createUser(@RequestBody String email) {
         UserEntity user = userService.getUserByEmail(email);
         return new ResponseEntity<>(user, HttpStatus.CREATED);

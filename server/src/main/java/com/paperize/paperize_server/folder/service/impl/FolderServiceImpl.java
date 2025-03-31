@@ -131,6 +131,7 @@ public class FolderServiceImpl implements FolderService {
          * - Returns appropriate error if folder doesn't exist or user lacks permission
          */
         @Override
+        @Transactional
         public Optional<List<FileEntity>> getFolderFilesByType(UUID folderId, String type) {
             UUID userId = SecurityUtils.getCurrentUserId();
             return folderRepository.findFolderByIdWithPermission(folderId, userId)
@@ -151,6 +152,7 @@ public class FolderServiceImpl implements FolderService {
          * - Returns appropriate error if folder doesn't exist or user lacks permission
          */
         @Override
+        @Transactional
         public FolderEntity getFolderById(UUID folderId) {
             UUID userId = SecurityUtils.getCurrentUserId();
             return folderRepository.findFolderByIdWithPermission(folderId, userId)
@@ -161,4 +163,17 @@ public class FolderServiceImpl implements FolderService {
                         return new BadCredentialsException("You do not have access to the folder");
                     });
         }
+
+    @Override
+    @Transactional
+    public void deleteFolder(UUID folderId) {
+        // Check if folder exists
+        if (!folderRepository.existsById(folderId)) {
+            throw new IllegalArgumentException("Folder does not exist");
+        }
+
+        // Delete the folder from the repository
+        folderRepository.deleteById(folderId);
+        log.info("Deleted folder with ID: {}", folderId);
     }
+}

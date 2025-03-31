@@ -22,4 +22,6 @@ public interface FolderService {
 
     FolderEntity getFolderById(UUID folderId);
 
+    void deleteFolder(UUID folderId);
+
 }

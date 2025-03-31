@@ -23,7 +23,7 @@ public class AuthController {
     private final AuthService authService;
     private final UserService userService;
 
-    @PostMapping("/sign-in")
+    @PostMapping("/sign-in/")
     public ResponseEntity<?> signIn(
             HttpServletRequest request,
             HttpServletResponse response,
@@ -33,7 +33,7 @@ public class AuthController {
         return ResponseEntity.ok().build();
     }
 
-    @PostMapping("/sign-up")
+    @PostMapping("/sign-up/")
     public ResponseEntity<UserEntity> createUser(
             HttpServletRequest request,
             HttpServletResponse response,
@@ -51,7 +51,7 @@ public class AuthController {
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
-    @PostMapping("/sign-out")
+    @PostMapping("/sign-out/")
     public ResponseEntity<?> signOut(
             HttpServletRequest request,
             HttpServletResponse response
