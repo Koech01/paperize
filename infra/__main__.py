@@ -25,7 +25,8 @@ user_bucket_policy = aws.iam.Policy(
                     "Effect": "Allow",
                     "Action": [
                         "s3:PutObject",
-                        "s3:GetObject"
+                        "s3:GetObject",
+                        "s3:DeleteObject"
                     ],
                     "Resource": f"{arn}/*"
                 }

@@ -3,6 +3,7 @@ package com.paperize.paperize_server.file.repository;
 import com.paperize.paperize_server.file.FileEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -81,4 +82,18 @@ public interface FileRepository extends JpaRepository<FileEntity, UUID> {
         "AND p.permissionType = 'WRITE'))"
     )
     Optional<FileEntity> findFileByIdWithWritePermission(UUID fileId, UUID userId);
+
+    @Query("""
+        SELECT f FROM FileEntity f
+        LEFT JOIN PermissionsEntity p ON p.resourceId = f.id 
+            AND p.resourceType = 'FILE'
+            AND p.permissionType = 'DELETE'
+            AND p.userId = :userId
+        WHERE f.id = :fileId
+        AND (f.folder.userId = :userId OR p.id IS NOT NULL)
+    """)
+    Optional<FileEntity> findFileWithDeletePermission(
+        @Param("fileId") UUID fileId,
+        @Param("userId") UUID userId
+    );
 }
