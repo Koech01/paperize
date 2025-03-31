@@ -4,13 +4,38 @@ import { useEffect, useState } from 'react';
 
 const Setting = () => {
 
-    const [theme, setTheme] = useState('light'); 
+    const [theme, setTheme]                     = useState('light');
+    const [revokeModalOpen, setRevokeModalOpen] = useState(false);
 
 
     useEffect(() => {
         const savedTheme = localStorage.getItem('themePreference');
         if (savedTheme) { setTheme(theme); }
     }, [])
+
+    
+    const handleRevokeAccess = async() => {
+        try {
+            const token = localStorage.getItem('token');
+            const response = await fetch('', {
+                method      : 'POST',
+                headers     : { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                credentials : 'include'
+            })
+
+            if (response.ok) {
+                setRevokeModalOpen(false)
+            }
+
+            else { console.error('Failed to revoke resource access for all other users: ', response.status); }
+        }
+
+        catch (error) { console.error('Error revoking resource access for all other users: ', error); }
+    }
+
+
+    const handleOpenRevokeModal  = () => { if (revokeModalOpen != true) {setRevokeModalOpen(true)} }
+    const handleCloseRevokeModal = () => { setRevokeModalOpen(false) }
 
 
     return(
@@ -32,17 +57,7 @@ const Setting = () => {
                         </div>
                     </div> 
  
-                    <div className={css.settingListItemDiv}> 
-                        <p className={css.settingLabel}>Remove Shared Access</p>
-                        <div className={css.settingListItemChildDiv}>
-                            <p className={css.settingDescription}>Revoke all other users' access to your documents instantly.</p>
-                            <div className={css.settingListItemBtnDiv}>
-                                <button className={css.settingRevokeBtn}>Revoke</button>
-                            </div>
-                        </div>
-                    </div> 
-
-                    <div className={css.settingListLastItemDiv}> 
+                    <div className={css.settingListItemDiv}>  
                         <p className={css.settingLabel}>Receive App Updates</p>
                         <div className={css.settingListItemChildDiv}>
                             <p className={css.settingDescription}>Get the latest features and improvements delivered to your email.
@@ -53,10 +68,36 @@ const Setting = () => {
                                     <span className={css.settingItemSlider}></span>
                                 </label>
                             </div>
-                        </div>
+                        </div> 
+                    </div> 
+
+                    <div className={css.settingListLastItemDiv}>  
+                        <p className={css.settingLabel}>Remove Shared Access</p>
+                        <div className={css.settingListItemChildDiv}>
+                            <p className={css.settingDescription}>Revoke all other users' access to your documents instantly.</p>
+                            <div className={css.settingListItemBtnDiv}>
+                                <button className={css.settingRevokeBtn} onClick={handleOpenRevokeModal}>Revoke</button>
+                            </div>
+                        </div> 
                     </div> 
                 </div>
             </div> 
+
+
+            {revokeModalOpen && (
+                <div className={`${css.settingRevokeModalParentDiv} ${css.fadeIn} ${theme === 'light' ? css.lightTheme : css.darkTheme}`}>
+                    <div className={css.settingRevokeModalDiv}>
+                        <h4 className={css.settingRevokeModalHeader}>⚠️ Revoke All Access ?</h4>
+
+                        <p className={css.settingRevokeModalText}>This action will immediately remove all shared users from your documents. This cannot be undone. Are you sure you want to proceed?</p>
+
+                        <div className={css.settingRevokeModalBtnDiv}>
+                            <button className={css.settingRevokeAcceptBtn} onClick={handleRevokeAccess}>Yes, Revoke Access</button>
+                            <button className={css.settingRevokeCancelBtn} onClick={handleCloseRevokeModal}>Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
