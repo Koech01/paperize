@@ -32,7 +32,7 @@ public class FileController {
     private final S3Service s3Service;
     private final PermissionService permissionService;
 
-    @GetMapping("/{folderId}")
+    @GetMapping("/{folderId}/")
     public ResponseEntity<List<FileDto>> getFolderFiles(@PathVariable String folderId) {
         Optional<List<FileEntity>> folderFiles = fileService.getFolderFiles(UUID.fromString(folderId));
 
@@ -43,7 +43,7 @@ public class FileController {
         return new ResponseEntity<>(fileDtos, HttpStatus.OK);
     }
 
-    @DeleteMapping("/{fileId}")
+    @DeleteMapping("/{fileId}/")
     public ResponseEntity<Void> deleteFile(@PathVariable String fileId) {
         fileService.deleteFile(UUID.fromString(fileId));
         return ResponseEntity.ok().build();
@@ -52,7 +52,7 @@ public class FileController {
     /**
      * Grants permission to a user for a file.
      */
-    @PostMapping("/{fileId}/permissions")
+    @PostMapping("/{fileId}/permissions/")
     public ResponseEntity<PermissionResponse> grantFilePermission(
             @PathVariable UUID fileId,
             @RequestBody GrantPermissionRequest request) {
@@ -72,7 +72,7 @@ public class FileController {
     /**
      * Revokes permission from a user for a file.
      */
-    @DeleteMapping("/{fileId}/permissions")
+    @DeleteMapping("/{fileId}/permissions/")
     public ResponseEntity<Void> revokeFilePermission(
             @PathVariable UUID fileId,
             @RequestBody RevokePermissionRequest request) {
@@ -92,7 +92,7 @@ public class FileController {
     /**
      * Gets all permissions for a file.
      */
-    @GetMapping("/{fileId}/permissions")
+    @GetMapping("/{fileId}/permissions/")
     public ResponseEntity<List<PermissionResponse>> getFilePermissions(@PathVariable UUID fileId) {
         List<PermissionResponse> permissions = permissionService.getResourcePermissions(
                 fileId,
