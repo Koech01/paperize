@@ -123,6 +123,12 @@ public class FolderController {
         return new ResponseEntity<>(folderDto, HttpStatus.OK);
     }
 
+    @DeleteMapping("/{folderId}")
+    public ResponseEntity<Void> deleteFolder(@PathVariable String folderId) {
+        folderService.deleteFolder(UUID.fromString(folderId));
+        return ResponseEntity.ok().build();
+    }
+
     /**
      * Grants permission to a user for a folder.
      */

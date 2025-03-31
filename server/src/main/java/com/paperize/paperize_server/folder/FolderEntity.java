@@ -9,6 +9,7 @@ import java.util.UUID;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.paperize.paperize_server.file.FileEntity;
+import com.paperize.paperize_server.folder.utils.FolderEntityListener;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,6 +23,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 @NoArgsConstructor
 @Builder
 @Entity
+@EntityListeners(FolderEntityListener.class)
 @Table(name = "folder")
 public class FolderEntity {
 
@@ -36,7 +38,7 @@ public class FolderEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     @JsonBackReference
     private FolderEntity parent;
