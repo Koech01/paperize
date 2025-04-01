@@ -93,6 +93,11 @@
     justify-content: flex-end;
 }
 
+.settingListItemThemeBtnDiv {
+    position: relative;
+    height: 30px;  
+}
+
 .settingLabel {  
     font-size: 15px;  
     line-height: 15px; 
@@ -112,6 +117,67 @@
 }
 
 .lightTheme .settingDescription { color: #616161; }
+
+.settingThemeDropdownDiv {
+    position: absolute;
+    display: flex; 
+    gap: 5px;
+    right: 0px;
+    bottom: 0px;
+    margin: 0px;
+    padding: 3px;
+    width: fit-content; 
+    border-radius: 8px;
+    flex-direction: column;   
+}
+
+.lightTheme .settingThemeDropdownDiv { 
+    background-color: #FFFFFF;
+    border: 1px solid #EEEEEE; 
+}
+
+.settingThemeOptionsDiv {
+    display: flex;
+    gap: 5px;
+    margin: 0px;
+    padding: 0px;
+    width: fit-content; 
+    flex-direction: column;
+}
+
+.settingThemeOptionDiv {
+    display: flex;
+    flex: 1; 
+    gap: 8px; 
+    margin: 0px; 
+    border-radius: 4px;
+    height: fit-content;
+    align-items: center;
+    padding: 2px 4px 2px 6px;  
+    justify-content: flex-start; 
+}
+
+.lightTheme .settingThemeOptionDefaultDiv, .lightTheme .settingThemeOptionDiv:hover { background-color: #FAFAFA; }
+
+.settingThemeOption {
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    margin: 0px;  
+    padding: 0px; 
+    cursor: pointer;
+    font-size: 14px;  
+    line-height: 20px;
+    font-style: normal; 
+}
+
+.lightTheme .settingThemeOption { color: #424242; }
+
+.settingThemeOptionsIcon {
+    margin: 0px;
+    padding: 0px;
+    width: 18px;
+}
 
 .settingRevokeBtn {
     display: flex;
@@ -135,8 +201,6 @@
     background: #D50000; 
     border: 1px solid #D50000; 
 } 
-
-.settingRevokeBtn:active { transform: scale(0.97); }
 
 .settingItemSlider {
     position: relative;
@@ -176,3 +240,95 @@
 .settingItemSwitch input[type="checkbox"]:active + .settingItemSlider::after { width: 48px; }
 
 .settingItemSwitch input[type="checkbox"]:checked:active + .settingItemSlider::after { transform: translateX(8px); }
+
+.settingRevokeModalParentDiv { 
+    position: fixed; 
+    display: flex;
+    width: 100%; 
+    padding: 0px;
+    height: 110%;
+    border: none;  
+    transition: .3s; 
+    overflow: hidden;
+    align-items: center; 
+    justify-content: center;
+}
+
+.lightTheme .settingRevokeModalParentDiv { background-color: rgba(0,0,0,0.2); }
+
+.darkTheme .settingRevokeModalParentDiv  { background-color: rgba(0,0,0,0.9); }
+
+.settingRevokeModalDiv {
+    position: absolute;
+    display: flex;  
+    top: 50%;
+    gap: 20px; 
+    left: 50%;
+    width: 35%;
+    margin: 0px;
+    border-radius: 8px;
+    padding: 10px 10px;
+    flex-direction: column;
+    transform: translate(-50%, -50%); 
+}
+
+.lightTheme .settingRevokeModalDiv { 
+    background: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+} 
+
+.settingRevokeModalHeader {
+    margin: 0px;  
+    padding: 0px; 
+    font-style: normal;  
+}
+
+.settingRevokeModalText {
+    margin: 0px;  
+    padding: 0px;
+    font-size: 14px;  
+    line-height: 20px;
+    font-style: normal;  
+}
+
+.settingRevokeModalBtnDiv {
+    display: flex;  
+    gap: 15px; 
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+    justify-content: flex-end; 
+}
+
+.settingRevokeAcceptBtn, .settingRevokeCancelBtn {
+    display: flex;
+    gap: 5px;
+    outline: 0;  
+    margin: 0px;
+    height: 30px;  
+    cursor: pointer; 
+    font-size: 13px;  
+    transition: .3s; 
+    font-weight: 500; 
+    width: fit-content; 
+    border-radius: 6px;   
+    text-align: center;
+    font-family: 'Poppins';  
+    padding: 4px 12px 4px 12px; 
+}
+
+.lightTheme .settingRevokeAcceptBtn {  
+    color: #FFFFFF;
+    background: #D50000; 
+    border: 1px solid #D50000; 
+} 
+
+.lightTheme .settingRevokeCancelBtn {  
+    color: #FAFAFA;
+    background: #212121; 
+    border: 1px solid #212121; 
+} 
+
+.settingRevokeBtn:active,
+.settingRevokeAcceptBtn:active, 
+.settingRevokeCancelBtn:active { transform: scale(0.97); }
