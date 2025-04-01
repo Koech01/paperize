@@ -2,7 +2,9 @@ package com.paperize.paperize_server.folder.service.impl;
 
 import com.paperize.paperize_server.auth.SecurityUtils;
 import com.paperize.paperize_server.file.FileEntity;
+import com.paperize.paperize_server.file.data.CreateFileRequest;
 import com.paperize.paperize_server.file.repository.FileRepository;
+import com.paperize.paperize_server.file.service.FileService;
 import com.paperize.paperize_server.folder.FolderEntity;
 import com.paperize.paperize_server.folder.data.CreateFolderRequest;
 import com.paperize.paperize_server.folder.repository.FolderRepository;
@@ -26,6 +28,7 @@ public class FolderServiceImpl implements FolderService {
         private final FolderRepository folderRepository;
         private final S3Service s3service;
         private final FileRepository fileRepository;
+        private final FileService fileService;
 
         @Override
         public List<FolderEntity> getAllFolders() {
@@ -85,18 +88,11 @@ public class FolderServiceImpl implements FolderService {
     
             // If there are files in the request, upload them to S3 and save their metadata to the repository
             if (folder.getFiles() != null && !folder.getFiles().isEmpty()) {
-                folder.getFiles().forEach(file -> {
-                    String fileKey = s3service.uploadFile(file, savedFolder.getId());
-                    FileEntity fileEntity = FileEntity.builder()
-                            .fileName(file.getName())
-                            .type(file.getContentType())
-                            .key(fileKey)
-                            .size(file.getSize())
-                            .folder(savedFolder)
-                            .build();
-                    FileEntity savedFile = fileRepository.save(fileEntity);
-                    log.info("Saved file - {}", savedFile);
-                });
+                CreateFileRequest fileRequest = CreateFileRequest.builder()
+                        .folderId(savedFolder.getId().toString())
+                        .files(folder.getFiles())
+                        .build();
+                fileService.saveFiles(fileRequest);
             }
 
             return savedFolder;

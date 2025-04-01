@@ -67,7 +67,7 @@ public class FolderController {
     public ResponseEntity<FolderDto> createFolder(
             @RequestPart("name") String name,
             @RequestPart(value = "parent", required = false) String parentId,
-            @RequestParam(value = "files", required = false) List<MultipartFile> files
+            @RequestPart(value = "files", required = false) List<MultipartFile> files
     ) {
         CreateFolderRequest folderRequest = CreateFolderRequest.builder()
                 .files(files)
@@ -83,7 +83,7 @@ public class FolderController {
     @PostMapping("/{folderId}/files/")
     public ResponseEntity<UUID> uploadFiles(
             @PathVariable String folderId,
-            @RequestParam(value = "files", required = false) List<MultipartFile> files
+            @RequestPart(value = "files", required = false) List<MultipartFile> files
     ) {
         CreateFileRequest fileRequest = CreateFileRequest.builder()
                 .folderId(folderId)
