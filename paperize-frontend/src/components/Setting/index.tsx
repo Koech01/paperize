@@ -1,11 +1,15 @@
 import css from './index.module.css'; 
-import { useEffect, useState } from 'react'; 
+import { useEffect, useState } from 'react';  
+import darkLightIcon from '../assets/darkThemeLightIcon.svg';
+import lightLightIcon from '../assets/lightThemeLightIcon.svg';
+import systemLightIcon from '../assets/systemThemeLightIcon.svg';
 
 
 const Setting = () => {
 
-    const [theme, setTheme]                     = useState('light');
+    const [theme, setTheme]                     = useState<string>('light');
     const [revokeModalOpen, setRevokeModalOpen] = useState(false);
+    const [editThemeMenu, setEditThemeMenu]     = useState(false);
 
 
     useEffect(() => {
@@ -46,13 +50,88 @@ const Setting = () => {
                 <div className={css.settingListDiv}> 
                     <div className={css.settingListItemDiv}>
                         <p className={css.settingLabel}>Theme</p>
+                        
                         <div className={css.settingListItemChildDiv}>
                             <p className={css.settingDescription}>Switch between light and dark mode for a comfortable viewing experience.</p>
-                            <div className={css.settingListItemBtnDiv}>
-                                <label className={css.settingItemSwitch}>
-                                    <input type='checkbox'/>
-                                    <span className={css.settingItemSlider}></span>
-                                </label>
+                            
+                            <div className={`${css.settingListItemBtnDiv} ${css.settingListItemThemeBtnDiv}`}> 
+                                <div className={css.settingThemeDropdownDiv}>
+                                    <div className={`${css.settingThemeOptionDefaultDiv} ${css.settingThemeOptionDiv}`}> 
+                                        <img 
+                                            src = {
+                                                theme === 'system' ? systemLightIcon :
+                                                theme === 'light' ? lightLightIcon : 
+                                                theme === 'dark' ? darkLightIcon : 
+                                                systemLightIcon
+                                            }
+                                            alt       ='setting-theme-dropdown-icon'
+                                            className = {css.settingThemeOptionsIcon}  
+                                        />
+                                    
+                                        <option 
+                                            value     = 'system'
+                                            onClick   = {() => {setEditThemeMenu(!editThemeMenu)}}
+                                            className = {css.settingThemeOption}
+                                        >  
+                                            {theme}
+                                        </option>
+                                    </div>
+
+                                    {editThemeMenu && ( 
+                                        <div className={css.settingThemeOptionsDiv}>
+                                            <div className={css.settingThemeOptionDiv}> 
+                                                <img 
+                                                    src       = {systemLightIcon} 
+                                                    alt       ='setting-theme-option-icon'
+                                                    className = {css.settingThemeOptionsIcon}  
+                                                />
+
+                                                <option 
+                                                    value   = 'system'
+                                                    onClick = {() => {
+                                                        if (theme != 'system') { setTheme('system'); }
+                                                        setEditThemeMenu(false);
+                                                    }}
+                                                    className = {css.settingThemeOption}
+                                                >system</option>
+                                            </div>
+
+                                            <div className={css.settingThemeOptionDiv}> 
+                                                <img 
+                                                    src       = {lightLightIcon} 
+                                                    alt       ='setting-theme-option-icon'
+                                                    className = {css.settingThemeOptionsIcon}  
+                                                />
+
+                                                <option 
+                                                    value   = 'light'
+                                                    onClick = {() => {
+                                                        if (theme != 'light') { setTheme('light'); }
+                                                        setEditThemeMenu(false);
+                                                    }}
+                                                    className = {css.settingThemeOption}
+                                                >light</option>
+                                            </div>
+
+                                            <div className={css.settingThemeOptionDiv}>
+                                                <img 
+                                                    src       = {darkLightIcon} 
+                                                    alt       ='setting-theme-option-icon'
+                                                    className = {css.settingThemeOptionsIcon}  
+                                                />
+
+                                                <option  
+                                                    value   = 'dark'
+                                                    onClick = {() => {
+                                                        if (theme != 'dark') { setTheme('dark'); }
+                                                        setEditThemeMenu(false);
+                                                    }}
+                                                    className = {css.settingThemeOption}
+                                                >dark</option> 
+                                            </div>
+                                        </div>
+                                    )}
+                                </div> 
                             </div>
                         </div>
                     </div> 
