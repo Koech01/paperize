@@ -7,7 +7,6 @@ import com.paperize.paperize_server.file.repository.FileRepository;
 import com.paperize.paperize_server.file.service.FileService;
 import com.paperize.paperize_server.folder.FolderEntity;
 import com.paperize.paperize_server.folder.repository.FolderRepository;
-import com.paperize.paperize_server.permissions.PermissionsEntity;
 import com.paperize.paperize_server.permissions.service.PermissionService;
 import com.paperize.paperize_server.utils.S3Service;
 import lombok.RequiredArgsConstructor;
@@ -20,8 +19,6 @@ import software.amazon.awssdk.services.s3.model.DeleteObjectResponse;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
-import static com.paperize.paperize_server.permissions.PermissionsEntity.PermissionType.DELETE;
 
 @Service
 @RequiredArgsConstructor
@@ -79,11 +76,15 @@ public class FileServiceImpl implements FileService {
 
         // Upload files to S3 and save metadata
         body.getFiles().forEach(file -> {
+            if (file.isEmpty() || file.getOriginalFilename() == null) {
+                throw new IllegalArgumentException("Invalid file");
+            }
+
             String fileKey = s3Service.uploadFile(file, folder.getId());
             log.info("Uploaded file to S3 with key: {}", fileKey);
 
             FileEntity fileEntity = FileEntity.builder()
-                    .fileName(file.getOriginalFilename())
+                    .fileName(file.getOriginalFilename().replace(" ", "_"))
                     .size(file.getSize())
                     .folder(folder)
                     .key(fileKey)
