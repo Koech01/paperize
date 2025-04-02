@@ -56,7 +56,10 @@ const Setting = () => {
                             
                             <div className={`${css.settingListItemBtnDiv} ${css.settingListItemThemeBtnDiv}`}> 
                                 <div className={css.settingThemeDropdownDiv}>
-                                    <div className={`${css.settingThemeOptionDefaultDiv} ${css.settingThemeOptionDiv}`}> 
+                                    <div 
+                                        className = {`${css.settingThemeOptionDefaultDiv} ${css.settingThemeOptionDiv}`}
+                                        onClick   = {() => {setEditThemeMenu(!editThemeMenu)}}
+                                    > 
                                         <img 
                                             src = {
                                                 theme === 'system' ? systemLightIcon :

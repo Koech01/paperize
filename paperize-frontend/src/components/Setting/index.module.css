@@ -140,9 +140,14 @@
     display: flex;
     gap: 5px;
     margin: 0px;
-    padding: 0px;
     width: fit-content; 
-    flex-direction: column;
+    flex-direction: column; 
+    padding: 4px 0px 0px 0px; 
+}
+
+.lightTheme .settingThemeOptionsDiv { 
+    background-color: #FFFFFF;
+    border-top: 1px solid #EEEEEE; 
 }
 
 .settingThemeOptionDiv {
