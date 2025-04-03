@@ -196,7 +196,11 @@ const Profile = () => {
 
                                 <div className={css.profileDocumentRow}>
                                     <p className={css.profileDocumentLabel}>Largest File Uploaded</p>
-                                    <p className={css.profileDocumentFigure}>Report.pdf &nbsp;&nbsp;|&nbsp;&nbsp; 50MB</p>
+                                    <p className={css.profileDocumentFigure}>
+                                        Report.pdf  
+                                        <p className={css.profileDocumentFigureSplit}>&nbsp;&nbsp;|&nbsp;&nbsp;</p>
+                                        50MB
+                                    </p>
                                 </div>
 
                                 <div className={css.profileDocumentLastRow}>

@@ -369,7 +369,7 @@
 
 .lightTheme .profileTooltopIndicator { background-color: aqua; } 
 
-.profileDocumentLabel, .profileDocumentFigure, .profileTooltopFileType, .profileTooltopFilePcnt { 
+.profileDocumentLabel, .profileDocumentFigureSplit, .profileDocumentFigure, .profileTooltopFileType, .profileTooltopFilePcnt { 
     padding: 0px;
     font-size: 14px;  
     line-height: 14px;
@@ -379,11 +379,17 @@
 
 .profileDocumentLabel { margin: 0px 0px 0px 15px; }
 
-.profileDocumentFigure { margin: 0px 15px 0px 0px; }
+.profileDocumentFigure { 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 15px 0px 0px; 
+}
 
 .lightTheme .profileDocumentFigure,
 .lightTheme .profileTooltopFileType,
-.lightTheme .profileTooltopFilePcnt { color: #757575; } 
+.lightTheme .profileTooltopFilePcnt { color: #757575; }  
+.lightTheme .profileDocumentFigureSplit { color: #BDBDBD; } 
 
 .profileDocumentStatsDiv {
     display: flex; 
