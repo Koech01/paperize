@@ -26,3 +26,11 @@ export interface DocumentProps {
   fileSize  : string; 
   timestamp : string;
 }
+
+
+export interface ColumnProps {
+  name        : string;
+  size        : number;
+  format      : string;
+  createdFrom : string;
+}

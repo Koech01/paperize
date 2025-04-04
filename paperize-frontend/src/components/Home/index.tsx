@@ -7,8 +7,9 @@ import cssIcon from '../assets/css.png';
 import datIcon from '../assets/dat.png';
 import docxIcon from '../assets/docx.png';
 import { useEffect, useState } from 'react';
-import { DocumentProps, FolderProps } from '../types';
+import { DocumentProps, FolderProps, ColumnProps } from '../types';
 import homeFolderIcon from '../assets/homeFolderIcon.png';
+import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
 
 const Home = () => {
@@ -17,6 +18,33 @@ const Home = () => {
     const [searchQuery, setSearchQuery]         = useState('');
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [resourceItem, setResourceItem]       = useState<(DocumentProps | FolderProps)[]>([]);
+    const columnHelper                          = createColumnHelper<ColumnProps>();
+    const [tableData, setTableData]             = useState([]);
+
+
+    const columns = [ 
+        columnHelper.accessor('name', {
+            header : () => 'File Name',
+            cell   : (info) => info.getValue(),
+        }),
+        columnHelper.accessor('size', {
+            header : () => 'Size',
+            cell   : (info) => info.getValue(),
+        }),
+        columnHelper.accessor('format', {
+            header : () => 'Format',
+            cell   : (info) => info.getValue(),
+        }),
+        columnHelper.accessor('createdFrom', {
+            header : () => 'Date',
+            cell   : (info) => info.getValue(),
+        })
+    ]
+
+
+    const table = useReactTable({
+        data : tableData, columns, debugTable : true, getCoreRowModel : getCoreRowModel(),
+    })
 
 
     useEffect(() => {
@@ -146,7 +174,25 @@ const Home = () => {
                         <p className={css.homeDocumentLabelSize}>Format</p>
                         <p className={css.homeDocumentLabelDate}>Date</p>
                     </div> 
+  
+                        <table> 
+                            {table.getHeaderGroups().map((headerGroup) => (
+                                <tr key={headerGroup.id} className={css.homeDocumentsItemLabel}>
+                                    {headerGroup.headers.map((header) => (
+                                        <th key={header.id} className={css.homeDocumentLabelName}>
+                                            <div>
+                                                {flexRender(
+                                                    header.column.columnDef.header,
+                                                    header.getContext()
+                                                )}
+                                            </div> 
+                                        </th>
+                                    ))}
 
+                                </tr>
+                            ))} 
+                        </table>
+ 
                     <div className={css.homeDocumentsList}> 
                         <div className={css.homeDocumentsItem}> 
                             <img className={css.homeFolderIcon} src={homeFolderIcon} alt='folder-icon'/>
@@ -220,8 +266,10 @@ const Home = () => {
                             <p className={css.homeDocumentCreated}>30 Min Ago</p>
                         </div> 
 
-                    </div> 
+                    </div>  
                 </div>
+
+
 
            </div>
         </div>
