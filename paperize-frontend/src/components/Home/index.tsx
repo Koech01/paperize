@@ -7,8 +7,8 @@ import cssIcon from '../assets/css.png';
 import datIcon from '../assets/dat.png';
 import docxIcon from '../assets/docx.png';
 import { useEffect, useState } from 'react';
-import { DocumentProps, FolderProps, ColumnProps } from '../types';
 import homeFolderIcon from '../assets/homeFolderIcon.png';
+import { DocumentProps, FolderProps, ColumnProps } from '../types'; 
 import { createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 
 
