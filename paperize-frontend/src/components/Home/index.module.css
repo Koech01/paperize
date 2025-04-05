@@ -138,9 +138,7 @@
     border-bottom-right-radius: 15px;
 }
 
-.lightTheme .homeDocumentsTable { 
-    background-color: #FCFCFC; 
-} 
+.lightTheme .homeDocumentsTable { background-color: #FCFCFC; } 
  
 .homeDocumentsUtilityFlexDiv {
     display: flex;
