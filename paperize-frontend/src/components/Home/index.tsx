@@ -19,7 +19,13 @@ const Home = () => {
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [resourceItem, setResourceItem]       = useState<(DocumentProps | FolderProps)[]>([]);
     const columnHelper                          = createColumnHelper<ColumnProps>();
-    const [tableData, setTableData]             = useState([]);
+    const [tableData, setTableData]             = useState([
+        {name : 'Quantum Echo', size : 350, format : 'sevenz', createdFrom : '30 Min Ago'},
+        {name : 'Quantum Echo', size : 350, format : 'sevenz', createdFrom : '30 Min Ago'},
+        {name : 'Quantum Echo', size : 350, format : 'sevenz', createdFrom : '30 Min Ago'},
+        {name : 'Quantum Echo', size : 350, format : 'sevenz', createdFrom : '30 Min Ago'},
+        {name : 'Quantum Echo', size : 350, format : 'sevenz', createdFrom : '30 Min Ago'},
+    ]);
 
 
     const columns = [ 
@@ -168,18 +174,11 @@ const Home = () => {
                         </div>
                     </div> 
 
-                    <div className={css.homeDocumentsItemLabel}>  
-                        <p className={css.homeDocumentLabelName}>File Name</p> 
-                        <p className={css.homeDocumentLabelSize}>Size</p>
-                        <p className={css.homeDocumentLabelSize}>Format</p>
-                        <p className={css.homeDocumentLabelDate}>Date</p>
-                    </div> 
-  
-                        <table> 
+                        <table className={css.homeDocumentsTable}> 
                             {table.getHeaderGroups().map((headerGroup) => (
-                                <tr key={headerGroup.id} className={css.homeDocumentsItemLabel}>
+                                <tr key={headerGroup.id} className={css.homeTableLabelRow}>
                                     {headerGroup.headers.map((header) => (
-                                        <th key={header.id} className={css.homeDocumentLabelName}>
+                                        <th key={header.id} className={css.homeTableLabelRowHeader}>
                                             <div>
                                                 {flexRender(
                                                     header.column.columnDef.header,
@@ -187,91 +186,43 @@ const Home = () => {
                                                 )}
                                             </div> 
                                         </th>
-                                    ))}
-
+                                    ))} 
                                 </tr>
                             ))} 
+
+                            <tbody className={css.homeDocumentsList}>
+                                {table.getRowModel().rows.map((row) => (
+                                    <tr key={row.id} className={css.homeDocumentsItem}>
+                                    {row.getVisibleCells().map((cell) => {
+                                        const columnId = cell.column.id;
+
+                                        let cellClass = '';
+                                        if (columnId === 'name') cellClass = css.homeDocumentName;
+                                        else if (columnId === 'size') cellClass = css.homeDocumentSize;
+                                        else if (columnId === 'format') cellClass = css.homeDocumentFormat;
+                                        else if (columnId === 'createdFrom') cellClass = css.homeDocumentCreated;
+                                        else cellClass = css.defaultCell;
+
+                                        return (
+                                        <td key={cell.id} className={`${cellClass} ${css.homeDocumentItemChild}`}>
+                                            {columnId === 'name' && (
+                                            <img
+                                                className = {css.homeDocumentTypeIcon}
+                                                src       = {sevenzIcon} 
+                                                alt       = "document-icon"
+                                            />
+                                            )}
+                                            {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                        </td>
+                                        );
+                                    })}
+                                    </tr>
+                                ))}
+                            </tbody>
+
                         </table>
- 
-                    <div className={css.homeDocumentsList}> 
-                        <div className={css.homeDocumentsItem}> 
-                            <img className={css.homeFolderIcon} src={homeFolderIcon} alt='folder-icon'/>
-                            <p className={css.homeDocumentName}>Folders</p> 
-                            <p className={css.homeDocumentSize}>350 KB</p>
-                            <p className={css.homeDocumentFormat}>folder</p>
-                            <p className={css.homeDocumentCreated}>30 Min Ago</p>
-                        </div> 
-
-                        <div className={css.homeDocumentsItem}> 
-                            <img className={css.homeDocumentTypeIcon} src={sevenzIcon} alt='document-icon'/>
-                            <p className={css.homeDocumentName}>Quantum Echo</p> 
-                            <p className={css.homeDocumentSize}>350 KB</p>
-                            <p className={css.homeDocumentFormat}>sevenz</p>
-                            <p className={css.homeDocumentCreated}>30 Min Ago</p>
-                        </div> 
-
-                        <div className={css.homeDocumentsItem}> 
-                            <img className={css.homeDocumentTypeIcon} src={aacIcon} alt='document-icon'/>
-                            <p className={css.homeDocumentName}>Synthetic Mind Integration Notes</p> 
-                            <p className={css.homeDocumentSize}>350 KB</p>
-                            <p className={css.homeDocumentFormat}>acc</p>
-                            <p className={css.homeDocumentCreated}>30 Min Ago</p>
-                        </div> 
-
-                        <div className={css.homeDocumentsItem}> 
-                            <img className={css.homeDocumentTypeIcon} src={aviIcon} alt='document-icon'/>
-                            <p className={css.homeDocumentName}>Encrypted Shadows</p> 
-                            <p className={css.homeDocumentSize}>350 KB</p>
-                            <p className={css.homeDocumentFormat}>avi</p>
-                            <p className={css.homeDocumentCreated}>30 Min Ago</p>
-                        </div> 
-
-                        <div className={css.homeDocumentsItem}> 
-                            <img className={css.homeDocumentTypeIcon} src={bmpIcon} alt='document-icon'/>
-                            <p className={css.homeDocumentName}>Silent Signal Transmission</p> 
-                            <p className={css.homeDocumentSize}>350 KB</p>
-                            <p className={css.homeDocumentFormat}>bmp</p>
-                            <p className={css.homeDocumentCreated}>30 Min Ago</p>
-                        </div> 
-
-                        <div className={css.homeDocumentsItem}> 
-                            <img className={css.homeDocumentTypeIcon} src={sevenzIcon} alt='document-icon'/>
-                            <p className={css.homeDocumentName}>Chrono Flux Report</p> 
-                            <p className={css.homeDocumentSize}>350 KB</p>
-                            <p className={css.homeDocumentFormat}>sevenz</p>
-                            <p className={css.homeDocumentCreated}>30 Min Ago</p>
-                        </div> 
-
-                        <div className={css.homeDocumentsItem}> 
-                            <img className={css.homeDocumentTypeIcon} src={cssIcon} alt='document-icon'/>
-                            <p className={css.homeDocumentName}>Nebula Drift Logs</p> 
-                            <p className={css.homeDocumentSize}>350 KB</p>
-                            <p className={css.homeDocumentFormat}>css</p>
-                            <p className={css.homeDocumentCreated}>30 Min Ago</p>
-                        </div> 
-
-                        <div className={css.homeDocumentsItem}> 
-                            <img className={css.homeDocumentTypeIcon} src={datIcon} alt='document-icon'/>
-                            <p className={css.homeDocumentName}>Encrypted Neural Pathway Logs</p> 
-                            <p className={css.homeDocumentSize}>350 KB</p>
-                            <p className={css.homeDocumentFormat}>dat</p>
-                            <p className={css.homeDocumentCreated}>30 Min Ago</p>
-                        </div> 
-
-                        <div className={css.homeDocumentsItem}> 
-                            <img className={css.homeDocumentTypeIcon} src={docxIcon} alt='document-icon'/>
-                            <p className={css.homeDocumentName}>Void Circuit Breakdown</p> 
-                            <p className={css.homeDocumentSize}>350 KB</p>
-                            <p className={css.homeDocumentFormat}>docx</p>
-                            <p className={css.homeDocumentCreated}>30 Min Ago</p>
-                        </div> 
-
-                    </div>  
-                </div>
-
-
-
-           </div>
+                </div> 
+            </div>
         </div>
     );
 }
