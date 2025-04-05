@@ -1,0 +1,55 @@
+spring:
+  application:
+    name: paperize_server
+
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        secure: false
+        same-site: None
+
+  allowed-origins:
+    - "http://localhost:3000"
+
+  sign-in-success-url: "http://localhost:3000/dashboard"
+
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            clientId: ${GOOGLE_CLIENT_ID}
+            clientSecret: ${GOOGLE_CLIENT_SECRET}
+
+          github:
+            client-id: ${GITHUB_CLIENT_ID}
+            client-secret: ${GITHUB_CLIENT_SECRET}
+
+  datasource:
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type: trace
+
+      springframework:
+        web: DEBUG
+        security: DEBUG
+
+
+aws:
+  region: ${AWS_BUCKET_REGION}
+  client-id: ${AWS_S3_CLIENT_ID}
+  secret-key: ${AWS_S3_SECRET_KEY}
+  bucket-name: ${BUCKET_NAME}
