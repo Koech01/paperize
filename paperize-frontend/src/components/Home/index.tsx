@@ -265,7 +265,7 @@ const Home = () => {
                             <p className={css.homeDocumentFormat}>docx</p>
                             <p className={css.homeDocumentCreated}>30 Min Ago</p>
                         </div> 
-
+                    </div>
 
                 </div> 
            </div>
