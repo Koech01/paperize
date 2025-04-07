@@ -1,5 +1,6 @@
 package com.paperize.paperize_server.user;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.paperize.paperize_server.user.data.CreateUserRequest;
 import com.paperize.paperize_server.utils.ApplicationContextProvider;
 import jakarta.persistence.*;
@@ -21,6 +22,7 @@ import java.util.UUID;
 @Entity
 @Data
 @NoArgsConstructor
+@JsonIgnoreProperties({"verificationCode"})
 public class UserEntity implements UserDetails {
 
     @Id
@@ -35,6 +37,10 @@ public class UserEntity implements UserDetails {
 
     @Column(name = "email", nullable = false, unique = true)
     private String email;
+
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER) // Add fetch type
+    @JoinColumn(name = "verification_code_id") // Add explicit join column
+    private VerificationCodeEntity verificationCode;
 
     @Column(name = "password")
     private String password;
