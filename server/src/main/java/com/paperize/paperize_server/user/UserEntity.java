@@ -1,11 +1,8 @@
 package com.paperize.paperize_server.user;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.paperize.paperize_server.user.data.CreateUserRequest;
 import com.paperize.paperize_server.utils.ApplicationContextProvider;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -49,16 +46,16 @@ public class UserEntity implements UserDetails {
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
-    public UserEntity(CreateUserRequest request) {
-        if (request.getPassword() != null) {
+    public UserEntity(String firstName, String lastName, String email, String password) {
+        if (password != null) {
             PasswordEncoder passwordEncoder = ApplicationContextProvider.bean(PasswordEncoder.class);
-            this.password = passwordEncoder.encode(request.getPassword());
+            this.password = passwordEncoder.encode(password);
         } else {
             this.password = null;
         }
-        this.firstName = request.getFirstName();
-        this.lastName = request.getLastName();
-        this.email = request.getEmail();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
     }
 
     @Override
