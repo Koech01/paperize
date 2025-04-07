@@ -90,6 +90,7 @@
 .lightTheme .homeDocumentsComponentDiv { border: 1px solid #EEEEEE; } 
  
 .homeDocumentsList {
+    all: unset;
     display: flex; 
     gap: 8px;
     width: 100%; 
@@ -100,7 +101,11 @@
     margin: 0px 0px 3px 0px;
     padding: 0px 0px 5px 0px;
     justify-content: flex-start;   
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
+
+.lightTheme .homeDocumentsList { background-color: #FFFFFF; } 
 
 .homeDocumentsList::-webkit-scrollbar { display: none; }
 
@@ -120,7 +125,23 @@
     background-color: #FCFCFC;
     border-bottom: 1px solid #EEEEEE; 
 } 
+ 
+.homeDocumentsTable {
+    display: flex;  
+    width: 100%;  
+    margin: 0px;
+    padding: 0px;  
+    align-items: center;  
+    flex-direction: column;  
+    justify-content: flex-start;   
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
 
+.lightTheme .homeDocumentsTable { 
+    background-color: #FCFCFC; 
+} 
+ 
 .homeDocumentsUtilityFlexDiv {
     display: flex;
     flex: 1;
@@ -179,7 +200,7 @@ ul.homeDocumentBreadcrumbs li a:hover {  text-decoration: underline; }
  
 .lightTheme .homeDocumentSearchInput:hover { outline: 1px solid #E0E0E0; }
  
-.homeDocumentsItemLabel {
+.homeTableLabelRow {
     display: flex; 
     width: 100%;  
     margin: 0px;
@@ -188,7 +209,7 @@ ul.homeDocumentBreadcrumbs li a:hover {  text-decoration: underline; }
     justify-content: flex-start;   
 }
   
-.lightTheme .homeDocumentsItemLabel { 
+.lightTheme .homeTableLabelRow { 
     background-color: #FCFCFC;
     border-bottom: 1px solid #EEEEEE; 
 } 
@@ -201,6 +222,16 @@ ul.homeDocumentBreadcrumbs li a:hover {  text-decoration: underline; }
     margin: 0px 0px 0px 15px;
     padding: 4px 7px 4px 7px; 
     justify-content: flex-start;   
+}
+
+.homeDocumentItemChild {
+    display: flex;
+    gap: 5%; 
+    width: 100%;  
+    margin: 0px;
+    padding: 0px; 
+    align-items: center; 
+    justify-content: flex-start;  
 }
 
 .homeFolderIcon {
@@ -217,22 +248,23 @@ ul.homeDocumentBreadcrumbs li a:hover {  text-decoration: underline; }
     height: 35px;
 }
 
+.homeTableLabelRowHeader { all: unset; }
+ 
 .homeRecentDocumentSize, 
 .homeRecentDocumentDash, 
-.homeDocumentLabelName, 
-.homeDocumentLabelFormat, 
-.homeDocumentLabelSize, 
-.homeDocumentLabelDate,  
+.homeTableLabelRowHeader, 
 .homeDocumentName, 
 .homeDocumentCreated, 
 .homeDocumentFormat,
-.homeDocumentSize { 
+.homeDocumentSize {  
     margin: 0px; 
     padding: 0px; 
     font-size: 14px;  
     line-height: 14px;    
     white-space: nowrap;
 }
+
+.homeTableLabelRowHeader{ margin: 0px 0px 0px 15px; } 
 
 .lightTheme .homeDocumentName { color: #212121; } 
  
@@ -246,29 +278,14 @@ ul.homeDocumentBreadcrumbs li a:hover {  text-decoration: underline; }
 
 .lightTheme .homeRecentDocumentDash { color: #E0E0E0; } 
 
-.lightTheme .homeDocumentLabelName,
-.lightTheme .homeDocumentLabelFormat,
-.lightTheme .homeDocumentLabelSize,
-.lightTheme .homeDocumentLabelDate {  
-    color: #757575; 
-} 
+.lightTheme .homeTableLabelRowHeader { color: #757575; } 
  
-.homeDocumentLabelName {  
-    width: 32%; 
-    margin: 0px 0px 0px 15px; 
-}
-
-.homeDocumentLabelSize, .homeDocumentLabelFormat { width: 15%; }
-
-.homeDocumentLabelDate { 
-    width: 30%;
-    margin: 0px 15px 0px 0px; 
-}
+.homeTableLabelRowHeader { width: 25%; }
 
 .homeDocumentName { width: 20%; }
 
+.homeDocumentSize { width: 20%; }
+
+.homeDocumentFormat { width: 20%; }
+
 .homeDocumentCreated { width: 20%; }
-
-.homeDocumentFormat { width: 10%; }
-
-.homeDocumentSize { width: 10%; }
