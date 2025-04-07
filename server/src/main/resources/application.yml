@@ -1,6 +1,21 @@
 spring:
-  application:
-    name: paperize_server
+  application-name: paperize
+  base-url: ${BASE_URL}
+
+  # SMPT host, this is localhost for development, it should work with your mailpit docker container.
+  # You can open mailpit ui on http://localhost:8025 to see all emails sent from your application in development
+  # You will use the host from the provider of your choice in production
+  mail:
+    host: ${MAIL_HOST}
+    port: ${MAIL_PORT}
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
 
   servlet:
     session:
@@ -33,7 +48,7 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: true
 
 logging:
@@ -47,6 +62,12 @@ logging:
         web: DEBUG
         security: DEBUG
 
+org:
+  jobrunr:
+    background-job-server:
+      enabled: true
+    dashboard:
+      enabled: true
 
 aws:
   region: ${AWS_BUCKET_REGION}

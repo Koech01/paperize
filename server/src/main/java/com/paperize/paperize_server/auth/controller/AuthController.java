@@ -1,9 +1,9 @@
 package com.paperize.paperize_server.auth.controller;
 
 import com.paperize.paperize_server.auth.data.SignInRequest;
+import com.paperize.paperize_server.auth.data.SignUpRequest;
+import com.paperize.paperize_server.auth.data.UserResponse;
 import com.paperize.paperize_server.auth.service.AuthService;
-import com.paperize.paperize_server.user.UserEntity;
-import com.paperize.paperize_server.user.data.CreateUserRequest;
 import com.paperize.paperize_server.user.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -19,36 +19,26 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final ServerProperties serverProperties;
     private final AuthService authService;
-    private final UserService userService;
 
     @PostMapping("/sign-in/")
-    public ResponseEntity<?> signIn(
+    public ResponseEntity<UserResponse> signIn(
             HttpServletRequest request,
             HttpServletResponse response,
             @Valid @RequestBody SignInRequest body
     ) {
-        authService.signIn(request, response, body);
-        return ResponseEntity.ok().build();
+        UserResponse userResponse = authService.signIn(request, response, body);
+        return new ResponseEntity(userResponse, HttpStatus.OK);
     }
 
     @PostMapping("/sign-up/")
-    public ResponseEntity<UserEntity> createUser(
+    public ResponseEntity<UserResponse> createUser(
             HttpServletRequest request,
             HttpServletResponse response,
-            @Valid @RequestBody CreateUserRequest user
+            @Valid @RequestBody SignUpRequest user
     ) {
-        UserEntity newUser = userService.createUser(user);
-        authService.signIn(
-                request,
-                response,
-                SignInRequest.builder()
-                        .email(user.getEmail())
-                        .password(user.getPassword())
-                        .build()
-        );
-        return new ResponseEntity<>(newUser, HttpStatus.CREATED);
+        UserResponse userResponse = authService.signUp(request, response, user);
+        return new ResponseEntity<>(userResponse, HttpStatus.CREATED);
     }
 
     @PostMapping("/sign-out/")
@@ -58,6 +48,14 @@ public class AuthController {
     ) {
         authService.signOut(request, response);
         return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/me/")
+    public ResponseEntity<UserResponse> getMe(
+            HttpServletRequest request
+    ) {
+        UserResponse user = authService.getCurrentUser(request);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
 }
