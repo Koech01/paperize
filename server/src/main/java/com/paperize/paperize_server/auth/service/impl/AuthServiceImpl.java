@@ -1,5 +1,6 @@
 package com.paperize.paperize_server.auth.service.impl;
 
+import com.paperize.paperize_server.auth.SecurityUtils;
 import com.paperize.paperize_server.auth.data.SignInRequest;
 import com.paperize.paperize_server.auth.data.UserResponse;
 import com.paperize.paperize_server.auth.data.SignUpRequest;
@@ -94,11 +95,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public UserResponse getCurrentUser(HttpServletRequest request) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || !authentication.isAuthenticated()) {
-            throw new BadCredentialsException("User is not authenticated");
-        }
-        UserEntity user = (UserEntity) authentication.getPrincipal();
+        UserEntity user = (UserEntity) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return UserResponse.builder()
                 .userId(user.getId())
                 .firstName(user.getFirstName())
