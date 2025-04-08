@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 import { DocumentProps, FolderProps } from '../types';
 import homeFolderIcon from '../assets/homeFolderIcon.png';
 
-
+  
 const Home = () => {
 
     const [theme, setTheme]                     = useState('light');

@@ -14,4 +14,6 @@ import java.util.List;
 public class ApplicationProperties {
     private List<String> allowedOrigins;
     private String signInSuccessUrl;
+    private String applicationName;
+    private String baseUrl;
 }

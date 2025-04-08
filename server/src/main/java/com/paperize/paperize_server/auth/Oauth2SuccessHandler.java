@@ -1,10 +1,9 @@
 package com.paperize.paperize_server.auth;
 
+import com.paperize.paperize_server.auth.data.SignUpRequest;
 import com.paperize.paperize_server.config.ApplicationProperties;
 import com.paperize.paperize_server.user.UserEntity;
-import com.paperize.paperize_server.user.data.CreateUserRequest;
 import com.paperize.paperize_server.user.repository.UserRepository;
-import com.paperize.paperize_server.utils.ApplicationContextProvider;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -40,12 +39,17 @@ public class Oauth2SuccessHandler implements AuthenticationSuccessHandler {
 
         UserEntity user = userRepository.findByEmail(email).orElseGet(() -> {
             String name = authenticationToken.getPrincipal().getAttribute("name");
-            CreateUserRequest userRequest = CreateUserRequest.builder()
+            SignUpRequest userRequest = SignUpRequest.builder()
                     .firstName(name.substring(0, name.indexOf(' ')))
                     .lastName(name.substring(name.indexOf(' ') + 1))
                     .email(email)
                     .build();
-            return userRepository.save(new UserEntity(userRequest));
+            return userRepository.save(new UserEntity(
+                    userRequest.getFirstName(),
+                    userRequest.getLastName(),
+                    userRequest.getEmail(),
+                    userRequest.getPassword()
+            ));
         });
 
         log.info("User: {}", user);
