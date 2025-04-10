@@ -7,8 +7,33 @@ import datIcon from '../assets/dat.png';
 import sevenzIcon from '../assets/7z.png'; 
 import docxIcon from '../assets/docx.png';
 import { useEffect, useState } from 'react';
-import { DocumentProps, FolderProps } from '../types';
 import homeFolderIcon from '../assets/homeFolderIcon.png';
+import { DocumentProps, FolderProps, ColumnProps } from '../types'; 
+import { buildHeaderGroups, createColumnHelper, flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+
+
+const columnHelper = createColumnHelper<ColumnProps>();
+const columns = [
+    columnHelper.accessor('name', {
+        header : () => 'name',
+        cell   : (info) => info.getValue()
+    }),
+
+    columnHelper.accessor('size', {
+        header : () => 'size',
+        cell   : (info) => info.getValue()
+    }),
+
+    columnHelper.accessor('format', {
+        header : () => 'format',
+        cell   : (info) => info.getValue()
+    }),
+
+    columnHelper.accessor('createdFrom', {
+        header : () => 'createdFrom',
+        cell   : (info) => info.getValue()
+    })
+]
 
   
 const Home = () => {
@@ -17,6 +42,11 @@ const Home = () => {
     const [searchQuery, setSearchQuery]         = useState('');
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [resourceItem, setResourceItem]       = useState<(DocumentProps | FolderProps)[]>([]);
+    const [documents, setDocuments]             = useState([
+        {name: 'btc-report', size:3001, format : 'pdf', createdFrom : '2025-04-10 14:30:00.123456'}
+    ]);
+
+    const table = useReactTable({ data : documents, columns, debugTable:true, getCoreRowModel: getCoreRowModel() })
 
 
     useEffect(() => {
@@ -120,6 +150,39 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
+
+
+                <table>
+                    <thead>
+                        {table.getHeaderGroups().map((headerGroup) => (
+                            <tr key={headerGroup.id} className={css.tableHeaderRow}>
+                                {headerGroup.headers.map((header) => (
+                                    <th key={header.id} className={css.tableHeader}>
+                                        <div>
+                                            {flexRender(
+                                                header.column.columnDef.header,
+                                                header.getContext()
+                                            )}
+                                        </div>
+                                    </th>
+                                ))}
+                            </tr>
+                        )) } 
+                    </thead>
+
+                    <tbody>
+                        {table.getRowModel().rows.map((row) => (
+                            <tr key={row.id}>
+                                {row.getVisibleCells().map((cell) => (
+                                    <td key={cell.id} className={css.tableCell}>
+                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                    </td>
+                                ))}
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+
 
                 <div className={css.homeDocumentsComponentDiv}>
                     <div className={css.homeDocumentsUtilityBar}>
