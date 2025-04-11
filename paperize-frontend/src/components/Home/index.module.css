@@ -44,7 +44,7 @@ src:url('../fonts/Poppins-Regular.woff2') format('woff');
     justify-content: center;
 }
 
-.homeDocumentsRecentDiv {
+/* .homeDocumentsRecentDiv {
     display: flex;
     gap: 3%;
     width: 90%;
@@ -52,9 +52,9 @@ src:url('../fonts/Poppins-Regular.woff2') format('woff');
     padding: 0px;
     align-items: center;
     justify-content: flex-start;
-}
+} */
 
-.homeDocumentsRecentItem {
+/* .homeDocumentsRecentItem {
     display: flex;
     gap: 15px;
     margin: 0px;
@@ -65,16 +65,16 @@ src:url('../fonts/Poppins-Regular.woff2') format('woff');
     justify-content: flex-start;
 }
 
-.lightTheme .homeDocumentsRecentItem { border: 1px solid #F5F5F5; }
+.lightTheme .homeDocumentsRecentItem { border: 1px solid #F5F5F5; } */
 
-.homeDocumentsRecentTextDiv {
+/* .homeDocumentsRecentTextDiv {
     display: flex;
     flex: 1;
     gap: 5px;
     margin: 0px;
     padding: 0px;
     flex-direction: column;
-}
+} */
 
 .homeDocumentsComponentDiv {
     display: flex;
@@ -89,7 +89,7 @@ src:url('../fonts/Poppins-Regular.woff2') format('woff');
 
 .lightTheme .homeDocumentsComponentDiv { border: 1px solid #EEEEEE; }
 
-.homeDocumentsList {
+/* .homeDocumentsList {
     display: flex;
     gap: 8px;
     width: 100%;
@@ -102,7 +102,7 @@ src:url('../fonts/Poppins-Regular.woff2') format('woff');
     justify-content: flex-start;
 }
 
-.homeDocumentsList::-webkit-scrollbar { display: none; }
+.homeDocumentsList::-webkit-scrollbar { display: none; } */
 
 .homeDocumentsUtilityBar {
     display: flex;
@@ -179,96 +179,69 @@ ul.homeDocumentBreadcrumbs li a:hover { text-decoration: underline; }
 
 .lightTheme .homeDocumentSearchInput:hover { outline: 1px solid #E0E0E0; }
 
-.homeDocumentsItemLabel {
-    display: flex;
+/* Table */
+.homeDocumentTable {
+    display: flex; 
     width: 100%;
     margin: 0px;
-    align-items: center;
-    padding: 10px 0px 10px 0px;
-    justify-content: flex-start;
+    padding: 0px; 
+    flex-direction: column; 
+    border-collapse: collapse; 
 }
 
-.lightTheme .homeDocumentsItemLabel {
-    background-color: #FCFCFC;
-    border-bottom: 1px solid #EEEEEE;
-}
-
-.homeDocumentsItem {
+.homeDocumentTableHeadRow, .homeDocumentTableRow { 
     display: flex;
-    gap: 5%;
-    width: 100%;
-    align-items: center;
-    margin: 0px 0px 0px 15px;
-    padding: 4px 7px 4px 7px;
-    justify-content: flex-start;
-}
-
-.homeFolderIcon {
-    margin: 0px;
-    width: auto;
-    padding: 0px;
-    height: 30px;
-}
-
-.homeDocumentTypeIcon {
-    margin: 0px;
-    width: 30px;
-    padding: 0px;
-    height: 35px;
-}
-
-.homeRecentDocumentSize,
-.homeRecentDocumentDash,
-.homeDocumentLabelName,
-.homeDocumentLabelFormat,
-.homeDocumentLabelSize,
-.homeDocumentLabelDate,
-.homeDocumentName,
-.homeDocumentCreated,
-.homeDocumentFormat,
-.homeDocumentSize {
-    margin: 0px;
-    padding: 0px;
-    font-size: 14px;
+    flex: 1; 
+    gap: 10px;
+    margin: 0px; 
+    font-size: 14px; 
+    text-align: left;
     line-height: 14px;
     white-space: nowrap;
+    padding: 0px 15px 0px 15px;  
 }
 
-.lightTheme .homeDocumentName { color: #212121; }
-
-.lightTheme .homeDocumentCreated,
-.lightTheme .homeDocumentFormat,
-.lightTheme .homeDocumentSize {
-    color: #616161;
-}
-
-.lightTheme .homeRecentDocumentSize { color: #9E9E9E; }
-
-.lightTheme .homeRecentDocumentDash { color: #E0E0E0; }
-
-.lightTheme .homeDocumentLabelName,
-.lightTheme .homeDocumentLabelFormat,
-.lightTheme .homeDocumentLabelSize,
-.lightTheme .homeDocumentLabelDate {
+.lightTheme .homeDocumentTableHeadRow {
+    height: fit-content;
     color: #757575;
+    border-top: transparent;
+    background-color: #FCFCFC;  
+    border-bottom: 1px solid #EEEEEE;   
 }
 
-.homeDocumentLabelName {
-    width: 32%;
-    margin: 0px 0px 0px 15px;
+.lightTheme .homeDocumentTableRow { color: #212121; }
+ 
+.lightTheme .homeDocumentTableRow { 
+    border: none;
+    background-color: #FFFFFF; 
 }
 
-.homeDocumentLabelSize, .homeDocumentLabelFormat { width: 15%; }
-
-.homeDocumentLabelDate {
-    width: 30%;
-    margin: 0px 15px 0px 0px;
+.homeDocumentTableHead, .homeDocumentTableBody { 
+    display: flex;
+    flex: 1; 
+    margin: 0px;  
+    padding: 0px;  
 }
 
-.homeDocumentName { width: 20%; }
+.homeDocumentTableList { 
+    display: flex;
+    gap: 15px; 
+    width: 100%;
+    margin: 0px; 
+    overflow-y: auto;
+    max-height: 50vh;
+    flex-direction: column; 
+    padding: 10px 0px 10px 0px;
+}
 
-.homeDocumentCreated { width: 20%; }
+.homeDocumentTableHeadCell, .homeDocumentTableCell {
+    all: unset; 
+    display: flex;
+    flex: 1; 
+    margin: 0px; 
+    text-align: left; 
+}
 
-.homeDocumentFormat { width: 10%; }
+.homeDocumentTableHeadCell { padding: 8px 0px 8px 0px; }
 
-.homeDocumentSize { width: 10%; }
+.homeDocumentTableCell { padding: 0px; }
