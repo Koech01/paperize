@@ -99,7 +99,7 @@ const Login = () => {
                         <strong className={css.authFooterGitUsername}>Koech</strong>
                         </a>  
                         &nbsp;&&nbsp; 
-                        <a className={css.authFooterLink} href='https://github.com/whoisrobb' target="_blank" rel="noopener noreferrer">
+                        <a className={css.authFooterLink} href='https://github.com/muchirisworld' target="_blank" rel="noopener noreferrer">
                             <strong className={css.authFooterGitUsername}>Robbie</strong>
                         </a>
                         .  

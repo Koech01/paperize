@@ -386,6 +386,8 @@
     margin: 0px 15px 0px 0px; 
 }
 
+.profileDocumentFigure { height: 20px; }
+
 .lightTheme .profileDocumentFigure,
 .lightTheme .profileTooltopFileType,
 .lightTheme .profileTooltopFilePcnt { color: #757575; }  
@@ -422,7 +424,7 @@
     padding: 10px 0px 10px 0px; 
     justify-content: space-between;   
 }
-  
+
 .lightTheme .profileDocumentRow, .lightTheme .profileDocumentFirstRow { border-bottom: 1px solid #EEEEEE; } 
 
 .profileDocumentFirstRow { border-radius: 15px 15px 0px 0px; }

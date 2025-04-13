@@ -44,38 +44,6 @@ src:url('../fonts/Poppins-Regular.woff2') format('woff');
     justify-content: center;
 }
 
-/* .homeDocumentsRecentDiv {
-    display: flex;
-    gap: 3%;
-    width: 90%;
-    margin: 0px;
-    padding: 0px;
-    align-items: center;
-    justify-content: flex-start;
-} */
-
-/* .homeDocumentsRecentItem {
-    display: flex;
-    gap: 15px;
-    margin: 0px;
-    padding: 10px 15px;
-    border-radius: 8px;
-    width: fit-content;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.lightTheme .homeDocumentsRecentItem { border: 1px solid #F5F5F5; } */
-
-/* .homeDocumentsRecentTextDiv {
-    display: flex;
-    flex: 1;
-    gap: 5px;
-    margin: 0px;
-    padding: 0px;
-    flex-direction: column;
-} */
-
 .homeDocumentsComponentDiv {
     display: flex;
     width: 90%;
@@ -88,21 +56,6 @@ src:url('../fonts/Poppins-Regular.woff2') format('woff');
 }
 
 .lightTheme .homeDocumentsComponentDiv { border: 1px solid #EEEEEE; }
-
-/* .homeDocumentsList {
-    display: flex;
-    gap: 8px;
-    width: 100%;
-    height: 45vh;
-    overflow-y: auto;
-    align-items: center;
-    flex-direction: column;
-    margin: 0px 0px 3px 0px;
-    padding: 0px 0px 5px 0px;
-    justify-content: flex-start;
-}
-
-.homeDocumentsList::-webkit-scrollbar { display: none; } */
 
 .homeDocumentsUtilityBar {
     display: flex;
@@ -235,13 +188,29 @@ ul.homeDocumentBreadcrumbs li a:hover { text-decoration: underline; }
 }
 
 .homeDocumentTableHeadCell, .homeDocumentTableCell {
-    all: unset; 
-    display: flex;
+    all: unset;  
     flex: 1; 
     margin: 0px; 
-    text-align: left; 
+    display: flex;
+    text-align: left;  
 }
 
-.homeDocumentTableHeadCell { padding: 8px 0px 8px 0px; }
-
+.homeDocumentTableHeadCell { padding: 10px 0px 10px 0px; }
 .homeDocumentTableCell { padding: 0px; }
+
+.homeDocumentTableCellName, .homeDocumentTableCellSize, .homeDocumentTableCellFormat, .homeDocumentTableCellCreated {  
+    width: 100%;
+    margin: 0px;  
+    font-size: 14px; 
+    text-align: left;
+    line-height: 14px;
+    white-space: nowrap; 
+}
+
+.lightTheme .homeDocumentTableCellName { 
+    color: #212121; 
+}
+
+.lightTheme .homeDocumentTableCellSize, .lightTheme .homeDocumentTableCellFormat, .lightTheme .homeDocumentTableCellCreated { 
+    color: #757575;  
+}

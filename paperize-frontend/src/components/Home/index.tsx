@@ -8,22 +8,30 @@ const columnHelper = createColumnHelper<ColumnProps>();
 const columns = [
     columnHelper.accessor('name', {
         header : () => 'Name',
-        cell   : (info) => info.getValue()
+        cell   : (info) => (
+            <span className={css.homeDocumentTableCellName}>{info.getValue()}</span>
+        )
     }),
 
     columnHelper.accessor('size', {
         header : () => 'Size',
-        cell   : (info) => info.getValue()
+        cell   : (info) => (
+            <span className={css.homeDocumentTableCellSize}>{info.getValue()} MB</span>
+        )
     }),
 
     columnHelper.accessor('format', {
         header : () => 'Format',
-        cell   : (info) => info.getValue()
+        cell   : (info) => (
+            <span className={css.homeDocumentTableCellFormat}>{info.getValue()}</span>
+        )
     }),
 
     columnHelper.accessor('createdFrom', {
         header : () => 'Created',
-        cell   : (info) => info.getValue()
+        cell   : (info) => (
+            <span className={css.homeDocumentTableCellCreated}>{info.getValue()}</span>
+        )
     })
 ]
 
