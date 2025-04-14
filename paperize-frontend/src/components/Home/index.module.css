@@ -198,6 +198,22 @@ ul.homeDocumentBreadcrumbs li a:hover { text-decoration: underline; }
 .homeDocumentTableHeadCell { padding: 10px 0px 10px 0px; }
 .homeDocumentTableCell { padding: 0px; }
 
+.homeDocumentIconDiv { 
+    display: flex;
+    gap: 15px;
+    margin: 0px;  
+    padding: 0px;
+    align-items: center;
+    justify-content: flex-start; 
+}
+
+.homeDocumentTypeIcon { 
+    width: 35px;
+    margin: 0px; 
+    height: auto; 
+    padding: 0px;
+}
+
 .homeDocumentTableCellName, .homeDocumentTableCellSize, .homeDocumentTableCellFormat, .homeDocumentTableCellCreated {  
     width: 100%;
     margin: 0px;  

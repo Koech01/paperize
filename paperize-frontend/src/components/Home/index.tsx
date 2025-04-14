@@ -1,5 +1,6 @@
 import css from './index.module.css';
 import { useEffect, useState } from 'react';
+import { FileIcon, defaultStyles } from 'react-file-icon';
 import { DocumentProps, FolderProps, ColumnProps } from '../types'; 
 import { createColumnHelper, flexRender, getCoreRowModel, SortingState, useReactTable } from '@tanstack/react-table';
 
@@ -8,9 +9,19 @@ const columnHelper = createColumnHelper<ColumnProps>();
 const columns = [
     columnHelper.accessor('name', {
         header : () => 'Name',
-        cell   : (info) => (
-            <span className={css.homeDocumentTableCellName}>{info.getValue()}</span>
-        )
+        cell : (info) => {
+            const row = info.row.original;
+            const extension = row.format.toLowerCase()
+
+            return(
+                <div className={css.homeDocumentIconDiv}>
+                    <div className={css.homeDocumentTypeIcon}>
+                        <FileIcon extension={extension} {...(defaultStyles[extension] || {})}/> 
+                    </div> 
+                    <span className={css.homeDocumentTableCellName}>{info.getValue()}</span>
+                </div>
+            )
+        } 
     }),
 
     columnHelper.accessor('size', {
