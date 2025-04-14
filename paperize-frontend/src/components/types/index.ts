@@ -31,6 +31,6 @@ export interface DocumentProps {
 export interface ColumnProps {
   name        : string;
   size        : number;
-  format      : string;
+  format      : string; 
   createdFrom : string;
 }
