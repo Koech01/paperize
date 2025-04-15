@@ -54,22 +54,22 @@ const Home = () => {
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [resourceItem, setResourceItem]       = useState<(DocumentProps | FolderProps)[]>([]);
     const [documents, setDocuments]             = useState([
-        {name: 'BTC Report', size:87619, format : 'dat', createdFrom : '2025-04-10 14:30:00.123456'},
-        {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '2025-04-10 14:30:00.123456'},
-        {name: 'Silent Signal Transmission', size:4768, format : 'acc', createdFrom : '2025-04-10 14:30:00.123456'},
-        {name: 'Chrono Flux Report', size:57685, format : 'docx', createdFrom : '2025-04-10 14:30:00.123456'},
-        {name: 'BTC Report', size:87619, format : 'dat', createdFrom : '2025-04-10 14:30:00.123456'},
-        {name: 'Synthetic Mind Integration Notes', size:346281, format : 'pdf', createdFrom : '2025-04-10 14:30:00.123456'},
-        {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '2025-04-10 14:30:00.123456'},
-        {name: 'Synthetic Mind Integration Notes', size:346281, format : 'pdf', createdFrom : '2025-04-10 14:30:00.123456'},
-        {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '2025-04-10 14:30:00.123456'},
-        {name: 'Silent Signal Transmission', size:4768, format : 'acc', createdFrom : '2025-04-10 14:30:00.123456'},
-        {name: 'Chrono Flux Report', size:57685, format : 'docx', createdFrom : '2025-04-10 14:30:00.123456'},
-        {name: 'BTC Report', size:87619, format : 'dat', createdFrom : '2025-04-10 14:30:00.123456'},
-        {name: 'Synthetic Mind Integration Notes', size:346281, format : 'pdf', createdFrom : '2025-04-10 14:30:00.123456'},
-        {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '2025-04-10 14:30:00.123456'},
-        {name: 'Silent Signal Transmission', size:4768, format : 'acc', createdFrom : '2025-04-10 14:30:00.123456'},
-        {name: 'Chrono Flux Report', size:57685, format : 'docx', createdFrom : '2025-04-10 14:30:00.123456'}
+        {name: 'BTC Report', size:87619, format : 'dat', createdFrom : '15 April, 2025'},
+        {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '15 April, 2025'},
+        {name: 'Silent Signal Transmission Silent Signal Transmission Silent Signal Transmission Silent Signal Transmission', size:4768, format : 'acc', createdFrom : '15 April, 2025'},
+        {name: 'Chrono Flux Report', size:57685, format : 'docx', createdFrom : '15 April, 2025'},
+        {name: 'BTC Report', size:87619, format : 'dat', createdFrom : '15 April, 2025'},
+        {name: 'Synthetic Mind Integration Notes', size:346281, format : 'pdf', createdFrom : '15 April, 2025'},
+        {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '15 April, 2025'},
+        {name: 'Synthetic Mind Integration Notes', size:346281, format : 'pdf', createdFrom : '15 April, 2025'},
+        {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '15 April, 2025'},
+        {name: 'Silent Signal Transmission', size:4768, format : 'acc', createdFrom : '15 April, 2025'},
+        {name: 'Chrono Flux Report', size:57685, format : 'docx', createdFrom : '15 April, 2025'},
+        {name: 'BTC Report', size:87619, format : 'dat', createdFrom : '15 April, 2025'},
+        {name: 'Synthetic Mind Integration Notes', size:346281, format : 'pdf', createdFrom : '15 April, 2025'},
+        {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '15 April, 2025'},
+        {name: 'Silent Signal Transmission', size:4768, format : 'acc', createdFrom : '15 April, 2025'},
+        {name: 'Chrono Flux Report', size:57685, format : 'docx', createdFrom : '15 April, 2025'}
     ]);
     const [sorting, setSorting] = useState<SortingState>([]);
 
@@ -184,11 +184,14 @@ const Home = () => {
                             {table.getHeaderGroups().map((headerGroup) => (
                                 <tr key={headerGroup.id} className={css.homeDocumentTableHeadRow}>
                                     {headerGroup.headers.map((header) => (
-                                        <th key={header.id} className={css.homeDocumentTableHeadCell}>
+                                        <th 
+                                        key      = {header.id}  
+                                        className = {`${css.homeDocumentTableHeadCell} ${css[`headCell_${header.column.id}`] || ''}`}
+                                        >
                                             <div 
                                                 {...{
                                                     className: header.column.getCanSort() ? 'cursor-pointer' : '',
-                                                    onClick : header.column.getToggleSortingHandler()
+                                                    onClick  : header.column.getToggleSortingHandler()
                                                 }}
                                             >
                                                 {flexRender(
@@ -206,10 +209,15 @@ const Home = () => {
                         <tbody className={css.homeDocumentTableBody}>
                             <div className={css.homeDocumentTableList}>  
                                 {table.getRowModel().rows.map((row) => (
-                                    <tr className={css.homeDocumentTableRow} key={row.id}>
+                                    <tr key={row.id} className={css.homeDocumentTableRow}>
                                         {row.getVisibleCells().map((cell) => (
-                                            <td className={css.homeDocumentTableCell} key={cell.id}>
-                                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                            <td 
+                                                key       = {cell.id}  
+                                                className = {`${css.homeDocumentTableCell} ${css[`tableCell_${cell.column.id}`] || ''}`}
+                                            > 
+                                                <div className={css.tableCellTextDiv}>
+                                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                                </div> 
                                             </td>
                                         ))}
                                     </tr>
