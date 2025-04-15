@@ -150,9 +150,10 @@ ul.homeDocumentBreadcrumbs li a:hover { text-decoration: underline; }
     font-size: 14px; 
     text-align: left;
     line-height: 14px;
-    white-space: nowrap;
-    padding: 0px 15px 0px 15px;  
+    white-space: nowrap; 
 }
+
+.homeDocumentTableHeadRow { padding: 0px 35px 0px 15px; }
 
 .lightTheme .homeDocumentTableHeadRow {
     height: fit-content;
@@ -162,11 +163,10 @@ ul.homeDocumentBreadcrumbs li a:hover { text-decoration: underline; }
     border-bottom: 1px solid #EEEEEE;   
 }
 
-.lightTheme .homeDocumentTableRow { color: #212121; }
- 
 .lightTheme .homeDocumentTableRow { 
     border: none;
-    background-color: #FFFFFF; 
+    color: #212121;
+    background-color: #FFFFFF;  
 }
 
 .homeDocumentTableHead, .homeDocumentTableBody { 
@@ -184,19 +184,40 @@ ul.homeDocumentBreadcrumbs li a:hover { text-decoration: underline; }
     overflow-y: auto;
     max-height: 50vh;
     flex-direction: column; 
-    padding: 10px 0px 10px 0px;
+    padding: 10px 20px 10px 15px;
 }
 
 .homeDocumentTableHeadCell, .homeDocumentTableCell {
     all: unset;  
-    flex: 1; 
     margin: 0px; 
     display: flex;
     text-align: left;  
+    align-items: center;
 }
 
 .homeDocumentTableHeadCell { padding: 10px 0px 10px 0px; }
 .homeDocumentTableCell { padding: 0px; }
+ 
+.headCell_name, .tableCell_name { flex: 1; }
+
+.headCell_size, .headCell_format, .headCell_createdFrom { 
+    width: 15%; 
+    justify-content: flex-end;
+}
+
+.tableCell_size, .tableCell_format, .tableCell_createdFrom {
+    display: flex;
+    width: 15%; 
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.tableCell_size .tableCellTextDiv, .tableCell_format .tableCellTextDiv, .tableCell_createdFrom .tableCellTextDiv { 
+    margin: 0px;
+    padding: 0px; 
+}
 
 .homeDocumentIconDiv { 
     display: flex;
@@ -229,4 +250,13 @@ ul.homeDocumentBreadcrumbs li a:hover { text-decoration: underline; }
 
 .lightTheme .homeDocumentTableCellSize, .lightTheme .homeDocumentTableCellFormat, .lightTheme .homeDocumentTableCellCreated { 
     color: #757575;  
+}
+
+.tableCell_name .homeDocumentTableCellName {
+    display: inline-block; 
+    max-width: 40vw; 
+    overflow: hidden;  
+    line-height: 17px;
+    white-space: nowrap;
+    text-overflow: ellipsis; 
 }
