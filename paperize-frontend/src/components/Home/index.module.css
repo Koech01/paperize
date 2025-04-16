@@ -34,14 +34,14 @@ src:url('../fonts/Poppins-Regular.woff2') format('woff');
 
 .homeChildDiv {
     display: flex;
-    gap: 6%;
+    gap: 7%;
     width: 98%;
     margin: 0px;
-    padding: 0px;
     height: 100%;
     align-items: center;
     flex-direction: column;
-    justify-content: center;
+    padding: 7% 0px 0px 0px; 
+    justify-content: flex-start; 
 }
 
 .homeDocumentsComponentDiv {
@@ -56,6 +56,77 @@ src:url('../fonts/Poppins-Regular.woff2') format('woff');
 }
 
 .lightTheme .homeDocumentsComponentDiv { border: 1px solid #EEEEEE; }
+
+
+.homeDocumentsRecentDiv {
+    display: flex;
+    gap: 20px;
+    width: 90%;
+    margin: 0px;
+    padding: 0px; 
+    align-items: center; 
+    justify-content: flex-start;
+}
+
+.homeDocumentRecentItem {
+    display: flex; 
+    gap: 15px;
+    margin: 0px;
+    height: 100%;
+    border-radius: 10px;
+    align-items: center; 
+    padding: 3px 10px 3px 10px;  
+    justify-content: flex-start; 
+}
+
+.lightTheme .homeDocumentRecentItem { border: 1px solid #EEEEEE; } 
+
+.homeDocumentRecentIconDiv {
+    display: flex;  
+    width: 30px; 
+    margin: 0px;
+    padding: 0px; 
+}
+
+.homeDocumentRecentTextDiv {
+    display: flex; 
+    gap: 6px;
+    margin: 0px;
+    padding: 0px;  
+    align-items: center;
+    flex-direction: column; 
+    justify-content: flex-start; 
+}
+
+.homeDocumentRecentDeleteBtn {
+    all: unset;
+    display: flex;
+    margin: 0px;
+    padding: 4px;  
+    border-radius: 50%;
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    justify-content: center; 
+}
+
+.lightTheme .homeDocumentRecentDeleteBtn { 
+    background-color: #FFFFFF; 
+    border: 1px solid #EEEEEE; 
+}
+
+.darkTheme .homeDocumentRecentDeleteBtn  { 
+    background-color: #FFFFFF; 
+    border: 1px solid #EEEEEE; 
+}
+
+.homeDocumentRecentDeleteIcon {
+    margin: 0px; 
+    width: 12px;
+    height: 12px;
+    padding: 0px;  
+    transition: .3s; 
+}
 
 .homeDocumentsUtilityBar {
     display: flex;
@@ -182,7 +253,8 @@ ul.homeDocumentBreadcrumbs li a:hover { text-decoration: underline; }
     width: 100%;
     margin: 0px; 
     overflow-y: auto;
-    max-height: 50vh;
+    max-height: 45vh;
+    height: fit-content; 
     flex-direction: column; 
     padding: 10px 20px 10px 15px;
 }
@@ -235,7 +307,12 @@ ul.homeDocumentBreadcrumbs li a:hover { text-decoration: underline; }
     padding: 0px;
 }
 
-.homeDocumentTableCellName, .homeDocumentTableCellSize, .homeDocumentTableCellFormat, .homeDocumentTableCellCreated {  
+.homeDocumentRecentName, 
+.homeDocumentRecentSize, 
+.homeDocumentTableCellName, 
+.homeDocumentTableCellSize, 
+.homeDocumentTableCellFormat, 
+.homeDocumentTableCellCreated {  
     width: 100%;
     margin: 0px;  
     font-size: 14px; 
@@ -244,15 +321,22 @@ ul.homeDocumentBreadcrumbs li a:hover { text-decoration: underline; }
     white-space: nowrap; 
 }
 
-.lightTheme .homeDocumentTableCellName { 
+.lightTheme .homeDocumentTableCellName, 
+.lightTheme .homeDocumentRecentName { 
     color: #212121; 
 }
 
-.lightTheme .homeDocumentTableCellSize, .lightTheme .homeDocumentTableCellFormat, .lightTheme .homeDocumentTableCellCreated { 
+.lightTheme .homeDocumentRecentSize { color: #757575; }
+
+.lightTheme .homeDocumentTableCellSize, 
+.lightTheme .homeDocumentTableCellFormat, 
+.lightTheme .homeDocumentTableCellCreated { 
     color: #757575;  
 }
 
-.tableCell_name .homeDocumentTableCellName {
+.tableCell_name .homeDocumentTableCellName,  
+.lightTheme .homeDocumentRecentSize,
+.lightTheme .homeDocumentRecentName {
     display: inline-block; 
     max-width: 40vw; 
     overflow: hidden;  
