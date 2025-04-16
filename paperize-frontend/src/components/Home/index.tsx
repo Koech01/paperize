@@ -1,5 +1,6 @@
 import css from './index.module.css';
 import { useEffect, useState } from 'react';
+import closeLightIcon from '../assets/closeLight.svg'; 
 import { FileIcon, defaultStyles } from 'react-file-icon';
 import { DocumentProps, FolderProps, ColumnProps } from '../types'; 
 import { createColumnHelper, flexRender, getCoreRowModel, SortingState, useReactTable } from '@tanstack/react-table';
@@ -56,7 +57,7 @@ const Home = () => {
     const [documents, setDocuments]             = useState([
         {name: 'BTC Report', size:87619, format : 'dat', createdFrom : '15 April, 2025'},
         {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '15 April, 2025'},
-        {name: 'Silent Signal Transmission Silent Signal Transmission Silent Signal Transmission Silent Signal Transmission', size:4768, format : 'acc', createdFrom : '15 April, 2025'},
+        {name: 'Silent Signal Transmission', size:4768, format : 'acc', createdFrom : '15 April, 2025'},
         {name: 'Chrono Flux Report', size:57685, format : 'docx', createdFrom : '15 April, 2025'},
         {name: 'BTC Report', size:87619, format : 'dat', createdFrom : '15 April, 2025'},
         {name: 'Synthetic Mind Integration Notes', size:346281, format : 'pdf', createdFrom : '15 April, 2025'},
@@ -80,6 +81,11 @@ const Home = () => {
         state : { sorting },
         onSortingChange: setSorting,
     })
+
+    const recentDocuments = [
+        {id: 1, name: 'BTC Report', size:87619, format : 'docx', createdFrom : '15 April, 2025'},
+        {id: 2, name: 'Encrypted Shadows', size:124360, format : 'pdf', createdFrom : '15 April, 2025'},
+    ]
     
 
     useEffect(() => {
@@ -161,6 +167,26 @@ const Home = () => {
     return(
         <div className={`${css.homeParentDiv} ${theme === 'light' ? css.lightTheme : css.darkTheme}`}>
             <div className={css.homeChildDiv}>
+
+                <div className={css.homeDocumentsRecentDiv}> 
+                    {recentDocuments.map((document) => (
+                        <div key={document.id} className={css.homeDocumentRecentItem}>
+                            <div className={css.homeDocumentRecentIconDiv}>
+                                <FileIcon extension={document.format} {...(defaultStyles[document.format] || {})}/> 
+                            </div> 
+
+                            <div className={css.homeDocumentRecentTextDiv}>
+                                <span className={css.homeDocumentRecentName}>{document.name}</span>
+                                <span className={css.homeDocumentRecentSize}>{document.size} MB</span>
+                            </div>
+
+                            <button className={css.homeDocumentRecentDeleteBtn}>
+                                <img className={css.homeDocumentRecentDeleteIcon} src={closeLightIcon} alt='home-doc-recent-delete-btn'/>
+                            </button> 
+                        </div>
+                    ))} 
+                </div>
+ 
 
                 <div className={css.homeDocumentsComponentDiv}>
                     <div className={css.homeDocumentsUtilityBar}>
