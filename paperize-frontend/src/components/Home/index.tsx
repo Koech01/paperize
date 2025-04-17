@@ -4,6 +4,7 @@ import closeLightIcon from '../assets/closeLight.svg';
 import { FileIcon, defaultStyles } from 'react-file-icon';
 import { DocumentProps, FolderProps, ColumnProps } from '../types'; 
 import { createColumnHelper, flexRender, getCoreRowModel, SortingState, useReactTable } from '@tanstack/react-table';
+import deleteDocLightIcon from '../assets/docDeleteLightIcon.svg';
 
 
 const columnHelper = createColumnHelper<ColumnProps>();
@@ -181,7 +182,7 @@ const Home = () => {
                             </div>
 
                             <button className={css.homeDocumentRecentDeleteBtn}>
-                                <img className={css.homeDocumentRecentDeleteIcon} src={closeLightIcon} alt='home-doc-recent-delete-btn'/>
+                                <img className={css.homeDocumentRecentDeleteIcon} src={deleteDocLightIcon} alt='home-doc-recent-delete-btn'/>
                             </button> 
                         </div>
                     ))} 
