@@ -122,11 +122,13 @@ src:url('../fonts/Poppins-Regular.woff2') format('woff');
 
 .homeDocumentRecentDeleteIcon {
     margin: 0px; 
-    width: 12px;
-    height: 12px;
+    width: 15px;
+    height: auto;
     padding: 0px;  
     transition: .3s; 
 }
+
+.homeDocumentRecentDeleteBtn:active { transform: scale(0.95); } 
 
 .homeDocumentsUtilityBar {
     display: flex;
