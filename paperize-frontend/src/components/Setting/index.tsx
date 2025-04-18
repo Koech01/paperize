@@ -12,10 +12,40 @@ const Setting = () => {
     const [editThemeMenu, setEditThemeMenu]     = useState(false);
 
 
-    useEffect(() => {
-        const savedTheme = localStorage.getItem('themePreference');
-        if (savedTheme) { setTheme(theme); }
+    useEffect(() => { 
+        const savedTheme  = localStorage.getItem('themePreference') as 'light' | 'dark' |'system' | null;
+        const getSysTheme = () => window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        const applyTheme  = ( selectedTheme : 'light' | 'dark' | 'system' ) => {
+            const newTheme = selectedTheme === 'system' ? getSysTheme() : selectedTheme;
+            setTheme(newTheme);
+            document.documentElement.setAttribute('data-theme', newTheme); 
+        }
+
+        const initialTheme = savedTheme || 'system';
+        applyTheme(initialTheme);
+
+        if (initialTheme === 'system') {
+            const sysThemeListener = (e: MediaQueryListEvent) => {
+                const newSysTheme = e.matches ? 'dark' : 'light';
+                setTheme(newSysTheme);
+                document.documentElement.setAttribute('data-theme', newSysTheme); 
+            }
+       
+            const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+            mediaQuery.addEventListener('change', sysThemeListener);
+
+            return () => mediaQuery.removeEventListener('change', sysThemeListener);
+        }
     }, [])
+
+
+    const changeDisplayTheme = (newTheme: 'light' | 'dark' | 'system') => {
+        localStorage.setItem('themePreference', newTheme);
+        setTheme(newTheme);
+
+        const updateTheme = newTheme === 'system' ? (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light') : newTheme;
+        document.documentElement.setAttribute('data-theme', updateTheme);
+    }
 
     
     const handleRevokeAccess = async() => {
@@ -38,7 +68,7 @@ const Setting = () => {
     }
 
 
-    const handleOpenRevokeModal  = () => { if (revokeModalOpen != true) {setRevokeModalOpen(true)} }
+    const handleOpenRevokeModal  = () => { setRevokeModalOpen(true); }
     const handleCloseRevokeModal = () => { setRevokeModalOpen(false) }
 
 
@@ -92,7 +122,7 @@ const Setting = () => {
                                                 <option 
                                                     value   = 'system'
                                                     onClick = {() => {
-                                                        if (theme != 'system') { setTheme('system'); }
+                                                        if (theme != 'system') { changeDisplayTheme('system'); }
                                                         setEditThemeMenu(false);
                                                     }}
                                                     className = {css.settingThemeOption}
@@ -109,7 +139,7 @@ const Setting = () => {
                                                 <option 
                                                     value   = 'light'
                                                     onClick = {() => {
-                                                        if (theme != 'light') { setTheme('light'); }
+                                                        if (theme != 'light') { changeDisplayTheme('light'); }
                                                         setEditThemeMenu(false);
                                                     }}
                                                     className = {css.settingThemeOption}
@@ -126,7 +156,7 @@ const Setting = () => {
                                                 <option  
                                                     value   = 'dark'
                                                     onClick = {() => {
-                                                        if (theme != 'dark') { setTheme('dark'); }
+                                                        if (theme != 'dark') { changeDisplayTheme('dark'); }
                                                         setEditThemeMenu(false);
                                                     }}
                                                     className = {css.settingThemeOption}
