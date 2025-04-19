@@ -1,5 +1,5 @@
 import css from './index.module.css';
-import { useEffect, useState } from 'react'; 
+import { useEffect, useState, SyntheticEvent } from 'react'; 
 import userIcon from '../assets/usericon.jpg';
 import { useNavigate } from 'react-router-dom'; 
 import logoutLightIcon from '../assets/logoutLightIcon.svg';
@@ -35,7 +35,31 @@ const Profile = () => {
     }
 
 
-    const handleProfileUpdate        = () => { setEditMode(false); }
+    const handleProfileUpdate = async (e : SyntheticEvent) => {
+        e.preventDefault()
+
+        try {
+          const token    = localStorage.getItem('token');
+          const response = await fetch('http://127.0.0.1:8000/api/v1/profiles/', {
+            method      : 'PATCH',
+            headers     : { 'Authorization': `Bearer ${token}` },
+            credentials : 'include', 
+          });
+    
+          if (response.ok) { 
+            setEditMode(false);
+          }
+    
+          else {
+            const errorData = await response.json();
+            console.error('Failed to update profile:', errorData);
+          }
+    
+        }
+    
+        catch (error) { console.log('An error occurred. Please try again later: ', error); }
+    }
+
 
     const handleProfileUpdateDiscard = () => { setEditMode(false); }
 
@@ -53,7 +77,7 @@ const Profile = () => {
         <div className={`${css.profileParentDiv} ${theme === 'light' ? css.lightTheme : css.darkTheme}`}>
             <div className={css.profileChildDiv}>
                 {editMode ? (  
-                    <div className={css.profileEditParentDiv}> 
+                    <form className={css.profileEditParentDiv} onSubmit={handleProfileUpdate}> 
                         <div className={css.profileEditUserIconDiv}> 
                             <img  
                                 src       = {userIcon} 
@@ -131,9 +155,9 @@ const Profile = () => {
 
                         <div className={css.profileEditBtnDiv}> 
                             <button className={css.profileEditDiscardBtn} onClick={handleProfileUpdateDiscard}>Cancel</button>
-                            <button className={css.profileEditUpdateBtn} type='submit' onClick={handleProfileUpdate}>Update</button>
+                            <button className={css.profileEditUpdateBtn} type='submit'>Update</button>
                         </div>
-                    </div>
+                    </form>
                 ):(
                     <>
                         <div className={css.profileIconNameDiv}> 
