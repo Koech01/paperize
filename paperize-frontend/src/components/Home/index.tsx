@@ -1,10 +1,9 @@
 import css from './index.module.css';
 import { useEffect, useState } from 'react';
-import closeLightIcon from '../assets/closeLight.svg'; 
 import { FileIcon, defaultStyles } from 'react-file-icon';
+import deleteDocLightIcon from '../assets/docDeleteLightIcon.svg';
 import { DocumentProps, FolderProps, ColumnProps } from '../types'; 
 import { createColumnHelper, flexRender, getCoreRowModel, SortingState, useReactTable } from '@tanstack/react-table';
-import deleteDocLightIcon from '../assets/docDeleteLightIcon.svg';
 
 
 const columnHelper = createColumnHelper<ColumnProps>();
@@ -170,22 +169,36 @@ const Home = () => {
             <div className={css.homeChildDiv}>
 
                 <div className={css.homeDocumentsRecentDiv}> 
-                    {recentDocuments.map((document) => (
-                        <div key={document.id} className={css.homeDocumentRecentItem}>
+                    {recentDocuments?.length ? (
+                        recentDocuments.map((document) => (
+                            <div key={document.id} className={css.homeDocumentRecentItem}>
+                                <div className={css.homeDocumentRecentIconDiv}>
+                                    <FileIcon extension={document.format} {...(defaultStyles[document.format] || {})}/> 
+                                </div> 
+
+                                <div className={css.homeDocumentRecentTextDiv}>
+                                    <span className={css.homeDocumentRecentName}>{document.name}</span>
+                                    <span className={css.homeDocumentRecentSize}>{document.size} MB</span>
+                                </div>
+
+                                <button className={css.homeDocumentRecentDeleteBtn}>
+                                    <img className={css.homeDocumentRecentDeleteIcon} src={deleteDocLightIcon} alt='home-doc-recent-delete-btn'/>
+                                </button> 
+                            </div>
+                        )) 
+                    ) : (
+                        <div className={css.homeDocumentRecentItem}>
                             <div className={css.homeDocumentRecentIconDiv}>
-                                <FileIcon extension={document.format} {...(defaultStyles[document.format] || {})}/> 
+                                <FileIcon extension={'file'} {...(defaultStyles['file'] || {})}/> 
                             </div> 
 
                             <div className={css.homeDocumentRecentTextDiv}>
-                                <span className={css.homeDocumentRecentName}>{document.name}</span>
-                                <span className={css.homeDocumentRecentSize}>{document.size} MB</span>
+                                <span className={css.homeDocumentRecentName}>Nothing Here… Yet</span>
+                                <span className={css.homeDocumentRecentSize}>No recent activity. Open or upload a document to get started.</span>
                             </div>
-
-                            <button className={css.homeDocumentRecentDeleteBtn}>
-                                <img className={css.homeDocumentRecentDeleteIcon} src={deleteDocLightIcon} alt='home-doc-recent-delete-btn'/>
-                            </button> 
                         </div>
-                    ))} 
+                    )}
+                 
                 </div>
  
 
