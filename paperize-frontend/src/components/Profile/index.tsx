@@ -1,8 +1,8 @@
 import css from './index.module.css';
-import { useEffect, useState, SyntheticEvent } from 'react'; 
 import userIcon from '../assets/usericon.jpg';
 import { useNavigate } from 'react-router-dom'; 
 import logoutLightIcon from '../assets/logoutLightIcon.svg';
+import { useEffect, useState, SyntheticEvent } from 'react';  
 import settingLightIcon from '../assets/settingLightIcon.svg';
 import profileNameLightIcon from '../assets/profileNameLightIcon.svg';  
 import profileCompanyLightIcon from '../assets/profileCompanyLightIcon.svg'; 
