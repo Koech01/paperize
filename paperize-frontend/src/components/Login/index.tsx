@@ -22,7 +22,9 @@ const Login = () => {
     }, [])
 
 
-    useEffect(() => { if (redirect) { navigate('/') } }, [redirect])
+    useEffect(() => { 
+        if (redirect && sessionStorage.getItem('isLoggedIn') === 'true') { navigate('/') } 
+    }, [redirect])
 
 
     const submit = async(e : SyntheticEvent) => {
@@ -37,6 +39,7 @@ const Login = () => {
             })
 
             if (response.ok) {
+                sessionStorage.setItem('isLoggedIn', 'true');
                 setRedirect(true);
             }
 

@@ -29,12 +29,13 @@ const SignUp = () => {
         try {
             const response = await fetch('/api/auth/sign-up/', {
                 method      : 'POST',
-                headers     : {},
+                headers     : { 'Content-Type': 'application/json' },
                 credentials : 'include',
                 body        : JSON.stringify({ username, email, password })
             })
 
             if (response.ok) {
+                sessionStorage.setItem('isLoggedIn', 'true');
                 setRedirect(true);
             }
 
