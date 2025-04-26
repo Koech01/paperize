@@ -1,10 +1,16 @@
+import dayjs from 'dayjs';
 import css from './index.module.css';
 import { useEffect, useState } from 'react';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import { FileIcon, defaultStyles } from 'react-file-icon';
 import deleteDocLightIcon from '../assets/docDeleteLightIcon.svg';
 import { DocumentProps, FolderProps, ColumnProps } from '../types'; 
 import { createColumnHelper, flexRender, getCoreRowModel, SortingState, useReactTable } from '@tanstack/react-table';
 
+
+dayjs.extend(relativeTime);
+const formatTimeAgo = (timestamp : string) => { return dayjs(timestamp).fromNow(); };
+ 
 
 const columnHelper = createColumnHelper<ColumnProps>();
 const columns = [
@@ -42,11 +48,11 @@ const columns = [
     columnHelper.accessor('createdFrom', {
         header : () => 'Created',
         cell   : (info) => (
-            <span className={css.homeDocumentTableCellCreated}>{info.getValue()}</span>
+            <span className={css.homeDocumentTableCellCreated}>{formatTimeAgo(info.getValue())}</span>
         )
     })
 ]
-
+  
   
 const Home = () => {
 
@@ -55,22 +61,22 @@ const Home = () => {
     const [deleteModalOpen, setDeleteModalOpen] = useState(false);
     const [resourceItem, setResourceItem]       = useState<(DocumentProps | FolderProps)[]>([]);
     const [documents, setDocuments]             = useState([
-        {name: 'BTC Report', size:87619, format : 'dat', createdFrom : '15 April, 2025'},
-        {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '15 April, 2025'},
-        {name: 'Silent Signal Transmission', size:4768, format : 'acc', createdFrom : '15 April, 2025'},
-        {name: 'Chrono Flux Report', size:57685, format : 'docx', createdFrom : '15 April, 2025'},
-        {name: 'BTC Report', size:87619, format : 'dat', createdFrom : '15 April, 2025'},
-        {name: 'Synthetic Mind Integration Notes', size:346281, format : 'pdf', createdFrom : '15 April, 2025'},
-        {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '15 April, 2025'},
-        {name: 'Synthetic Mind Integration Notes', size:346281, format : 'pdf', createdFrom : '15 April, 2025'},
-        {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '15 April, 2025'},
-        {name: 'Silent Signal Transmission', size:4768, format : 'acc', createdFrom : '15 April, 2025'},
-        {name: 'Chrono Flux Report', size:57685, format : 'docx', createdFrom : '15 April, 2025'},
-        {name: 'BTC Report', size:87619, format : 'dat', createdFrom : '15 April, 2025'},
-        {name: 'Synthetic Mind Integration Notes', size:346281, format : 'pdf', createdFrom : '15 April, 2025'},
-        {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '15 April, 2025'},
-        {name: 'Silent Signal Transmission', size:4768, format : 'acc', createdFrom : '15 April, 2025'},
-        {name: 'Chrono Flux Report', size:57685, format : 'docx', createdFrom : '15 April, 2025'}
+        {name: 'BTC Report', size:87619, format : 'dat', createdFrom : '2025-04-21 15:31:44.212312'},
+        {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '2025-04-30 05:31:44.212312'},
+        {name: 'Silent Signal Transmission', size:4768, format : 'acc', createdFrom : '2025-04-26 03:31:44.212312'},
+        {name: 'Chrono Flux Report', size:57685, format : 'docx', createdFrom : '2025-04-26 00:31:44.212312'},
+        {name: 'BTC Report', size:87619, format : 'dat', createdFrom : '2025-04-26 11:31:44.212312'},
+        {name: 'Synthetic Mind Integration Notes', size:346281, format : 'pdf', createdFrom : '2025-04-26 20:31:44.212312'},
+        {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '2025-04-26 14:31:44.212312'},
+        {name: 'Synthetic Mind Integration Notes', size:346281, format : 'pdf', createdFrom : '2025-04-26 03:31:44.212312'},
+        {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '2025-04-26 21:31:44.212312'},
+        {name: 'Silent Signal Transmission', size:4768, format : 'acc', createdFrom : '2025-04-26 6:31:44.212312'},
+        {name: 'Chrono Flux Report', size:57685, format : 'docx', createdFrom : '2025-04-26 09:31:44.212312'},
+        {name: 'BTC Report', size:87619, format : 'dat', createdFrom : '2025-04-26 17:31:44.212312'},
+        {name: 'Synthetic Mind Integration Notes', size:346281, format : 'pdf', createdFrom : '2025-04-12 22:31:44.212312'},
+        {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '2025-04-08 02:31:44.212312'},
+        {name: 'Silent Signal Transmission', size:4768, format : 'acc', createdFrom : '2025-04-03 11:31:44.212312'},
+        {name: 'Chrono Flux Report', size:57685, format : 'docx', createdFrom : '2025-04-11 08:31:44.212312'}
     ]);
     const [sorting, setSorting] = useState<SortingState>([]);
 
