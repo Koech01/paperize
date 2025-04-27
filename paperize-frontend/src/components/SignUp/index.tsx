@@ -5,12 +5,16 @@ import authErrorLightIcon from '../assets/authErrorLightIcon.svg';
 import authSuccessLightIcon from '../assets/authSuccessLightIcon.svg';
 
 
+const serverUrl = import.meta.env.SERVER_URL;
+
+
 const SignUp = () => {
        
     const [theme, setTheme]       = useState('light'); 
     const [error, setError]       = useState('');
     const [email, setEmail]       = useState('');
-    const [username, setUsername] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState(''); 
     const [password, setPassword] = useState(''); 
     const navigate                = useNavigate();
     const [redirect, setRedirect] = useState(false);
@@ -27,22 +31,19 @@ const SignUp = () => {
         e.preventDefault();
 
         try {
-            const response = await fetch('/api/auth/sign-up/', {
+
+            const response = await fetch(`http://localhost:8080/api/auth/sign-up/`, {
                 method      : 'POST',
                 headers     : { 'Content-Type': 'application/json' },
                 credentials : 'include',
-                body        : JSON.stringify({ username, email, password })
+                body        : JSON.stringify({ firstName, lastName, email, password })
             })
 
-            if (response.ok) {
-                sessionStorage.setItem('isLoggedIn', 'true');
-                setRedirect(true);
-            }
+            const data = await response.json();
 
-            else {
-                const data = await response.json();
-                setError(data.detail);
-            }
+            if (!response.ok) { setError(data.detail); }
+
+            return data;
         }
 
         catch (error) { setError('An error occurred. Please try again.') }
@@ -60,10 +61,19 @@ const SignUp = () => {
                 <input  
                     required 
                     autoComplete = "off" 
-                    placeholder  = "Username" 
+                    placeholder  = "First Name" 
                     type         = "text"
                     className    = {css.authFormInput}  
-                    onChange     = {(e) => setUsername(e.target.value) }
+                    onChange     = {(e) => setFirstName(e.target.value) }
+                />
+
+                <input  
+                    required 
+                    autoComplete = "off" 
+                    placeholder  = "Last Name" 
+                    type         = "text"
+                    className    = {css.authFormInput}  
+                    onChange     = {(e) => setLastName(e.target.value) }
                 />
 
                 <input  
