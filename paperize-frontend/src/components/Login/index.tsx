@@ -5,6 +5,9 @@ import githubLightIcon from '../assets/githubLightIcon.svg';
 import authErrorLightIcon from '../assets/authErrorLightIcon.svg';
 
 
+const serverUrl = import.meta.env.SERVER_URL;
+
+
 const Login = () => {
 
     const [theme, setTheme]       = useState('light');
@@ -31,22 +34,19 @@ const Login = () => {
         e.preventDefault()
 
         try {
-            const response = await fetch('/api/auth/sign-in/', {
+            const response = await fetch(`http://localhost:8080/api/auth/sign-in/`, {
                 method      : 'POST',
                 headers     : { 'Content-Type': 'application/json' },
                 credentials : 'include',
                 body        : JSON.stringify({ email, password })
             })
 
-            if (response.ok) {
-                sessionStorage.setItem('isLoggedIn', 'true');
-                setRedirect(true);
-            }
+            const data = await response.json();
 
-            else {
-                const data = await response.json();
-                setError(data.detail);
-            }
+            if (!response.ok) { setError(data.detail); }
+
+            return data;
+
         }
 
         catch (error) { setError('An error occurred. Please try again.') }

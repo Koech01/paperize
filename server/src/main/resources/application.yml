@@ -25,9 +25,9 @@ spring:
         same-site: None
 
   allowed-origins:
-    - "http://localhost:3000"
+    - "http://localhost:5173"
 
-  sign-in-success-url: "http://localhost:3000/dashboard"
+  sign-in-success-url: "http://localhost:5173/"
 
   security:
     oauth2:
