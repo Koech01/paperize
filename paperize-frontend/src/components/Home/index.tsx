@@ -1,9 +1,9 @@
 import css from './index.module.css';
 import { useEffect, useState } from 'react'; 
 import { FileIcon, defaultStyles } from 'react-file-icon';
-import { formatTimeAgo, formatDocumentExt } from '../types'; 
 import deleteDocLightIcon from '../assets/docDeleteLightIcon.svg';
 import { DocumentProps, FolderProps, ColumnProps } from '../types'; 
+import { formatTimeAgo, formatDocumentExt, formatDocumentSize } from '../types';  
 import { createColumnHelper, flexRender, getCoreRowModel, SortingState, useReactTable } from '@tanstack/react-table';
 
 
@@ -29,7 +29,7 @@ const columns = [
     columnHelper.accessor('size', {
         header : () => 'Size',
         cell   : (info) => (
-            <span className={css.homeDocumentTableCellSize}>{info.getValue()} MB</span>
+            <span className={css.homeDocumentTableCellSize}>{formatDocumentSize(info.getValue())}</span>
         )
     }),
 
