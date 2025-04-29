@@ -346,3 +346,98 @@ ul.homeDocumentBreadcrumbs li a:hover { text-decoration: underline; }
     white-space: nowrap;
     text-overflow: ellipsis; 
 }
+
+
+
+
+.homeDocDeleteModalParentDiv { 
+    position: fixed; 
+    display: flex;
+    width: 100%; 
+    padding: 0px;
+    height: 110%;
+    border: none;  
+    transition: .3s; 
+    overflow: hidden;
+    align-items: center; 
+    justify-content: center;
+}
+
+.lightTheme .homeDocDeleteModalParentDiv { background-color: rgba(0,0,0,0.2); }
+
+.darkTheme .homeDocDeleteModalParentDiv  { background-color: rgba(0,0,0,0.9); }
+
+.homeDocDeleteModalDiv {
+    position: absolute;
+    display: flex;  
+    top: 50%;
+    gap: 20px; 
+    left: 50%;
+    width: 35%;
+    margin: 0px;
+    border-radius: 8px;
+    padding: 10px 10px;
+    flex-direction: column;
+    transform: translate(-50%, -50%); 
+}
+
+.lightTheme .settingRevokeModalDiv { 
+    background: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+} 
+
+.homeDocDeleteModalHeader {
+    margin: 0px;  
+    padding: 0px; 
+    font-style: normal;  
+}
+
+.homeDocDeleteModalText {
+    margin: 0px;  
+    padding: 0px;
+    font-size: 14px;  
+    line-height: 20px;
+    font-style: normal;  
+}
+
+.homeDocDeleteModalBtnDiv {
+    display: flex;  
+    gap: 15px; 
+    margin: 0px;
+    padding: 0px;
+    align-items: center;
+    justify-content: flex-end; 
+}
+
+.homeDocDeleteModalAcceptBtn, .homeDocDeleteModalCancelBtn {
+    display: flex;
+    gap: 5px;
+    outline: 0;  
+    margin: 0px;
+    height: 30px;  
+    cursor: pointer; 
+    font-size: 13px;  
+    transition: .3s; 
+    font-weight: 500; 
+    width: fit-content; 
+    border-radius: 6px;   
+    text-align: center;
+    font-family: 'Poppins';  
+    padding: 4px 12px 4px 12px; 
+}
+
+.lightTheme .homeDocDeleteModalAcceptBtn {  
+    color: #FFFFFF;
+    background: #D50000; 
+    border: 1px solid #D50000; 
+} 
+
+.lightTheme .homeDocDeleteModalCancelBtn {  
+    color: #FAFAFA;
+    background: #212121; 
+    border: 1px solid #212121; 
+} 
+
+.homeDocumentRecentDeleteBtn:active,
+.homeDocDeleteModalAcceptBtn:active, 
+.homeDocDeleteModalCancelBtn:active { transform: scale(0.97); }
