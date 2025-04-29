@@ -139,6 +139,9 @@ const Home = () => {
     }, [searchQuery])
 
 
+    const handleDeleteDocModalOpen  = () => { setDeleteModalOpen(true); }
+    const handleDeleteDocModalClose = () => { setDeleteModalOpen(false); }
+
     const handleDeleteDocument = async(resourceId? : number) => {
         let resourceItem: string = '';
 
@@ -179,10 +182,10 @@ const Home = () => {
 
                                 <div className={css.homeDocumentRecentTextDiv}>
                                     <span className={css.homeDocumentRecentName}>{document.name}</span>
-                                    <span className={css.homeDocumentRecentSize}>{document.size} MB</span>
+                                    <span className={css.homeDocumentRecentSize}>{formatDocumentSize(document.size)}</span>
                                 </div>
 
-                                <button className={css.homeDocumentRecentDeleteBtn}>
+                                <button className={css.homeDocumentRecentDeleteBtn} onClick={handleDeleteDocModalOpen}>
                                     <img className={css.homeDocumentRecentDeleteIcon} src={deleteDocLightIcon} alt='home-doc-recent-delete-btn'/>
                                 </button> 
                             </div>
@@ -268,6 +271,21 @@ const Home = () => {
                     </table>
                 </div>
             </div>
+ 
+            {deleteModalOpen && (
+                <div className={`${css.homeDocDeleteModalParentDiv} ${css.fadeIn} ${theme === 'light' ? css.lightTheme : css.darkTheme}`}>
+                    <div className={css.homeDocDeleteModalDiv}>
+                        <h4 className={css.homeDocDeleteModalHeader}>⚠️ Revoke All Access ?</h4>
+
+                        <p className={css.homeDocDeleteModalText}>This action will immediately remove all shared users from your documents. This cannot be undone. Are you sure you want to proceed?</p>
+
+                        <div className={css.homeDocDeleteModalBtnDiv}>
+                            <button className={css.homeDocDeleteModalAcceptBtn}>Yes, Revoke Access</button>
+                            <button className={css.homeDocDeleteModalCancelBtn} onClick={handleDeleteDocModalClose}>Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }
