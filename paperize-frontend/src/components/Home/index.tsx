@@ -1,8 +1,8 @@
 import css from './index.module.css';
+import { ColumnProps } from '../types'; 
 import { useEffect, useState } from 'react'; 
 import { FileIcon, defaultStyles } from 'react-file-icon';
 import deleteDocLightIcon from '../assets/docDeleteLightIcon.svg';
-import { DocumentProps, FolderProps, ColumnProps } from '../types'; 
 import { formatTimeAgo, formatDocumentExt, formatDocumentSize } from '../types';  
 import { createColumnHelper, flexRender, getCoreRowModel, SortingState, useReactTable } from '@tanstack/react-table';
 
@@ -53,8 +53,7 @@ const Home = () => {
 
     const [theme, setTheme]                     = useState('light');
     const [searchQuery, setSearchQuery]         = useState('');
-    const [deleteModalOpen, setDeleteModalOpen] = useState(false);
-    const [resourceItem, setResourceItem]       = useState<(DocumentProps | FolderProps)[]>([]);
+    const [deleteModalOpen, setDeleteModalOpen] = useState(false); 
     const [documents, setDocuments]             = useState([
         {name: 'BTC Report', size:87619, format : 'file.dat', createdFrom : '2025-04-21 15:31:44.212312'},
         {name: 'Encrypted Shadows', size:124360, format : 'folder', createdFrom : '2025-04-30 05:31:44.212312'},
@@ -106,7 +105,7 @@ const Home = () => {
 
         if (response.ok) {
             const resourceData = await response.json();
-            setResourceItem(resourceData);
+            setDocuments(resourceData);
         }
 
         else { console.error('Failed to fetch user documents and folders: ', response.status); }
@@ -275,12 +274,12 @@ const Home = () => {
             {deleteModalOpen && (
                 <div className={`${css.homeDocDeleteModalParentDiv} ${css.fadeIn} ${theme === 'light' ? css.lightTheme : css.darkTheme}`}>
                     <div className={css.homeDocDeleteModalDiv}>
-                        <h4 className={css.homeDocDeleteModalHeader}>⚠️ Revoke All Access ?</h4>
+                        <h4 className={css.homeDocDeleteModalHeader}>Delete Document</h4>
 
-                        <p className={css.homeDocDeleteModalText}>This action will immediately remove all shared users from your documents. This cannot be undone. Are you sure you want to proceed?</p>
+                        <p className={css.homeDocDeleteModalText}>This operation cannot be undone. Do you wish to continue?</p>
 
                         <div className={css.homeDocDeleteModalBtnDiv}>
-                            <button className={css.homeDocDeleteModalAcceptBtn}>Yes, Revoke Access</button>
+                            <button className={css.homeDocDeleteModalAcceptBtn} onClick={() => handleDeleteDocument()}>Delete</button>
                             <button className={css.homeDocDeleteModalCancelBtn} onClick={handleDeleteDocModalClose}>Cancel</button>
                         </div>
                     </div>
